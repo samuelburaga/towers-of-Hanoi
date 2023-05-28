@@ -13,4 +13,6 @@ module com.example.towersofhanoi {
 
     opens com.example.towersofhanoi to javafx.fxml;
     exports com.example.towersofhanoi;
+    exports com.example.towersofhanoi.Controller;
+    opens com.example.towersofhanoi.Controller to javafx.fxml;
 }

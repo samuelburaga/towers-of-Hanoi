@@ -1,4 +1,4 @@
-package com.example.towersofhanoi;
+package com.example.towersofhanoi.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
