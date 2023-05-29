@@ -70,7 +70,7 @@
                   <Font name="Mongolian Baiti" size="30.0" />
                </font>
             </Label>
-            <Button fx:id="sign_inButton" layoutX="43.0" layoutY="318.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="291.0" style="-fx-background-color: #0fb4bb;" text="Sign Up" textFill="WHITE">
+            <Button fx:id="sign_upButton" layoutX="43.0" layoutY="318.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="291.0" style="-fx-background-color: #0fb4bb;" text="Sign Up" textFill="WHITE">
                <font>
                   <Font name="Mongolian Baiti" size="20.0" />
                </font>
