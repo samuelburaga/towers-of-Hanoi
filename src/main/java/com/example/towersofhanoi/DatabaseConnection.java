@@ -4,6 +4,7 @@ import javafx.scene.chart.PieChart;
 
 import java.sql.*;
 public class DatabaseConnection {
+    static final String username = "root", password = "hackerman";
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String hostname = "localhost", port = "3306", database = "towers-of-hanoi";
     static final String JDBC_URL = "jdbc:mysql://" + hostname + "/" + port + "/" + database;

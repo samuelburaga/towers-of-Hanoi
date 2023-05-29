@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.towersofhanoi.Controller.LogInController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <left>
         <AnchorPane prefHeight="200.0" prefWidth="225.0" style="-fx-background-color: #FA8163;" BorderPane.alignment="CENTER">
             <children>
@@ -47,30 +47,25 @@
                                 <Font name="Mongolian Baiti" size="20.0" />
                             </font>
                         </Label>
-                        <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="161.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="usernameTextField" promptText="Username" GridPane.columnIndex="1" />
+                        <PasswordField fx:id="passwordTF" prefHeight="25.0" prefWidth="161.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="usernameTF" promptText="Username" GridPane.columnIndex="1" />
                     </children>
                 </GridPane>
-                <Label layoutX="147.0" layoutY="26.0" text="Log In" textFill="#fa8163">
+                <Label layoutX="139.0" layoutY="25.0" text="Log In" textFill="#fa8163">
                     <font>
                         <Font name="Mongolian Baiti" size="30.0" />
                     </font>
                 </Label>
-                <Button fx:id="log_inButton" layoutX="43.0" layoutY="276.0" mnemonicParsing="false" onAction="#logInButtonOnAction" prefHeight="19.0" prefWidth="291.0" style="-fx-background-color: #0fb4bb;" text="Log In" textFill="WHITE">
+                <Button fx:id="log_inButton" layoutX="43.0" layoutY="276.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="291.0" style="-fx-background-color: #0fb4bb;" text="Log In" textFill="WHITE">
                     <font>
                         <Font name="Mongolian Baiti" size="20.0" />
                     </font>
                 </Button>
-            <Button fx:id="cancelButton" layoutX="43.0" layoutY="324.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="19.0" prefWidth="291.0" style="-fx-background-color: #0fb4bb;" text="Cancel" textFill="WHITE">
+            <Button fx:id="cancelButton" layoutX="43.0" layoutY="324.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="291.0" style="-fx-background-color: #0fb4bb;" text="Cancel" textFill="WHITE">
                <font>
                   <Font name="Mongolian Baiti" size="20.0" />
                </font>
             </Button>
-            <Label fx:id="logInLabel" alignment="CENTER" layoutX="43.0" layoutY="94.0" prefHeight="17.0" prefWidth="291.0" textAlignment="CENTER" textFill="RED">
-               <font>
-                  <Font name="Mongolian Baiti" size="20.0" />
-               </font>
-            </Label>
             </children>
         </AnchorPane>
     </right>
