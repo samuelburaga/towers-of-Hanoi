@@ -9,15 +9,15 @@
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="225.0" style="-fx-background-color: #E66B4D;" BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="60.0" layoutX="13.0" layoutY="311.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
-            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="60.0" layoutX="28.0" layoutY="251.0" stroke="TRANSPARENT" strokeType="INSIDE" width="170.0" />
-            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="60.0" layoutX="43.0" layoutY="191.0" stroke="TRANSPARENT" strokeType="INSIDE" width="140.0" />
-            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="63.0" layoutX="96.0" layoutY="85.0" stroke="TRANSPARENT" strokeType="INSIDE" width="34.0" />
-            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="60.0" layoutX="58.0" layoutY="131.0" stroke="TRANSPARENT" strokeType="INSIDE" width="110.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="300.0" layoutX="96.0" layoutY="50.0" stroke="TRANSPARENT" strokeType="INSIDE" width="34.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#0fb4bb" height="50.0" layoutX="13.0" layoutY="300.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#14d3da" height="50.0" layoutX="28.0" layoutY="240.0" stroke="TRANSPARENT" strokeType="INSIDE" width="170.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#14eef2" height="50.0" layoutX="43.0" layoutY="180.0" stroke="TRANSPARENT" strokeType="INSIDE" width="140.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="AQUA" height="50.0" layoutX="58.0" layoutY="120.0" stroke="TRANSPARENT" strokeType="INSIDE" width="110.0" />
          </children>
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane prefHeight="200.0" prefWidth="375.0" style="-fx-background-color: #FA8163;" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="200.0" prefWidth="375.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>
