@@ -51,12 +51,12 @@
                         <TextField fx:id="usernameTF" promptText="Username" GridPane.columnIndex="1" />
                     </children>
                 </GridPane>
-                <Label layoutX="139.0" layoutY="25.0" text="Log In" textFill="#fa8163">
+                <Label layoutX="147.0" layoutY="26.0" text="Log In" textFill="#fa8163">
                     <font>
                         <Font name="Mongolian Baiti" size="30.0" />
                     </font>
                 </Label>
-                <Button fx:id="log_inButton" layoutX="43.0" layoutY="276.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="291.0" style="-fx-background-color: #0fb4bb;" text="Log In" textFill="WHITE">
+                <Button fx:id="log_inButton" layoutX="43.0" layoutY="276.0" mnemonicParsing="false" onAction="#logInLabelOnAction" prefHeight="19.0" prefWidth="291.0" style="-fx-background-color: #0fb4bb;" text="Log In" textFill="WHITE">
                     <font>
                         <Font name="Mongolian Baiti" size="20.0" />
                     </font>
@@ -66,6 +66,11 @@
                   <Font name="Mongolian Baiti" size="20.0" />
                </font>
             </Button>
+            <Label fx:id="logInLabel" alignment="CENTER" layoutX="43.0" layoutY="94.0" prefHeight="17.0" prefWidth="291.0" text="Label" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font name="Mongolian Baiti" size="20.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </right>

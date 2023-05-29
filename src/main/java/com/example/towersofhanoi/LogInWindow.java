@@ -10,10 +10,6 @@ import java.io.IOException;
 
 public class LogInWindow extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     @Override
     public void start(Stage logInStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("View/log_in.fxml"));
@@ -23,4 +19,8 @@ public class LogInWindow extends Application {
         logInStage.setScene(scene);
         logInStage.show();
     }
+    public static void main(String[] args) {
+        launch();
+    }
+
 }
