@@ -11,6 +11,8 @@ module com.example.towersofhanoi {
     //requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
+    requires java.sql;
+
     opens com.example.towersofhanoi to javafx.fxml;
     exports com.example.towersofhanoi;
     exports com.example.towersofhanoi.Controller;
