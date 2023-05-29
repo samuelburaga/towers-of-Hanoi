@@ -2,11 +2,20 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
 
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="225.0" style="-fx-background-color: #E66B4D;" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="200.0" prefWidth="225.0" style="-fx-background-color: #E66B4D;" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="60.0" layoutX="13.0" layoutY="311.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="60.0" layoutX="28.0" layoutY="251.0" stroke="BLACK" strokeType="INSIDE" width="170.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="60.0" layoutX="43.0" layoutY="191.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="60.0" layoutX="58.0" layoutY="131.0" stroke="BLACK" strokeType="INSIDE" width="110.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="60.0" layoutX="73.0" layoutY="71.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+         </children>
+      </AnchorPane>
    </left>
    <right>
       <AnchorPane prefHeight="200.0" prefWidth="375.0" style="-fx-background-color: #FA8163;" BorderPane.alignment="CENTER" />
