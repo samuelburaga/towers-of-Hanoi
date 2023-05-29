@@ -60,10 +60,10 @@
                         <Font name="Mongolian Baiti" size="20.0" />
                      </font>
                   </Label>
-                  <PasswordField prefHeight="25.0" prefWidth="161.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField prefHeight="25.0" prefWidth="131.0" GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <PasswordField prefHeight="25.0" prefWidth="161.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField prefHeight="25.0" prefWidth="131.0" promptText="First name" GridPane.columnIndex="1" />
+                  <TextField promptText="Last name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <Label layoutX="152.0" layoutY="24.0" text="Login" textFill="#fa8163">
