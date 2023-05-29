@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `towers-of-Hanoi`.`users` (
   `username` VARCHAR(20) NOT NULL,
   `password` CHAR(25) NOT NULL,
   `created_at` DATETIME NOT NULL COMMENT 'This table contains the basic columns used for the login process. The table could be updated so that the password is salted and hashed to assure security.',
+  `profile_picture` LONGBLOB NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE,
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
