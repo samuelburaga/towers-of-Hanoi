@@ -66,7 +66,7 @@
                   <Font name="Mongolian Baiti" size="20.0" />
                </font>
             </Button>
-            <Label fx:id="logInLabel" alignment="CENTER" layoutX="43.0" layoutY="94.0" prefHeight="17.0" prefWidth="291.0" text="Label" textAlignment="CENTER" textFill="RED">
+            <Label fx:id="logInLabel" alignment="CENTER" layoutX="43.0" layoutY="94.0" prefHeight="17.0" prefWidth="291.0" textAlignment="CENTER" textFill="RED">
                <font>
                   <Font name="Mongolian Baiti" size="20.0" />
                </font>
