@@ -17,8 +17,9 @@ public class Menu extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("View/Menu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
-        //primaryStage.initStyle(StageStyle.UNDECORATED);
+        //Scene scene = new Scene(fxmlLoader.load(), 1000, 1080);
+        Scene scene = new Scene(fxmlLoader.load());
+        primaryStage.setMaximized(true);
         primaryStage.setTitle("Menu");
         primaryStage.setScene(scene);
         primaryStage.show();
