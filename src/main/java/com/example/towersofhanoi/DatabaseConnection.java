@@ -20,6 +20,13 @@ public class DatabaseConnection {
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
+    public Statement getStatement() {
+        return statement;
+    }
+    public void setStatement(Statement statement) {
+        this.statement = statement;
+    }
+
     public void loadDriver()
     {
         try {
