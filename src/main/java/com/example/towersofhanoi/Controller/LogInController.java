@@ -2,6 +2,7 @@ package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.DatabaseConnection;
 import com.example.towersofhanoi.HelloApplication;
+import com.example.towersofhanoi.Menu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,9 @@ public class LogInController {
     public void logInButtonOnAction(ActionEvent e) throws IOException {
         if(usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
             if(validateLogIn()) {
+                primaryStage.close();
+                Menu menu = new Menu();
+                menu.start(new Stage());
                 logInMessage.setText("You are logged in!");
             }
             else {
