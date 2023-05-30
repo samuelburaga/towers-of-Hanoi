@@ -6,6 +6,7 @@ import com.example.towersofhanoi.Menu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -29,9 +30,13 @@ public class LogInController {
     public void logInButtonOnAction(ActionEvent e) throws IOException {
         if(usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
             if(validateLogIn()) {
-                primaryStage.close();
+                Node node = (Node) e.getSource();
+                Stage thisStage = (Stage) node.getScene().getWindow();
+                thisStage.hide();
+
                 Menu menu = new Menu();
                 menu.start(new Stage());
+
                 logInMessage.setText("You are logged in!");
             }
             else {
