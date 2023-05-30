@@ -1,15 +1,21 @@
 package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.DatabaseConnection;
+import com.example.towersofhanoi.HelloApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.sql.*;
+
 public class LogInController {
     @FXML
     private Label logInMessage;
@@ -19,7 +25,7 @@ public class LogInController {
     private PasswordField passwordField;
     @FXML
     private Button logInButton, cancelButton;
-    public void logInButtonOnAction(ActionEvent e){
+    public void logInButtonOnAction(ActionEvent e) throws IOException {
         if(usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
             if(validateLogIn()) {
                 logInMessage.setText("You are logged in!");

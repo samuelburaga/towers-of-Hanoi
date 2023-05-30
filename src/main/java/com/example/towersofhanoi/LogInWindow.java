@@ -11,13 +11,13 @@ import java.io.IOException;
 public class LogInWindow extends Application {
 
     @Override
-    public void start(Stage logInStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("View/log_in.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        logInStage.initStyle(StageStyle.UNDECORATED);
-        logInStage.setTitle("Log In");
-        logInStage.setScene(scene);
-        logInStage.show();
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setTitle("Log In");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
     public static void main(String[] args) {
         launch();
