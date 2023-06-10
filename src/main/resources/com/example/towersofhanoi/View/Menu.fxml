@@ -37,7 +37,7 @@
                   <Font name="Mongolian Baiti" size="40.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="400.0" style="-fx-background-color: #0FB4BB;" text="OPTIONS" textFill="WHITE" GridPane.rowIndex="3">
+            <Button fx:id="optionsButton" mnemonicParsing="false" onAction="#optionsButtonOnAction" prefHeight="70.0" prefWidth="400.0" style="-fx-background-color: #0FB4BB;" text="OPTIONS" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font name="Mongolian Baiti" size="40.0" />
                </font>

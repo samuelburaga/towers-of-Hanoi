@@ -1,6 +1,7 @@
 package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.Menu;
+import com.example.towersofhanoi.Options;
 import com.example.towersofhanoi.Tutorial;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +13,7 @@ import java.io.IOException;
 
 public class MenuController {
     @FXML
-    private Button quitButton, tutorialButton;
+    private Button quitButton, tutorialButton, optionsButton;
     public void quitButtonOnAction(ActionEvent e) {
         Stage stage = (Stage) quitButton.getScene().getWindow();
         stage.close();
@@ -24,5 +25,12 @@ public class MenuController {
 
         Tutorial tutorial = new Tutorial();
         tutorial.start(new Stage());
+    }
+    public void optionsButtonOnAction(ActionEvent e) throws IOException {
+        Node node = (Node) e.getSource();
+        Stage thisStage = (Stage) node.getScene().getWindow();
+        Options options = new Options();
+        options.start(new Stage());
+        thisStage.hide();
     }
 }
