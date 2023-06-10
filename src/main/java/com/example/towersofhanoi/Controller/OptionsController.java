@@ -14,8 +14,11 @@ import java.io.IOException;
 
 public class OptionsController {
     @FXML
-    private Label option1;
-    public void option1OnMouseClicked(MouseEvent e) {
-        Game.disks = 1;
+    private Label option1, option2, option3, option4, option5, option6, option7, option8, option9, option10;
+    public void optionOnMouseClicked(MouseEvent e) {
+        Label clickedLabel = (Label) e.getSource();
+        System.out.println("Clicked label: " + clickedLabel.getText());
+        Game.disks = Byte.parseByte(clickedLabel.getText());
+        System.out.println(Game.disks);
     }
 }
