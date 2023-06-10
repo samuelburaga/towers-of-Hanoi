@@ -1,4 +1,5 @@
 package com.example.towersofhanoi;
 
-public class TutorialThread {
+public class TutorialThread extends Thread{
+
 }
