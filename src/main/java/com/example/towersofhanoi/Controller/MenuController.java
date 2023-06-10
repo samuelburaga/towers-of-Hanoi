@@ -20,7 +20,7 @@ public class MenuController {
     public void tutorialButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
-        thisStage.hide();
+        // thisStage.hide();
 
         Tutorial tutorial = new Tutorial();
         tutorial.start(new Stage());
