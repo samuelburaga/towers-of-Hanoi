@@ -28,6 +28,5 @@ public class Tutorial extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
     }
 }
