@@ -1,13 +1,19 @@
 package com.example.towersofhanoi.Controller;
 
+import com.example.towersofhanoi.Game;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 public class TutorialController {
     @FXML
-    private Pane rodA;
+    private Pane rodA, rodB, rodC;
+    @FXML
+    private Button solveButton;
     private byte numberOfDisks;
     public void setNumberOfDisks(byte numberOfDisks) {
         this.numberOfDisks = numberOfDisks;
@@ -32,6 +38,7 @@ public class TutorialController {
             rodA.getChildren().add(disk);
         }
     }
-
-
+    public void solveButtonOnAction(ActionEvent e) {
+        Game.automatic();
+    }
 }
