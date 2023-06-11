@@ -14,6 +14,8 @@ public class TutorialController {
     @FXML
     private Pane rodA, rodB, rodC;
     @FXML
+    private Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
+    @FXML
     private Button solveButton;
     private byte numberOfDisks;
     private String move;
@@ -42,6 +44,7 @@ public class TutorialController {
     }
     public void solveButtonOnAction(ActionEvent e) {
         Game.setRods(rodA, rodB, rodC); // Pass references to the Game class
+        Game.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton); // Pass references to the Game class
         Game.automatic();
     }
 }

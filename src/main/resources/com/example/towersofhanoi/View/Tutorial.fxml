@@ -11,11 +11,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.towersofhanoi.Controller.TutorialController">
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="700.0" layoutX="205.0" layoutY="142.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-        <Pane fx:id="rodA" layoutX="136.0" layoutY="142.0" prefHeight="700.0" prefWidth="198.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="700.0" layoutX="470.0" layoutY="142.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="700.0" layoutX="735.0" layoutY="142.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-        <GridPane alignment="CENTER" layoutX="149.0" layoutY="886.0" prefHeight="100.0" prefWidth="172.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="700.0" layoutX="205.0" layoutY="121.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+        <Pane fx:id="rodA" layoutX="136.0" layoutY="121.0" prefHeight="700.0" prefWidth="198.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="700.0" layoutX="470.0" layoutY="121.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="700.0" layoutX="735.0" layoutY="121.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+        <GridPane alignment="CENTER" layoutX="149.0" layoutY="865.0" prefHeight="100.0" prefWidth="172.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
@@ -24,19 +24,19 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="A TO B" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="AToBButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="A TO B" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="CMU Serif Bold" size="20.0" />
                </font></Button>
-                <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="A TO C" textFill="WHITE" GridPane.rowIndex="1">
+                <Button fx:id="AToCButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="A TO C" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="CMU Serif Bold" size="20.0" />
                </font></Button>
             </children>
         </GridPane>
-      <Pane fx:id="rodB" layoutX="401.0" layoutY="142.0" prefHeight="700.0" prefWidth="198.0" />
-      <Pane fx:id="rodC" layoutX="666.0" layoutY="142.0" prefHeight="700.0" prefWidth="198.0" />
-      <GridPane alignment="CENTER" layoutX="414.0" layoutY="883.0" prefHeight="100.0" prefWidth="172.0">
+      <Pane fx:id="rodB" layoutX="401.0" layoutY="121.0" prefHeight="700.0" prefWidth="198.0" />
+      <Pane fx:id="rodC" layoutX="666.0" layoutY="121.0" prefHeight="700.0" prefWidth="198.0" />
+      <GridPane alignment="CENTER" layoutX="414.0" layoutY="862.0" prefHeight="100.0" prefWidth="172.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -45,19 +45,19 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="B TO A" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="BToAButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="B TO A" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="CMU Serif Bold" size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="B TO C" textFill="WHITE" GridPane.rowIndex="1">
+            <Button fx:id="BToCButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="B TO C" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="CMU Serif Bold" size="20.0" />
                </font>
             </Button>
          </children>
       </GridPane>
-      <GridPane alignment="CENTER" layoutX="679.0" layoutY="885.0" prefHeight="100.0" prefWidth="172.0">
+      <GridPane alignment="CENTER" layoutX="679.0" layoutY="864.0" prefHeight="100.0" prefWidth="172.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -66,21 +66,21 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="C TO A" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="CToAButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="C TO A" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="CMU Serif Bold" size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="C TO B" textFill="WHITE" GridPane.rowIndex="1">
+            <Button fx:id="CToBButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="C TO B" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="CMU Serif Bold" size="20.0" />
                </font>
             </Button>
          </children>
       </GridPane>
-      <Button fx:id="solveButton" layoutX="443.0" layoutY="22.0" mnemonicParsing="false" onAction="#solveButtonOnAction" prefHeight="46.0" prefWidth="114.0" style="-fx-background-color: #0FB4BB;" text="SOLVE" textFill="WHITE">
+      <Button fx:id="solveButton" layoutX="429.0" layoutY="14.0" mnemonicParsing="false" onAction="#solveButtonOnAction" prefHeight="52.0" prefWidth="142.0" style="-fx-background-color: #0FB4BB;" text="SOLVE" textFill="WHITE">
          <font>
-            <Font name="Mongolian Baiti" size="20.0" />
+            <Font name="CMU Serif Bold" size="20.0" />
          </font>
       </Button>
     </children>
