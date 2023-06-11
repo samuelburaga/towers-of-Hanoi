@@ -1,5 +1,5 @@
 package com.example.towersofhanoi;
 
 public class Game {
-    public static byte disks;
+    public static byte disks = 8;
 }

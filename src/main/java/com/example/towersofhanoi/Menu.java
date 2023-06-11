@@ -28,7 +28,7 @@ public class Menu extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         backgroundMusic();
-    }
+}
     public static void backgroundMusic() {
         String filePath = "D:/ULBS/Anul II/Semestrul II/Modulul 2/Metode avansate de programare/Project/towers-of-Hanoi/src/resources/Stay Retro.wav";
         try {

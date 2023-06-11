@@ -29,7 +29,6 @@ public class MenuController {
 
         TutorialThread tutorialThread = new TutorialThread();
         tutorialThread.start();
-
     }
     public void optionsButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
