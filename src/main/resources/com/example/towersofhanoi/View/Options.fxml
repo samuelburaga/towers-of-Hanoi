@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -90,5 +91,15 @@
             <Font name="CMU Serif Roman" size="80.0" />
          </font>
       </Label>
+      <Button fx:id="backButton" layoutX="243.0" layoutY="958.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="82.0" prefWidth="188.0" style="-fx-background-color: #FA8163;" text="BACK" textFill="WHITE">
+         <font>
+            <Font name="Mongolian Baiti" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="playNowButton" layoutX="1539.0" layoutY="956.0" mnemonicParsing="false" onAction="#playNowButtonOnAction" prefHeight="82.0" prefWidth="188.0" style="-fx-background-color: #FA8163;" text="PLAY NOW" textFill="WHITE">
+         <font>
+            <Font name="Mongolian Baiti" size="25.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

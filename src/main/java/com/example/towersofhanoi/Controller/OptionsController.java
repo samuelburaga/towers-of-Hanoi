@@ -17,8 +17,18 @@ public class OptionsController {
     private Label option1, option2, option3, option4, option5, option6, option7, option8, option9, option10;
     public void optionOnMouseClicked(MouseEvent e) {
         Label clickedLabel = (Label) e.getSource();
-        System.out.println("Clicked label: " + clickedLabel.getText());
+        // System.out.println("Clicked label: " + clickedLabel.getText());
         Game.disks = Byte.parseByte(clickedLabel.getText());
         System.out.println(Game.disks);
+    }
+    public void backButtonOnAction(ActionEvent e) throws IOException {
+        Node node = (Node) e.getSource();
+        Stage thisStage = (Stage) node.getScene().getWindow();
+        thisStage.hide();
+    }
+    public void playNowButtonOnAction(ActionEvent e) throws IOException {
+        Node node = (Node) e.getSource();
+        Stage thisStage = (Stage) node.getScene().getWindow();
+        thisStage.hide();
     }
 }
