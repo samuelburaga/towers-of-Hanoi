@@ -16,17 +16,19 @@ public class TutorialController {
 
     private void createDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
-        double diskWidth = 172.0; // Adjust as needed
-        double diskHeight = 40.0; // Adjust as needed
+        double diskWidth = 198.0; // Adjust as needed
+        double diskHeight = 60.0; // Adjust as needed
         double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // Adjust as needed
-
+        double arcWidth = 30.0;
+        double arcHeight = 30.0;
         for (byte i = 0; i < numberOfDisks; i++) {
-            Rectangle disk = new Rectangle(diskWidth - i * 20, diskHeight);
-            disk.setFill(Color.RED); // Adjust as needed
-            disk.setStroke(Color.BLACK); // Adjust as needed
-            disk.setX(initialX + (i * 10));
+            Rectangle disk = new Rectangle(diskWidth - (i * 12), diskHeight);
+            disk.setX(initialX + (i * 6));
             disk.setLayoutY(initialY - (i * diskHeight));
-            System.out.println(disk.getLayoutY());
+            disk.setArcHeight(arcHeight);
+            disk.setArcWidth(arcWidth);
+            disk.setFill(Color.valueOf("#0FB4BB")); // Adjust as needed
+            disk.setStroke(Color.WHITE); // Adjust as needed
             rodA.getChildren().add(disk);
         }
     }
