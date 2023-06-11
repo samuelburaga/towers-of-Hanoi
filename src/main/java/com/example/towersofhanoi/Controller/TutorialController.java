@@ -15,6 +15,7 @@ public class TutorialController {
     @FXML
     private Button solveButton;
     private byte numberOfDisks;
+    private String move;
     public void setNumberOfDisks(byte numberOfDisks) {
         this.numberOfDisks = numberOfDisks;
         createDisks();
@@ -39,6 +40,7 @@ public class TutorialController {
         }
     }
     public void solveButtonOnAction(ActionEvent e) {
+        Game.setRods(rodA, rodB, rodC); // Pass references to the Game class
         Game.automatic();
     }
 }
