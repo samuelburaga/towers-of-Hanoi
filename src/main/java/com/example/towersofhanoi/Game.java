@@ -72,9 +72,9 @@ import javafx.util.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class Game {
-    public static byte disks = 2;
+    public static byte disks = 5;
     private static Pane rodA, rodB, rodC; // Add references to the rod panes
-    private static Duration moveDelay = Duration.seconds(2);
+    private static Duration moveDelay = Duration.seconds(1);
 
     public static void setRods(Pane a, Pane b, Pane c) {
         rodA = a;
