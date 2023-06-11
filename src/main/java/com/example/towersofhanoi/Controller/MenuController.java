@@ -3,6 +3,7 @@ package com.example.towersofhanoi.Controller;
 import com.example.towersofhanoi.Menu;
 import com.example.towersofhanoi.Options;
 import com.example.towersofhanoi.Tutorial;
+import com.example.towersofhanoi.TutorialThread;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -23,8 +24,12 @@ public class MenuController {
         Stage thisStage = (Stage) node.getScene().getWindow();
         // thisStage.hide();
 
-        Tutorial tutorial = new Tutorial();
-        tutorial.start(new Stage());
+//        Tutorial tutorial = new Tutorial();
+//        tutorial.start(new Stage());
+
+        TutorialThread tutorialThread = new TutorialThread();
+        tutorialThread.start();
+
     }
     public void optionsButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
