@@ -70,7 +70,6 @@ public class TutorialController {
     }
     public void switchToSolvedScene() throws IOException {
         Stage stage = (Stage) solveButton.getScene().getWindow();
-        System.out.println("TEST");
         Parent root = FXMLLoader.load(Tutorial.class.getResource("View/Solved.fxml"));
         Scene solvedScene = new Scene(root);
         stage.setScene(solvedScene);

@@ -12,7 +12,7 @@ public class LogInWindow extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("View/log_in.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/log_in.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("Log In");

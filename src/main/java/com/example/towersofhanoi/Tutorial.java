@@ -16,7 +16,7 @@ public class Tutorial extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("View/Tutorial.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Tutorial.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
 
         // Pass the number of disks to the controller
