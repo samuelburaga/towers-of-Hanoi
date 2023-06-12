@@ -13,7 +13,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Game {
     public static byte disks = 2;
-    private static Button moveButton;
+    public static long startTime, endTime, duration;
+    public static Button moveButton;
     private static Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
     private static Pane rodA, rodB, rodC; // Add references to the rod panes
     private static Duration moveDelay = Duration.seconds(1.5);
@@ -76,7 +77,6 @@ public class Game {
         recursiveHanoi((byte) (numberOfDisks - 1), auxRod, toRod, fromRod);
     }
 
-
     private static void moveDisk(byte diskNumber, char fromRod, char toRod) {
         Platform.runLater(() -> {
             Pane fromPane = getRodPane(fromRod);
@@ -121,7 +121,6 @@ public class Game {
             }
             moveButton.setStyle("-fx-background-color: #0FB4BB;");
             animateDiskMovement(disk, toPane);
-
         });
         try {
             TimeUnit.MILLISECONDS.sleep((long) moveDelay.toMillis());

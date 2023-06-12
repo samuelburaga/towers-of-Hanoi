@@ -3,6 +3,7 @@ package com.example.towersofhanoi.Controller;
 import com.example.towersofhanoi.Game;
 import com.example.towersofhanoi.HelloApplication;
 import com.example.towersofhanoi.Tutorial;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -56,11 +58,11 @@ public class TutorialController {
     public void solveButtonOnAction(ActionEvent e) {
         Game.setRods(rodA, rodB, rodC); // Pass references to the Game class
         Game.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton); // Pass references to the Game class
-        long startTime = System.currentTimeMillis(); // Record the start time
+        Game.startTime = System.currentTimeMillis(); // Record the start time
         Game.automatic(() -> {
-            long endTime = System.currentTimeMillis(); // Record the end time
-            long duration = endTime - startTime;
-            System.out.println("Tower of Hanoi solved in " + duration + " milliseconds.");
+            Game.endTime = System.currentTimeMillis(); // Record the end time
+            Game.duration = Game.endTime - Game.startTime;
+            System.out.println("Tower of Hanoi solved in " + Game.duration + " milliseconds.");
             try {
                 switchToSolvedScene();
             } catch (IOException ex) {
@@ -72,7 +74,11 @@ public class TutorialController {
         Stage stage = (Stage) solveButton.getScene().getWindow();
         Parent root = FXMLLoader.load(Tutorial.class.getResource("View/Solved.fxml"));
         Scene solvedScene = new Scene(root);
-        stage.setScene(solvedScene);
-        stage.show();
+        PauseTransition pause = new PauseTransition(Duration.seconds(0.5)); // Adjust the duration as needed
+        pause.setOnFinished(event -> {
+            stage.setScene(solvedScene);
+            stage.show();
+        });
+        pause.play();
     }
 }
