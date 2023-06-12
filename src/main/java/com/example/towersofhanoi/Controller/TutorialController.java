@@ -45,6 +45,15 @@ public class TutorialController {
     public void solveButtonOnAction(ActionEvent e) {
         Game.setRods(rodA, rodB, rodC); // Pass references to the Game class
         Game.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton); // Pass references to the Game class
-        Game.automatic();
+        long startTime = System.currentTimeMillis(); // Record the start time
+//        Game.automatic();
+//        long endTime = System.currentTimeMillis(); // Record the end time
+//        long duration = endTime - startTime;
+//        System.out.println("Tower of Hanoi solved in " + duration + " milliseconds.");
+        Game.automatic(() -> {
+            long endTime = System.currentTimeMillis(); // Record the end time
+            long duration = endTime - startTime;
+            System.out.println("Tower of Hanoi solved in " + duration + " milliseconds.");
+        });
     }
 }
