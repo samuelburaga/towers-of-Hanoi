@@ -1,16 +1,27 @@
 package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.Game;
+import com.example.towersofhanoi.HelloApplication;
+import com.example.towersofhanoi.Tutorial;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class TutorialController {
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     @FXML
     private Pane rodA, rodB, rodC;
     @FXML
@@ -46,14 +57,23 @@ public class TutorialController {
         Game.setRods(rodA, rodB, rodC); // Pass references to the Game class
         Game.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton); // Pass references to the Game class
         long startTime = System.currentTimeMillis(); // Record the start time
-//        Game.automatic();
-//        long endTime = System.currentTimeMillis(); // Record the end time
-//        long duration = endTime - startTime;
-//        System.out.println("Tower of Hanoi solved in " + duration + " milliseconds.");
         Game.automatic(() -> {
             long endTime = System.currentTimeMillis(); // Record the end time
             long duration = endTime - startTime;
             System.out.println("Tower of Hanoi solved in " + duration + " milliseconds.");
+            try {
+                switchToSolvedScene();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
+    }
+    public void switchToSolvedScene() throws IOException {
+        Stage stage = (Stage) solveButton.getScene().getWindow();
+        System.out.println("TEST");
+        Parent root = FXMLLoader.load(Tutorial.class.getResource("View/Solved.fxml"));
+        Scene solvedScene = new Scene(root);
+        stage.setScene(solvedScene);
+        stage.show();
     }
 }

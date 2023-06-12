@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.towersofhanoi.View.Solved"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.towersofhanoi.Controller.TutorialController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="394.0" layoutY="47.0" prefHeight="101.0" prefWidth="221.0" style="-fx-background-color: #0FB4BB;" text="SOLVED!" textFill="WHITE">
+         <font>
+            <Font name="Mongolian Baiti" size="50.0" />
+         </font>
+      </Label>
+      <TextArea layoutX="89.0" layoutY="188.0" prefHeight="715.0" prefWidth="829.0" />
+   </children>
 </AnchorPane>
