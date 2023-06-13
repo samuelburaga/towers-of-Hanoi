@@ -22,7 +22,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="400.0" style="-fx-background-color: #FA8163;" text="PLAY" textFill="WHITE">
+            <Button fx:id="playButton" mnemonicParsing="false" onAction="#playButtonOnAction" prefHeight="70.0" prefWidth="400.0" style="-fx-background-color: #FA8163;" text="PLAY" textFill="WHITE">
                <font>
                   <Font name="Mongolian Baiti" size="40.0" />
                </font>
