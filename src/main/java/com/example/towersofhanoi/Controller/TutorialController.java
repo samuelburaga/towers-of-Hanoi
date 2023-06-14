@@ -21,30 +21,22 @@ import javafx.util.Duration;
 import java.io.IOException;
 
 public class TutorialController {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
     @FXML
     private Pane rodA, rodB, rodC;
     @FXML
     private Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
     @FXML
     private Button solveButton;
-    private byte numberOfDisks;
     private String move;
-    public void setNumberOfDisks(byte numberOfDisks) {
-        this.numberOfDisks = numberOfDisks;
-        createDisks();
-    }
-
-    private void createDisks() {
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    public void createDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
-        double diskWidth = 198.0; // Adjust as needed
-        double diskHeight = 60.0; // Adjust as needed
+        double diskWidth = 198.0, diskHeight = 60.0; // Adjust as needed
         double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // Adjust as needed
-        double arcWidth = 30.0;
-        double arcHeight = 30.0;
-        for (byte i = 0; i < numberOfDisks; i++) {
+        double arcWidth = 30.0, arcHeight = 30.0;
+        for (byte i = 0; i < Game.disks; i++) {
             Rectangle disk = new Rectangle(diskWidth - (i * 12), diskHeight);
             disk.setX(initialX + (i * 6));
             disk.setLayoutY(initialY - (i * diskHeight));
