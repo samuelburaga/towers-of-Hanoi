@@ -6,34 +6,34 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.towersofhanoi.View.SettingsController">
+<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.towersofhanoi.Controller.SettingsController">
    <children>
       <Label fx:id="settingsLabel" layoutX="253.0" layoutY="74.0" text="SETTINGS">
          <font>
             <Font name="Mongolian Baiti" size="100.0" />
          </font>
       </Label>
-      <Button fx:id="changeProfilePictureButton" layoutX="75.0" layoutY="736.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="850.0" style="-fx-background-color: #333e41;" text="CHANGE PROFILE PICTURE" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="changeProfilePictureButton" layoutX="75.0" layoutY="736.0" mnemonicParsing="false" onAction="#changeProfilePictureButtonnOnAction" prefHeight="125.0" prefWidth="850.0" style="-fx-background-color: #333e41;" text="CHANGE PROFILE PICTURE" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Mongolian Baiti" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="changeFirstNameButton" layoutX="75.0" layoutY="363.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE FIRST NAME" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="changeFirstNameButton" layoutX="75.0" layoutY="363.0" mnemonicParsing="false" onAction="#changeFirstNameButtonOnAction" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE FIRST NAME" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Mongolian Baiti" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="changeLastNameButton" layoutX="562.0" layoutY="363.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE LAST NAME" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="changeLastNameButton" layoutX="562.0" layoutY="363.0" mnemonicParsing="false" onAction="#changeLastNameButtonOnAction" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE LAST NAME" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Mongolian Baiti" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="changeUsernameButton" layoutX="75.0" layoutY="516.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE USERNAME" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="changeUsernameButton" layoutX="75.0" layoutY="516.0" mnemonicParsing="false" onAction="#changeUsernameButtonOnAction" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE USERNAME" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Mongolian Baiti" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="changePasswordButton" layoutX="562.0" layoutY="516.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE PASSWORD" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="changePasswordButton" layoutX="562.0" layoutY="516.0" mnemonicParsing="false" onAction="#changePasswordButtonOnAction" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE PASSWORD" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Mongolian Baiti" size="30.0" />
          </font>

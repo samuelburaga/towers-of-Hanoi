@@ -32,12 +32,16 @@ public class MenuController {
         options.start(new Stage());
         // thisStage.hide();
     }
-    public void settingsButtonOnAction(ActionEvent e) {
+    public void settingsButtonOnAction(ActionEvent e) throws IOException {
+        Node node = (Node) e.getSource();
+        Stage thisStage = (Stage) node.getScene().getWindow();
+        Settings settings = new Settings();
+        settings.start(new Stage());
+       // thisStage.hide();
     }
     public void quitButtonOnAction(ActionEvent e) {
         Stage stage = (Stage) quitButton.getScene().getWindow();
         stage.close();
     }
-
 
 }
