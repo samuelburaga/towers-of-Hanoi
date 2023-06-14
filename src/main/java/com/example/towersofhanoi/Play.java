@@ -27,6 +27,5 @@ public class Play extends Application {
         primaryStage.setTitle("Play");
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 }

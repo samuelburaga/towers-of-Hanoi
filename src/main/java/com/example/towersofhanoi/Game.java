@@ -65,6 +65,9 @@ public class Game {
 //        return sizeFrom < sizeTo; // Move is valid if the disk on "from" rod is smaller than the one on "to" rod
 //    }
     public static boolean checkState() {
+       // return gameOver;
+        byte disksOnLastRod = (byte) rodC.getChildren().size();
+        gameOver = disksOnLastRod == Game.disks;
         return gameOver;
     }
 

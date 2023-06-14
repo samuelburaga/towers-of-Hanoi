@@ -51,59 +51,65 @@ public class PlayController {
             rodA.getChildren().add(disk);
         }
     }
-    public void moveOptionOnAction(ActionEvent e) {
+    public void moveOptionOnAction(ActionEvent e) throws IOException {
         Button clickedButton = (Button) e.getSource();
         String clickedButtonId = clickedButton.getId();
         char fromRod = clickedButtonId.charAt(0);
         char toRod = clickedButtonId.charAt(3);
-        if(Game.validMove(fromRod, toRod)) {
-            switch (fromRod + "To" + toRod) {
-                case "AToB":
-                    if (AToBButton != null) {
-                        Game.moveButton = AToBButton;
-                    }
-                    break;
-                case "AToC":
-                    if (AToCButton != null) {
-                        Game.moveButton = AToCButton;
-                    }
-                    break;
-                case "BToA":
-                    if (BToAButton != null) {
-                        Game.moveButton = BToAButton;
-                    }
+        if(!Game.checkState()) {
+            if(Game.validMove(fromRod, toRod)) {
+                switch (fromRod + "To" + toRod) {
+                    case "AToB":
+                        if (AToBButton != null) {
+                            Game.moveButton = AToBButton;
+                        }
+                        break;
+                    case "AToC":
+                        if (AToCButton != null) {
+                            Game.moveButton = AToCButton;
+                        }
+                        break;
+                    case "BToA":
+                        if (BToAButton != null) {
+                            Game.moveButton = BToAButton;
+                        }
 
-                    break;
-                case "BToC":
-                    if (BToCButton != null) {
-                        Game.moveButton = BToCButton;
-                    }
-                    break;
-                case "CToA":
-                    if (CToAButton != null) {
-                        Game.moveButton = CToAButton;
-                    }
-                    break;
-                case "CToB":
-                    if (CToBButton != null) {
-                        Game.moveButton = CToBButton;
-                    }
-                    break;
-                default:
-                    // handle invalid move
-                    break;
-            }
-            if(!Game.checkState()) {
+                        break;
+                    case "BToC":
+                        if (BToCButton != null) {
+                            Game.moveButton = BToCButton;
+                        }
+                        break;
+                    case "CToA":
+                        if (CToAButton != null) {
+                            Game.moveButton = CToAButton;
+                        }
+                        break;
+                    case "CToB":
+                        if (CToBButton != null) {
+                            Game.moveButton = CToBButton;
+                        }
+                        break;
+                    default:
+                        // handle invalid move
+                        break;
+                }
                 Game.moveDisk((byte) 1, fromRod, toRod);
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Move");
+                alert.setHeaderText(null);
+                alert.setContentText("This move is not allowed.");
+                alert.showAndWait();
             }
         }
         else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Move");
-            alert.setHeaderText(null);
-            alert.setContentText("This move is not allowed.");
-
-            alert.showAndWait();
+            Stage stage = (Stage) clickedButton.getScene().getWindow();
+            Parent root = FXMLLoader.load(Tutorial.class.getResource("View/Solved.fxml"));
+            Scene solvedScene = new Scene(root);
+            stage.setScene(solvedScene);
+            stage.show();
         }
     }
 }
