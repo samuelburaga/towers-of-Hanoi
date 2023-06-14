@@ -18,7 +18,6 @@ public class Tutorial extends Application {
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Tutorial.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
-
         // Pass the number of disks to the controller
         TutorialController controller = fxmlLoader.getController();
         byte numberOfDisks = Game.disks; // Replace with the actual number of disks

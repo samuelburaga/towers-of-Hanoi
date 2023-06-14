@@ -17,7 +17,7 @@ public class MenuController {
         Stage thisStage = (Stage) node.getScene().getWindow();
         Play play = new Play();
         play.start(new Stage());
-        thisStage.hide();
+        // thisStage.hide();
     }
     public void quitButtonOnAction(ActionEvent e) {
         Stage stage = (Stage) quitButton.getScene().getWindow();
@@ -26,12 +26,7 @@ public class MenuController {
     public void tutorialButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
-        // thisStage.hide();
-
-//        Tutorial tutorial = new Tutorial();
-//        tutorial.start(new Stage());
-
-        TutorialThread tutorialThread = new TutorialThread();
+        Thread tutorialThread = new Thread(new TutorialThread(thisStage));
         tutorialThread.start();
     }
     public void optionsButtonOnAction(ActionEvent e) throws IOException {
@@ -39,6 +34,7 @@ public class MenuController {
         Stage thisStage = (Stage) node.getScene().getWindow();
         Options options = new Options();
         options.start(new Stage());
-        thisStage.hide();
+        // thisStage.hide();
     }
+
 }

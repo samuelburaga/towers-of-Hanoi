@@ -17,7 +17,6 @@ public class Menu extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
         public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Menu.fxml"));
@@ -45,5 +44,4 @@ public class Menu extends Application {
             e.printStackTrace();
         }
     }
-
 }

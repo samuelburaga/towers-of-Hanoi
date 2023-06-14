@@ -33,11 +33,8 @@ public class LogInController {
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
                 thisStage.hide();
-
                 Menu menu = new Menu();
                 menu.start(new Stage());
-
-                logInMessage.setText("You are logged in!");
             }
             else {
                 logInMessage.setText("Your username or password is wrong!");
@@ -73,5 +70,4 @@ public class LogInController {
         }
         return false;
     }
-
 }
