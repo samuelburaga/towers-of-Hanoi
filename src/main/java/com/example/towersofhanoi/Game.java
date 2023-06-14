@@ -23,7 +23,7 @@ public class Game {
     public static boolean gameOver = false;
     public static long startTime, endTime, duration;
     private static Duration moveDelay = Duration.seconds(1.5);
-    private static Thread animationThread;
+    protected Thread animationThread;
     public static Button moveButton;
     private static Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
     private static Pane rodA, rodB, rodC; // Add references to the rod panes
@@ -42,15 +42,6 @@ public class Game {
         CToBButton = CB;
     }
 
-    public static void recursiveHanoi(byte numberOfDisks, char fromRod, char toRod, char auxRod) {
-        if (numberOfDisks == 0) {
-            return;
-        }
-        recursiveHanoi((byte) (numberOfDisks - 1), fromRod, auxRod, toRod);
-        System.out.println("Move disk " + numberOfDisks + " from rod " + fromRod + " to rod " + toRod);
-        moveDisk(numberOfDisks, fromRod, toRod);
-        recursiveHanoi((byte) (numberOfDisks - 1), auxRod, toRod, fromRod);
-    }
     public static boolean validMove(char fromRod, char toRod) {
         Pane fromPane = getRodPane(fromRod);
         Pane toPane = getRodPane(toRod);
