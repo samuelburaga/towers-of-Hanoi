@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -97,7 +98,12 @@ public class PlayController {
             }
         }
         else {
-            System.out.println("NO");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Move");
+            alert.setHeaderText(null);
+            alert.setContentText("This move is not allowed.");
+
+            alert.showAndWait();
         }
     }
 }
