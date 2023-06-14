@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.towersofhanoi.Controller.OptionsController">
@@ -24,62 +23,52 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" GridPane.columnIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" GridPane.columnIndex="2" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" GridPane.columnIndex="3" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" GridPane.columnIndex="4" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#333e41" height="200.0" stroke="BLACK" strokeType="INSIDE" width="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Label fx:id="option1" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" text="1" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="option1" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333E41;" text="1" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="CMU Serif Roman" size="150.0" />
                </font>
             </Label>
-            <Label fx:id="option2" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" text="2" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+            <Label fx:id="option2" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333E41;" text="2" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
                <font>
                   <Font name="CMU Serif Roman" size="150.0" />
                </font>
             </Label>
-            <Label fx:id="option3" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" text="3" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2">
+            <Label fx:id="option3" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333E41;" text="3" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2">
                <font>
                   <Font name="CMU Serif Roman" size="150.0" />
                </font>
             </Label>
-            <Label fx:id="option4" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" text="4" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3">
+            <Label fx:id="option4" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333E41;" text="4" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3">
                <font>
                   <Font name="CMU Serif Roman" size="150.0" />
                </font>
             </Label>
-            <Label fx:id="option5" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" text="5" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4">
+            <Label fx:id="option5" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333E41;" text="5" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4">
                <font>
                   <Font name="CMU Serif Roman" size="150.0" />
                </font>
             </Label>
-            <Label fx:id="option6" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" text="6" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
+            <Label fx:id="option6" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333E41;" text="6" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="CMU Serif Roman" size="150.0" />
                </font>
             </Label>
-            <Label fx:id="option7" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" text="7" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="option7" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333E41;" text="7" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="CMU Serif Roman" size="150.0" />
                </font>
             </Label>
-            <Label fx:id="option8" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" text="8" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="option8" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333E41;" text="8" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="CMU Serif Roman" size="150.0" />
                </font>
             </Label>
-            <Label fx:id="option9" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" text="9" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Label fx:id="option9" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333E41;" text="9" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font name="CMU Serif Roman" size="150.0" />
                </font>
             </Label>
-            <Label fx:id="option10" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" text="10" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <Label fx:id="option10" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#optionOnMouseClicked" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333E41;" text="10" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <font>
                   <Font name="CMU Serif Roman" size="150.0" />
                </font>
