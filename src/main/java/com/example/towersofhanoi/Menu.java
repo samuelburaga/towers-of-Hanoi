@@ -21,7 +21,6 @@ public class Menu extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
         primaryStage.setMaximized(true);
-        primaryStage.setFullScreen(true);
         primaryStage.setTitle("Menu");
         primaryStage.setScene(scene);
         primaryStage.show();
