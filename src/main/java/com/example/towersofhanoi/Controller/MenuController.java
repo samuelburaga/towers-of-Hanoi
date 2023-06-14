@@ -11,17 +11,13 @@ import java.io.IOException;
 
 public class MenuController {
     @FXML
-    private Button playButton, quitButton, tutorialButton, optionsButton;
+    private Button playButton, tutorialButton, optionsButton, settingsButton, quitButton;
     public void playButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         Play play = new Play();
         play.start(new Stage());
         // thisStage.hide();
-    }
-    public void quitButtonOnAction(ActionEvent e) {
-        Stage stage = (Stage) quitButton.getScene().getWindow();
-        stage.close();
     }
     public void tutorialButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
@@ -36,5 +32,12 @@ public class MenuController {
         options.start(new Stage());
         // thisStage.hide();
     }
+    public void settingsButtonOnAction(ActionEvent e) {
+    }
+    public void quitButtonOnAction(ActionEvent e) {
+        Stage stage = (Stage) quitButton.getScene().getWindow();
+        stage.close();
+    }
+
 
 }
