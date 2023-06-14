@@ -28,6 +28,10 @@ public class PlayController {
         this.numberOfDisks = numberOfDisks;
         createDisks();
     }
+    public void setRods() {
+        Game.setRods(rodA, rodB, rodC); // Pass references to the Game class
+        Game.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton); // Pass references to the Game class
+    }
     private void createDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
         double diskWidth = 198.0; // Adjust as needed
@@ -44,6 +48,56 @@ public class PlayController {
             disk.setFill(Color.valueOf("#0FB4BB")); // Adjust as needed
             disk.setStroke(Color.WHITE); // Adjust as needed
             rodA.getChildren().add(disk);
+        }
+    }
+    public void moveOptionOnAction(ActionEvent e) {
+        Button clickedButton = (Button) e.getSource();
+        String clickedButtonId = clickedButton.getId();
+        char fromRod = clickedButtonId.charAt(0);
+        char toRod = clickedButtonId.charAt(3);
+        if(Game.validMove(fromRod, toRod)) {
+            switch (fromRod + "To" + toRod) {
+                case "AToB":
+                    if (AToBButton != null) {
+                        Game.moveButton = AToBButton;
+                    }
+                    break;
+                case "AToC":
+                    if (AToCButton != null) {
+                        Game.moveButton = AToCButton;
+                    }
+                    break;
+                case "BToA":
+                    if (BToAButton != null) {
+                        Game.moveButton = BToAButton;
+                    }
+
+                    break;
+                case "BToC":
+                    if (BToCButton != null) {
+                        Game.moveButton = BToCButton;
+                    }
+                    break;
+                case "CToA":
+                    if (CToAButton != null) {
+                        Game.moveButton = CToAButton;
+                    }
+                    break;
+                case "CToB":
+                    if (CToBButton != null) {
+                        Game.moveButton = CToBButton;
+                    }
+                    break;
+                default:
+                    // handle invalid move
+                    break;
+            }
+            if(!Game.checkState()) {
+                Game.moveDisk((byte) 1, fromRod, toRod);
+            }
+        }
+        else {
+            System.out.println("NO");
         }
     }
 }

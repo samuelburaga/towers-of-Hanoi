@@ -12,6 +12,7 @@ import javafx.util.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class Game {
+    public static boolean gameOver = false;
     public static byte disks = 2;
     public static long startTime, endTime, duration;
     public static Button moveButton;
@@ -19,6 +20,54 @@ public class Game {
     private static Pane rodA, rodB, rodC; // Add references to the rod panes
     private static Duration moveDelay = Duration.seconds(1.5);
     private static Thread animationThread;
+    public static boolean validMove(char fromRod, char toRod) {
+        Pane fromPane = getRodPane(fromRod);
+        Pane toPane = getRodPane(toRod);
+
+        if (fromPane == null || toPane == null) {
+            return false; // Invalid move if either rod is null
+        }
+
+        if (fromPane.getChildren().isEmpty()) {
+            return false; // "from" rod is empty, move is not valid
+        }
+
+        // Get the top disk on the "to" rod, if it exists
+        Rectangle topDisk = toPane.getChildren().isEmpty() ? null : (Rectangle) toPane.getChildren().get(toPane.getChildren().size() - 1);
+
+        Rectangle movingDisk = (Rectangle) fromPane.getChildren().get(fromPane.getChildren().size() - 1);
+
+        if (topDisk != null && movingDisk.getWidth() >= topDisk.getWidth()) {
+            return false; // Moving disk is larger or equal to the top disk on the "to" rod, move is not valid
+        }
+
+        return true; // Move is valid
+    }
+
+
+    //    public static boolean validMove(char fromRod, char toRod) {
+//        Pane fromPane = getRodPane(fromRod);
+//        Pane toPane = getRodPane(toRod);
+//        if (fromPane.getChildren().isEmpty()) {
+//            return false; // "from" rod is empty, move is not valid
+//        }
+//
+//        if (toPane.getChildren().isEmpty()) {
+//            return true; // "to" rod is empty, move is valid
+//        }
+//
+//        Rectangle topDiskFrom = (Rectangle) fromPane.getChildren().get(fromPane.getChildren().size() - 1);
+//        Rectangle topDiskTo = (Rectangle) toPane.getChildren().get(toPane.getChildren().size() - 1);
+//
+//        double sizeFrom = topDiskFrom.getWidth();
+//        double sizeTo = topDiskTo.getWidth();
+//
+//        return sizeFrom < sizeTo; // Move is valid if the disk on "from" rod is smaller than the one on "to" rod
+//    }
+    public static boolean checkState() {
+        return gameOver;
+    }
+
 
     public static void setRods(Pane a, Pane b, Pane c) {
         rodA = a;
@@ -45,18 +94,15 @@ public class Game {
                 throw new IllegalArgumentException("Invalid rod: " + rod);
         }
     }
-    //    public static void automatic() {
-    //        Thread animationThread = new Thread(() -> recursiveHanoi(disks, 'A', 'C', 'B'));
-    //        animationThread.start();
-    //    }
+    public static void play() {
 
+    }
     public static void automatic(Runnable onFinishCallback) {
         animationThread = new Thread(new AnimationRunnable(onFinishCallback));
         animationThread.start();
     }
     private static class AnimationRunnable implements Runnable {
         private final Runnable onFinishCallback;
-
         public AnimationRunnable(Runnable onFinishCallback) {
             this.onFinishCallback = onFinishCallback;
         }
@@ -76,8 +122,7 @@ public class Game {
         moveDisk(numberOfDisks, fromRod, toRod);
         recursiveHanoi((byte) (numberOfDisks - 1), auxRod, toRod, fromRod);
     }
-
-    private static void moveDisk(byte diskNumber, char fromRod, char toRod) {
+    public static void moveDisk(byte diskNumber, char fromRod, char toRod) {
         Platform.runLater(() -> {
             Pane fromPane = getRodPane(fromRod);
             Pane toPane = getRodPane(toRod);
@@ -129,8 +174,6 @@ public class Game {
         }
         moveButton.setStyle("-fx-background-color: #FA8163;");
     }
-
-
     private static void animateDiskMovement(Rectangle disk, Pane toPane) {
         double initialY = disk.getY();
         double targetY = toPane.getPrefHeight() - (toPane.getChildren().size() * disk.getHeight());
@@ -151,6 +194,5 @@ public class Game {
         // Add the following line outside the event handler
         transition.setOnFinished(event -> toPane.getChildren().add(disk));
     }
-
 }
 

@@ -24,11 +24,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button fx:id="AToBButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="A TO B" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="AToBButton" mnemonicParsing="false" onAction="#moveOptionOnAction" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="A TO B" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="CMU Serif Bold" size="20.0" />
                     </font></Button>
-                <Button fx:id="AToCButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="A TO C" textFill="WHITE" GridPane.rowIndex="1">
+                <Button fx:id="AToCButton" mnemonicParsing="false" onAction="#moveOptionOnAction" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="A TO C" textFill="WHITE" GridPane.rowIndex="1">
                     <font>
                         <Font name="CMU Serif Bold" size="20.0" />
                     </font></Button>
@@ -45,12 +45,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button fx:id="BToAButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="B TO A" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="BToAButton" mnemonicParsing="false" onAction="#moveOptionOnAction" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="B TO A" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="CMU Serif Bold" size="20.0" />
                     </font>
                 </Button>
-                <Button fx:id="BToCButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="B TO C" textFill="WHITE" GridPane.rowIndex="1">
+                <Button fx:id="BToCButton" mnemonicParsing="false" onAction="#moveOptionOnAction" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="B TO C" textFill="WHITE" GridPane.rowIndex="1">
                     <font>
                         <Font name="CMU Serif Bold" size="20.0" />
                     </font>
@@ -66,12 +66,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button fx:id="CToAButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="C TO A" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="CToAButton" mnemonicParsing="false" onAction="#moveOptionOnAction" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="C TO A" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="CMU Serif Bold" size="20.0" />
                     </font>
                 </Button>
-                <Button fx:id="CToBButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="C TO B" textFill="WHITE" GridPane.rowIndex="1">
+                <Button fx:id="CToBButton" mnemonicParsing="false" onAction="#moveOptionOnAction" prefHeight="46.0" prefWidth="172.0" style="-fx-background-color: #FA8163;" text="C TO B" textFill="WHITE" GridPane.rowIndex="1">
                     <font>
                         <Font name="CMU Serif Bold" size="20.0" />
                     </font>
