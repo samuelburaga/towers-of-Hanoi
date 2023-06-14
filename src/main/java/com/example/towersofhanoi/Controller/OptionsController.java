@@ -28,13 +28,13 @@ public class OptionsController {
         Label clickedLabel = (Label) e.getSource();
         String clickedColor = "-fx-background-color: #0FB4BB;"; // Set the desired color
         String defaultColor = "-fx-background-color: #333E41;"; // Set the default color
-        Game.disks = Byte.parseByte(clickedLabel.getText());
+        Game.numberOfDisks = Byte.parseByte(clickedLabel.getText());
         if (previousClickedLabel != null) {
             previousClickedLabel.setStyle(defaultColor); // Revert the color of the previously clicked label
         }
         clickedLabel.setStyle(clickedColor); // Set the color for the newly clicked label
         previousClickedLabel = clickedLabel; // Update the previously clicked label
-        System.out.println(Game.disks);
+        // System.out.println(Game.disks);
     }
     public void backButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();

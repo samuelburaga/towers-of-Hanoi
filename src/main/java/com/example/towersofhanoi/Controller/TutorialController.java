@@ -31,12 +31,12 @@ public class TutorialController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    public void createDisks() {
+    public void drawDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
         double diskWidth = 198.0, diskHeight = 60.0; // Adjust as needed
         double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // Adjust as needed
         double arcWidth = 30.0, arcHeight = 30.0;
-        for (byte i = 0; i < Game.disks; i++) {
+        for (byte i = 0; i < Game.numberOfDisks; i++) {
             Rectangle disk = new Rectangle(diskWidth - (i * 12), diskHeight);
             disk.setX(initialX + (i * 6));
             disk.setLayoutY(initialY - (i * diskHeight));
@@ -48,8 +48,7 @@ public class TutorialController {
         }
     }
     public void solveButtonOnAction(ActionEvent e) {
-        Game.setRods(rodA, rodB, rodC); // Pass references to the Game class
-        Game.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton); // Pass references to the Game class
+        gameUIConnection();
         Game.startTime = System.currentTimeMillis(); // Record the start time
         Game.automatic(() -> {
             Game.endTime = System.currentTimeMillis(); // Record the end time
@@ -61,6 +60,10 @@ public class TutorialController {
                 throw new RuntimeException(ex);
             }
         });
+    }
+    public void gameUIConnection() {
+        Game.setRods(rodA, rodB, rodC); // Pass references to the Game class
+        Game.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton); // Pass references to the Game class
     }
     public void switchToSolvedScene() throws IOException {
         Stage stage = (Stage) solveButton.getScene().getWindow();

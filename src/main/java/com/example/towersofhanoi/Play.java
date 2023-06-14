@@ -21,7 +21,7 @@ public class Play extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
         // Pass the number of disks to the controller
         PlayController controller = fxmlLoader.getController();
-        byte numberOfDisks = Game.disks; // Replace with the actual number of disks
+        byte numberOfDisks = Game.numberOfDisks; // Replace with the actual number of disks
         controller.setNumberOfDisks(numberOfDisks);
         controller.setRods();
         primaryStage.setTitle("Play");

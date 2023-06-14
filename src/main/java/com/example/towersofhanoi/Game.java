@@ -12,14 +12,45 @@ import javafx.util.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class Game {
+    public static byte numberOfDisks = 2;
+    private static long moves = 0;
+    public Game() {
+
+    }
+    public Game(final byte disks) {
+        numberOfDisks = disks;
+    }
     public static boolean gameOver = false;
-    public static byte disks = 2;
     public static long startTime, endTime, duration;
+    private static Duration moveDelay = Duration.seconds(1.5);
+    private static Thread animationThread;
     public static Button moveButton;
     private static Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
     private static Pane rodA, rodB, rodC; // Add references to the rod panes
-    private static Duration moveDelay = Duration.seconds(1.5);
-    private static Thread animationThread;
+
+    public static void setRods(Pane a, Pane b, Pane c) {
+        rodA = a;
+        rodB = b;
+        rodC = c;
+    }
+    public static void setButtons(Button AB, Button AC, Button BA, Button BC, Button CA, Button CB) {
+        AToBButton = AB;
+        AToCButton = AC;
+        BToAButton = BA;
+        BToCButton = BC;
+        CToAButton = CA;
+        CToBButton = CB;
+    }
+
+    public static void recursiveHanoi(byte numberOfDisks, char fromRod, char toRod, char auxRod) {
+        if (numberOfDisks == 0) {
+            return;
+        }
+        recursiveHanoi((byte) (numberOfDisks - 1), fromRod, auxRod, toRod);
+        System.out.println("Move disk " + numberOfDisks + " from rod " + fromRod + " to rod " + toRod);
+        moveDisk(numberOfDisks, fromRod, toRod);
+        recursiveHanoi((byte) (numberOfDisks - 1), auxRod, toRod, fromRod);
+    }
     public static boolean validMove(char fromRod, char toRod) {
         Pane fromPane = getRodPane(fromRod);
         Pane toPane = getRodPane(toRod);
@@ -65,26 +96,12 @@ public class Game {
 //        return sizeFrom < sizeTo; // Move is valid if the disk on "from" rod is smaller than the one on "to" rod
 //    }
     public static boolean checkState() {
-       // return gameOver;
         byte disksOnLastRod = (byte) rodC.getChildren().size();
-        gameOver = disksOnLastRod == Game.disks;
+        gameOver = disksOnLastRod == Game.numberOfDisks;
         return gameOver;
     }
 
 
-    public static void setRods(Pane a, Pane b, Pane c) {
-        rodA = a;
-        rodB = b;
-        rodC = c;
-    }
-    public static void setButtons(Button AB, Button AC, Button BA, Button BC, Button CA, Button CB) {
-        AToBButton = AB;
-        AToCButton = AC;
-        BToAButton = BA;
-        BToCButton = BC;
-        CToAButton = CA;
-        CToBButton = CB;
-    }
     private static Pane getRodPane(char rod) {
         switch (rod) {
             case 'A':
@@ -111,19 +128,10 @@ public class Game {
         }
         @Override
         public void run() {
-            recursiveHanoi(disks, 'A', 'C', 'B');
+            recursiveHanoi(numberOfDisks, 'A', 'C', 'B');
             animationThread = null; // Set the animation thread to null after completion
             Platform.runLater(onFinishCallback);
         }
-    }
-    public static void recursiveHanoi(byte numberOfDisks, char fromRod, char toRod, char auxRod) {
-        if (numberOfDisks == 0) {
-            return;
-        }
-        recursiveHanoi((byte) (numberOfDisks - 1), fromRod, auxRod, toRod);
-        System.out.println("Move disk " + numberOfDisks + " from rod " + fromRod + " to rod " + toRod);
-        moveDisk(numberOfDisks, fromRod, toRod);
-        recursiveHanoi((byte) (numberOfDisks - 1), auxRod, toRod, fromRod);
     }
     public static void moveDisk(byte diskNumber, char fromRod, char toRod) {
         Platform.runLater(() -> {
@@ -180,9 +188,7 @@ public class Game {
     private static void animateDiskMovement(Rectangle disk, Pane toPane) {
         double initialY = disk.getY();
         double targetY = toPane.getPrefHeight() - (toPane.getChildren().size() * disk.getHeight());
-
         disk.setTranslateY(initialY - targetY);
-
         TranslateTransition transition = new TranslateTransition(Duration.seconds(1.5), disk);
         transition.setToY(0);
         transition.setOnFinished(event -> {
@@ -193,7 +199,6 @@ public class Game {
             // toPane.getChildren().add(disk);
         });
         transition.play();
-
         // Add the following line outside the event handler
         transition.setOnFinished(event -> toPane.getChildren().add(disk));
     }
