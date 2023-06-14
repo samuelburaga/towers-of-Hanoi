@@ -13,7 +13,6 @@ public class Tutorial extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Tutorial.fxml"));

@@ -33,14 +33,13 @@ public class TutorialController {
     private Parent root;
     public void solveButtonOnAction(ActionEvent e) {
         Tutorial.createGame();
-        // connectUI();
-        Tutorial.automaticGame.setRods(rodA, rodB, rodC);
-        Tutorial.automaticGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
+        connectGameToUI();
         Tutorial.automaticGame.startTime = System.currentTimeMillis(); // Record the start time
         Tutorial.automaticGame.runAlgorithm(() -> {
             Tutorial.automaticGame.endTime = System.currentTimeMillis(); // Record the end time
             Tutorial.automaticGame.duration = Tutorial.automaticGame.endTime - Tutorial.automaticGame.startTime;
-            System.out.println("Tower of Hanoi solved in " + Tutorial.automaticGame.duration + " milliseconds.");
+            Tutorial.automaticGame.gameOver = true;
+            System.out.println("Towers of Hanoi was solved in " + Tutorial.automaticGame.duration + " milliseconds.");
             try {
                 switchToSolvedScene();
             } catch (IOException ex) {
@@ -48,6 +47,11 @@ public class TutorialController {
             }
         });
     }
+    public void connectGameToUI() {
+        Tutorial.automaticGame.setRods(rodA, rodB, rodC);
+        Tutorial.automaticGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
+    }
+
     public void drawDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
         double diskWidth = 198.0, diskHeight = 60.0; // Adjust as needed

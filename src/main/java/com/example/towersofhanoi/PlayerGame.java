@@ -1,9 +1,13 @@
 package com.example.towersofhanoi;
 
+import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
-public class PlayerGame extends Game{
+import java.util.concurrent.TimeUnit;
+
+public class PlayerGame extends Game {
+    private char fromRod, toRod;
     public boolean validMove(char fromRod, char toRod) {
         Pane fromPane = getRodPane(fromRod);
         Pane toPane = getRodPane(toRod);
@@ -20,5 +24,97 @@ public class PlayerGame extends Game{
             return false; // Moving disk is larger or equal to the top disk on the "to" rod, move is not valid
         }
         return true; // Move is valid
+    }
+    //    public static boolean validMove(char fromRod, char toRod) {
+//        Pane fromPane = getRodPane(fromRod);
+//        Pane toPane = getRodPane(toRod);
+//        if (fromPane.getChildren().isEmpty()) {
+//            return false; // "from" rod is empty, move is not valid
+//        }
+//
+//        if (toPane.getChildren().isEmpty()) {
+//            return true; // "to" rod is empty, move is valid
+//        }
+//
+//        Rectangle topDiskFrom = (Rectangle) fromPane.getChildren().get(fromPane.getChildren().size() - 1);
+//        Rectangle topDiskTo = (Rectangle) toPane.getChildren().get(toPane.getChildren().size() - 1);
+//
+//        double sizeFrom = topDiskFrom.getWidth();
+//        double sizeTo = topDiskTo.getWidth();
+//
+//        return sizeFrom < sizeTo; // Move is valid if the disk on "from" rod is smaller than the one on "to" rod
+//    }
+    public boolean isGameOver() {
+        byte disksOnLastRod = (byte) rodC.getChildren().size();
+        gameOver = disksOnLastRod == Game.numberOfDisks ? true:false;
+        System.out.println(gameOver);
+        return gameOver;
+    }
+    public void runAnimation(char fromRod, char toRod) {
+        this.fromRod = fromRod;
+        this.toRod = toRod;
+        Thread animationThread = new Thread(new PlayerGame.Animation());
+        animationThread.start();
+    }
+    private class Animation implements Runnable {
+        public Animation() {
+
+        }
+        @Override
+        public void run() {
+            moveDisk(fromRod, toRod);
+        }
+    }
+    public void moveDisk(char fromRod, char toRod) {
+        Platform.runLater(() -> {
+            Pane fromPane = getRodPane(fromRod);
+            Pane toPane = getRodPane(toRod);
+            Rectangle disk = (Rectangle) fromPane.getChildren().remove(fromPane.getChildren().size() - 1);
+            toPane.getChildren().add(disk);
+            switch (fromRod + "To" + toRod) {
+                case "AToB":
+                    if (AToBButton != null) {
+                        moveButton = AToBButton;
+                    }
+                    break;
+                case "AToC":
+                    if (AToCButton != null) {
+                        moveButton = AToCButton;
+                    }
+                    break;
+                case "BToA":
+                    if (BToAButton != null) {
+                        moveButton = BToAButton;
+                    }
+
+                    break;
+                case "BToC":
+                    if (BToCButton != null) {
+                        moveButton = BToCButton;
+                    }
+                    break;
+                case "CToA":
+                    if (CToAButton != null) {
+                        moveButton = CToAButton;
+                    }
+                    break;
+                case "CToB":
+                    if (CToBButton != null) {
+                        moveButton = CToBButton;
+                    }
+                    break;
+                default:
+                    // handle invalid move
+                    break;
+            }
+            moveButton.setStyle("-fx-background-color: #0FB4BB;");
+            animateDiskMovement(disk, toPane);
+        });
+//        try {
+//            TimeUnit.MILLISECONDS.sleep((long) moveDelay.toMillis());
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        moveButton.setStyle("-fx-background-color: #FA8163;");
     }
 }

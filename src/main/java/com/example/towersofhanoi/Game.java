@@ -12,56 +12,36 @@ import javafx.util.Duration;
 
 import java.util.concurrent.TimeUnit;
 
-public class Game {
+public abstract class Game {
     public static byte numberOfDisks = 2;
     private static long numberOfMoves = 0;
     public static boolean gameOver = false;
     public long startTime, endTime, duration;
-    private Duration moveDelay = Duration.seconds(1.5);
+    protected Duration moveDelay = Duration.seconds(1.5);
     protected Thread animationThread;
+    protected Pane rodA, rodB, rodC; // Add references to the rod panes
     public Button moveButton;
     protected Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
-    protected Pane rodA, rodB, rodC; // Add references to the rod panes
     public Game() {
 
     }
     public Game(final byte disks) {
         numberOfDisks = disks;
     }
-
-    public void setRods() {
-
+    public void setRods(Pane A, Pane B, Pane C) {
+        rodA = A;
+        rodB = B;
+        rodC = C;
     }
-    public void setButtons() {
-
+    public void setButtons(Button AB, Button AC, Button BA, Button BC, Button CA, Button CB) {
+        AToBButton = AB;
+        AToCButton = AC;
+        BToAButton = BA;
+        BToCButton = BC;
+        CToAButton = CA;
+        CToBButton = CB;
     }
-
-
-    //    public static boolean validMove(char fromRod, char toRod) {
-//        Pane fromPane = getRodPane(fromRod);
-//        Pane toPane = getRodPane(toRod);
-//        if (fromPane.getChildren().isEmpty()) {
-//            return false; // "from" rod is empty, move is not valid
-//        }
-//
-//        if (toPane.getChildren().isEmpty()) {
-//            return true; // "to" rod is empty, move is valid
-//        }
-//
-//        Rectangle topDiskFrom = (Rectangle) fromPane.getChildren().get(fromPane.getChildren().size() - 1);
-//        Rectangle topDiskTo = (Rectangle) toPane.getChildren().get(toPane.getChildren().size() - 1);
-//
-//        double sizeFrom = topDiskFrom.getWidth();
-//        double sizeTo = topDiskTo.getWidth();
-//
-//        return sizeFrom < sizeTo; // Move is valid if the disk on "from" rod is smaller than the one on "to" rod
-//    }
-    public boolean checkState() {
-        byte disksOnLastRod = (byte) rodC.getChildren().size();
-        gameOver = disksOnLastRod == Game.numberOfDisks;
-        return gameOver;
-    }
-
+    public abstract boolean isGameOver();
     protected Pane getRodPane(char rod) {
         switch (rod) {
             case 'A':
@@ -74,79 +54,12 @@ public class Game {
                 throw new IllegalArgumentException("Invalid rod: " + rod);
         }
     }
-//    public static void automatic(Runnable onFinishCallback) {
-//        animationThread = new Thread(new AnimationRunnable(onFinishCallback));
-//        animationThread.start();
-//    }
-//    private static class AnimationRunnable implements Runnable {
-//        private final Runnable onFinishCallback;
-//        public AnimationRunnable(Runnable onFinishCallback) {
-//            this.onFinishCallback = onFinishCallback;
-//        }
-//        @Override
-//        public void run() {
-//            recursiveHanoi(numberOfDisks, 'A', 'C', 'B');
-//            animationThread = null; // Set the animation thread to null after completion
-//            Platform.runLater(onFinishCallback);
-//        }
-//    }
-    public void moveDisk(byte diskNumber, char fromRod, char toRod) {
-        Platform.runLater(() -> {
-            Pane fromPane = getRodPane(fromRod);
-            Pane toPane = getRodPane(toRod);
-            Rectangle disk = (Rectangle) fromPane.getChildren().remove(fromPane.getChildren().size() - 1);
-            toPane.getChildren().add(disk);
-            switch (fromRod + "To" + toRod) {
-                case "AToB":
-                    if (AToBButton != null) {
-                        moveButton = AToBButton;
-                    }
-                    break;
-                case "AToC":
-                    if (AToCButton != null) {
-                        moveButton = AToCButton;
-                    }
-                    break;
-                case "BToA":
-                    if (BToAButton != null) {
-                        moveButton = BToAButton;
-                    }
-
-                    break;
-                case "BToC":
-                    if (BToCButton != null) {
-                        moveButton = BToCButton;
-                    }
-                    break;
-                case "CToA":
-                    if (CToAButton != null) {
-                        moveButton = CToAButton;
-                    }
-                    break;
-                case "CToB":
-                    if (CToBButton != null) {
-                        moveButton = CToBButton;
-                    }
-                    break;
-                default:
-                    // handle invalid move
-                    break;
-            }
-            moveButton.setStyle("-fx-background-color: #0FB4BB;");
-            animateDiskMovement(disk, toPane);
-        });
-        try {
-            TimeUnit.MILLISECONDS.sleep((long) moveDelay.toMillis());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        moveButton.setStyle("-fx-background-color: #FA8163;");
-    }
-    private void animateDiskMovement(Rectangle disk, Pane toPane) {
+    public abstract void moveDisk(char fromRod, char toRod);
+    protected void animateDiskMovement(Rectangle disk, Pane toPane) {
         double initialY = disk.getY();
         double targetY = toPane.getPrefHeight() - (toPane.getChildren().size() * disk.getHeight());
         disk.setTranslateY(initialY - targetY);
-        TranslateTransition transition = new TranslateTransition(Duration.seconds(1.5), disk);
+        TranslateTransition transition = new TranslateTransition(Duration.seconds(moveDelay.toSeconds()), disk);
         transition.setToY(0);
         transition.setOnFinished(event -> {
             disk.setTranslateX(0);

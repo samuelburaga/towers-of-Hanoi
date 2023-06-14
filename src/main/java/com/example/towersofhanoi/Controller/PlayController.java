@@ -24,20 +24,13 @@ public class PlayController {
     private Pane rodA, rodB, rodC;
     @FXML
     private Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
-    private byte numberOfDisks;
     private String move;
-    public void setNumberOfDisks(byte numberOfDisks) {
-        this.numberOfDisks = numberOfDisks;
-        createDisks();
-    }
-    private void createDisks() {
+    public void drawDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
-        double diskWidth = 198.0; // Adjust as needed
-        double diskHeight = 60.0; // Adjust as needed
+        double diskWidth = 198.0, diskHeight = 60.0; // Adjust as needed
         double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // Adjust as needed
-        double arcWidth = 30.0;
-        double arcHeight = 30.0;
-        for (byte i = 0; i < numberOfDisks; i++) {
+        double arcWidth = 30.0, arcHeight = 30.0;
+        for (byte i = 0; i < Game.numberOfDisks; i++) {
             Rectangle disk = new Rectangle(diskWidth - (i * 12), diskHeight);
             disk.setX(initialX + (i * 6));
             disk.setLayoutY(initialY - (i * diskHeight));
@@ -48,50 +41,21 @@ public class PlayController {
             rodA.getChildren().add(disk);
         }
     }
+    public void connectGameToUI() {
+        Play.playerGame.setRods(rodA, rodB, rodC);
+        Play.playerGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
+    }
+    public void startGame() {
+        Play.playerGame.startTime = System.currentTimeMillis();
+    }
     public void moveOptionOnAction(ActionEvent e) throws IOException {
         Button clickedButton = (Button) e.getSource();
         String clickedButtonId = clickedButton.getId();
         char fromRod = clickedButtonId.charAt(0);
         char toRod = clickedButtonId.charAt(3);
-        if(!Play.playerGame.checkState()) {
+        if(Play.playerGame.isGameOver() == false) {
             if(Play.playerGame.validMove(fromRod, toRod)) {
-                switch (fromRod + "To" + toRod) {
-                    case "AToB":
-                        if (AToBButton != null) {
-                            Play.playerGame.moveButton = AToBButton;
-                        }
-                        break;
-                    case "AToC":
-                        if (AToCButton != null) {
-                            Play.playerGame.moveButton = AToCButton;
-                        }
-                        break;
-                    case "BToA":
-                        if (BToAButton != null) {
-                            Play.playerGame.moveButton = BToAButton;
-                        }
-
-                        break;
-                    case "BToC":
-                        if (BToCButton != null) {
-                            Play.playerGame.moveButton = BToCButton;
-                        }
-                        break;
-                    case "CToA":
-                        if (CToAButton != null) {
-                            Play.playerGame.moveButton = CToAButton;
-                        }
-                        break;
-                    case "CToB":
-                        if (CToBButton != null) {
-                            Play.playerGame.moveButton = CToBButton;
-                        }
-                        break;
-                    default:
-                        // handle invalid move
-                        break;
-                }
-                Play.playerGame.moveDisk((byte) 1, fromRod, toRod);
+                Play.playerGame.runAnimation(fromRod, toRod);
             }
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -102,6 +66,9 @@ public class PlayController {
             }
         }
         else {
+            Play.playerGame.endTime = System.currentTimeMillis();
+            Play.playerGame.duration = Play.playerGame.endTime - Play.playerGame.startTime;
+            System.out.println(Play.playerGame.duration);
             Stage stage = (Stage) clickedButton.getScene().getWindow();
             Parent root = FXMLLoader.load(Tutorial.class.getResource("View/Solved.fxml"));
             Scene solvedScene = new Scene(root);

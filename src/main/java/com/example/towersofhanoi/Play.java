@@ -14,16 +14,20 @@ public class Play extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Play.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
-        PlayController controller = fxmlLoader.getController();
-        byte numberOfDisks = Game.numberOfDisks; // Replace with the actual number of disks
-        controller.setNumberOfDisks(numberOfDisks);
+        PlayController playController = fxmlLoader.getController();
+        createGame();
+        playController.drawDisks();
+        playController.connectGameToUI();
+        playController.startGame();
         primaryStage.setTitle("Play");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+    public static void createGame() {
+        playerGame = new PlayerGame();
     }
 }
