@@ -1,9 +1,25 @@
 package com.example.towersofhanoi;
 
+import com.example.towersofhanoi.Controller.TutorialController;
 import javafx.application.Platform;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 
 public class AutomaticGame extends Game {
-    public static void recursiveHanoi(byte numberOfDisks, char fromRod, char toRod, char auxRod) {
+    public void setRods(Pane A, Pane B, Pane C) {
+        rodA = A;
+        rodB = B;
+        rodC = C;
+    }
+    public void setButtons(Button AB, Button AC, Button BA, Button BC, Button CA, Button CB) {
+        AToBButton = AB;
+        AToCButton = AC;
+        BToAButton = BA;
+        BToCButton = BC;
+        CToAButton = CA;
+        CToBButton = CB;
+    }
+    public void recursiveHanoi(byte numberOfDisks, char fromRod, char toRod, char auxRod) {
         if (numberOfDisks == 0) {
             return;
         }
@@ -12,11 +28,11 @@ public class AutomaticGame extends Game {
         moveDisk(numberOfDisks, fromRod, toRod);
         recursiveHanoi((byte) (numberOfDisks - 1), auxRod, toRod, fromRod);
     }
-    public static void automatic(Runnable onFinishCallback) {
-        animationThread = new Thread(new Game.AnimationRunnable(onFinishCallback));
+    public void runAlgorithm(Runnable onFinishCallback) {
+        animationThread = new Thread(new AnimationRunnable(onFinishCallback));
         animationThread.start();
     }
-    private static class AnimationRunnable implements Runnable {
+    private class AnimationRunnable implements Runnable {
         private final Runnable onFinishCallback;
         public AnimationRunnable(Runnable onFinishCallback) {
             this.onFinishCallback = onFinishCallback;
@@ -27,4 +43,5 @@ public class AutomaticGame extends Game {
             animationThread = null; // Set the animation thread to null after completion
             Platform.runLater(onFinishCallback);
         }
+    }
 }

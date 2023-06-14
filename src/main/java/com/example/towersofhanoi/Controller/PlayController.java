@@ -1,6 +1,7 @@
 package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.Game;
+import com.example.towersofhanoi.Play;
 import com.example.towersofhanoi.Tutorial;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -29,10 +30,6 @@ public class PlayController {
         this.numberOfDisks = numberOfDisks;
         createDisks();
     }
-    public void setRods() {
-        Game.setRods(rodA, rodB, rodC); // Pass references to the Game class
-        Game.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton); // Pass references to the Game class
-    }
     private void createDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
         double diskWidth = 198.0; // Adjust as needed
@@ -56,45 +53,45 @@ public class PlayController {
         String clickedButtonId = clickedButton.getId();
         char fromRod = clickedButtonId.charAt(0);
         char toRod = clickedButtonId.charAt(3);
-        if(!Game.checkState()) {
-            if(Game.validMove(fromRod, toRod)) {
+        if(!Play.playerGame.checkState()) {
+            if(Play.playerGame.validMove(fromRod, toRod)) {
                 switch (fromRod + "To" + toRod) {
                     case "AToB":
                         if (AToBButton != null) {
-                            Game.moveButton = AToBButton;
+                            Play.playerGame.moveButton = AToBButton;
                         }
                         break;
                     case "AToC":
                         if (AToCButton != null) {
-                            Game.moveButton = AToCButton;
+                            Play.playerGame.moveButton = AToCButton;
                         }
                         break;
                     case "BToA":
                         if (BToAButton != null) {
-                            Game.moveButton = BToAButton;
+                            Play.playerGame.moveButton = BToAButton;
                         }
 
                         break;
                     case "BToC":
                         if (BToCButton != null) {
-                            Game.moveButton = BToCButton;
+                            Play.playerGame.moveButton = BToCButton;
                         }
                         break;
                     case "CToA":
                         if (CToAButton != null) {
-                            Game.moveButton = CToAButton;
+                            Play.playerGame.moveButton = CToAButton;
                         }
                         break;
                     case "CToB":
                         if (CToBButton != null) {
-                            Game.moveButton = CToBButton;
+                            Play.playerGame.moveButton = CToBButton;
                         }
                         break;
                     default:
                         // handle invalid move
                         break;
                 }
-                Game.moveDisk((byte) 1, fromRod, toRod);
+                Play.playerGame.moveDisk((byte) 1, fromRod, toRod);
             }
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

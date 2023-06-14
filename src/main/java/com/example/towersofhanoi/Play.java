@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Play extends Application {
-
+    public static PlayerGame playerGame;
     public static void main(String[] args) {
         launch(args);
     }
@@ -19,11 +19,9 @@ public class Play extends Application {
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Play.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
-        // Pass the number of disks to the controller
         PlayController controller = fxmlLoader.getController();
         byte numberOfDisks = Game.numberOfDisks; // Replace with the actual number of disks
         controller.setNumberOfDisks(numberOfDisks);
-        controller.setRods();
         primaryStage.setTitle("Play");
         primaryStage.setScene(scene);
         primaryStage.show();

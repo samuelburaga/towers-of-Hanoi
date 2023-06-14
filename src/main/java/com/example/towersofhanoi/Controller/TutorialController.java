@@ -31,6 +31,23 @@ public class TutorialController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    public void solveButtonOnAction(ActionEvent e) {
+        Tutorial.createGame();
+        // connectUI();
+        Tutorial.automaticGame.setRods(rodA, rodB, rodC);
+        Tutorial.automaticGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
+        Tutorial.automaticGame.startTime = System.currentTimeMillis(); // Record the start time
+        Tutorial.automaticGame.runAlgorithm(() -> {
+            Tutorial.automaticGame.endTime = System.currentTimeMillis(); // Record the end time
+            Tutorial.automaticGame.duration = Tutorial.automaticGame.endTime - Tutorial.automaticGame.startTime;
+            System.out.println("Tower of Hanoi solved in " + Tutorial.automaticGame.duration + " milliseconds.");
+            try {
+                switchToSolvedScene();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+    }
     public void drawDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
         double diskWidth = 198.0, diskHeight = 60.0; // Adjust as needed
@@ -46,24 +63,6 @@ public class TutorialController {
             disk.setStroke(Color.WHITE); // Adjust as needed
             rodA.getChildren().add(disk);
         }
-    }
-    public void solveButtonOnAction(ActionEvent e) {
-        gameUIConnection();
-        Game.startTime = System.currentTimeMillis(); // Record the start time
-        Game.automatic(() -> {
-            Game.endTime = System.currentTimeMillis(); // Record the end time
-            Game.duration = Game.endTime - Game.startTime;
-            System.out.println("Tower of Hanoi solved in " + Game.duration + " milliseconds.");
-            try {
-                switchToSolvedScene();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-    }
-    public void gameUIConnection() {
-        Game.setRods(rodA, rodB, rodC); // Pass references to the Game class
-        Game.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton); // Pass references to the Game class
     }
     public void switchToSolvedScene() throws IOException {
         Stage stage = (Stage) solveButton.getScene().getWindow();

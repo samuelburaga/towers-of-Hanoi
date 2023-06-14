@@ -8,8 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Tutorial extends Application {;
-    public static Game automaticGame;
+public class Tutorial extends Application {
+    public static AutomaticGame automaticGame;
     public static void main(String[] args) {
         launch(args);
     }
@@ -18,14 +18,13 @@ public class Tutorial extends Application {;
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Tutorial.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
-        createGame();
-        TutorialController controller = fxmlLoader.getController();
-        controller.drawDisks();
+        TutorialController tutorialController = fxmlLoader.getController();
+        tutorialController.drawDisks();
         primaryStage.setTitle("Tutorial");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
     public static void createGame() {
-        automaticGame = new Game();
+        automaticGame = new AutomaticGame();
     }
 }
