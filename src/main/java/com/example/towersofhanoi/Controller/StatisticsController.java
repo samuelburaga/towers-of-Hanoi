@@ -25,7 +25,7 @@ public class StatisticsController {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         databaseConnection.connect();
         databaseConnection.Statement();
-        String query = "SELECT * FROM " + databaseConnection.tables[1] + " ORDER BY points DESC LIMIT 5";
+        String query = "SELECT * FROM " + databaseConnection.tables[1] + " ORDER BY points DESC LIMIT 10";
         ResultSet resultSet = databaseConnection.executeQuery(query);
         // databaseConnection.printQuery(resultSet);
 
@@ -44,7 +44,7 @@ public class StatisticsController {
             int disks = resultSet.getInt("disks");
             Time time = resultSet.getTime("time");
             System.out.println(time);
-            StatisticsData data = new StatisticsData("eu", points, time, disks);
+            StatisticsData data = new StatisticsData("username", points, time, disks);
             statisticsTable.getItems().add(data);
         }
     }
