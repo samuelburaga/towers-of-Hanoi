@@ -54,7 +54,7 @@ public class PlayController {
         char fromRod = clickedButtonId.charAt(0);
         char toRod = clickedButtonId.charAt(3);
         if(Play.playerGame.isGameOver() == false) {
-            if(Play.playerGame.validMove(fromRod, toRod)) {
+            if(Play.playerGame.isMoveValid(fromRod, toRod)) {
                 Play.playerGame.runAnimation(fromRod, toRod);
             }
             else {

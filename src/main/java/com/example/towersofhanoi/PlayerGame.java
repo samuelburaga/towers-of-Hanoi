@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class PlayerGame extends Game {
     private char fromRod, toRod;
-    public boolean validMove(char fromRod, char toRod) {
+    public boolean isMoveValid(char fromRod, char toRod) {
         Pane fromPane = getRodPane(fromRod);
         Pane toPane = getRodPane(toRod);
         if (fromPane == null || toPane == null) {
@@ -25,25 +25,6 @@ public class PlayerGame extends Game {
         }
         return true; // Move is valid
     }
-    //    public static boolean validMove(char fromRod, char toRod) {
-//        Pane fromPane = getRodPane(fromRod);
-//        Pane toPane = getRodPane(toRod);
-//        if (fromPane.getChildren().isEmpty()) {
-//            return false; // "from" rod is empty, move is not valid
-//        }
-//
-//        if (toPane.getChildren().isEmpty()) {
-//            return true; // "to" rod is empty, move is valid
-//        }
-//
-//        Rectangle topDiskFrom = (Rectangle) fromPane.getChildren().get(fromPane.getChildren().size() - 1);
-//        Rectangle topDiskTo = (Rectangle) toPane.getChildren().get(toPane.getChildren().size() - 1);
-//
-//        double sizeFrom = topDiskFrom.getWidth();
-//        double sizeTo = topDiskTo.getWidth();
-//
-//        return sizeFrom < sizeTo; // Move is valid if the disk on "from" rod is smaller than the one on "to" rod
-//    }
     public boolean isGameOver() {
         byte disksOnLastRod = (byte) rodC.getChildren().size();
         gameOver = disksOnLastRod == Game.numberOfDisks ? true:false;
