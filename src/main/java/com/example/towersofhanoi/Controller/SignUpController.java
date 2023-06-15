@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class SignUpController {
     @FXML
@@ -22,6 +23,16 @@ public class SignUpController {
     public void signUpButtonOnAction(ActionEvent e) throws IOException {
         if(firstNameTextField.getText().isBlank() == false && lastNameTextField.getText().isBlank() == false && usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
             if(isSignUpValid()) {
+                DatabaseConnection databaseConnection = new DatabaseConnection();
+                databaseConnection.connect();
+                databaseConnection.Statement();
+                String query = "INSERT INTO users (first_name, last_name, username, password, created_at) VALUES (?, ?, ?, ?, NOW())";
+                String[] variables = new String[4];
+                variables[0] = firstNameTextField.getText();
+                variables[1] = lastNameTextField.getText();
+                variables[2] = usernameTextField.getText();
+                variables[3] = passwordField.getText();
+                databaseConnection.executeUpdateWithVariables(query, variables);
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
                 thisStage.hide();

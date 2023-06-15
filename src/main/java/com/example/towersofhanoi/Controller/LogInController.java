@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -37,11 +34,19 @@ public class LogInController {
                 menu.start(new Stage());
             }
             else {
-                logInMessage.setText("Your username or password is wrong!");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Your username or password is wrong!");
+                alert.showAndWait();
             }
         }
         else {
-            logInMessage.setText("Please enter your username and password!");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter your username and password!");
+            alert.showAndWait();
         }
     }
     public void cancelButtonOnAction(ActionEvent e) {
@@ -49,14 +54,14 @@ public class LogInController {
         stage.close();
     }
     public boolean isLogInValid() {
-        DatabaseConnection dc = new DatabaseConnection();
-        dc.connect();
-        dc.Statement();
-        String query = "SELECT EXISTS (SELECT * FROM " + dc.tables[0] + " WHERE username = ? AND password = ?)";
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        databaseConnection.connect();
+        databaseConnection.Statement();
+        String query = "SELECT EXISTS (SELECT * FROM " + databaseConnection.tables[0] + " WHERE username = ? AND password = ?)";
         String[] variables = new String[2];
         variables[0] = usernameTextField.getText();
         variables[1] = passwordField.getText();
-        ResultSet check = dc.executeQueryWithVariables(query, variables);
+        ResultSet check = databaseConnection.executeQueryWithVariables(query, variables);
         try {
             if (check.next())
             {

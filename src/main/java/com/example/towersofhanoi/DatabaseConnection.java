@@ -12,7 +12,6 @@ public class DatabaseConnection {
     static final String JDBC_URL = "jdbc:mysql://" + hostname + ":" + port + "/" + database;
     protected Connection connection;
     protected Statement statement;
-
     public DatabaseConnection() {
 
     }
@@ -31,7 +30,6 @@ public class DatabaseConnection {
     public void setStatement(Statement statement) {
         this.statement = statement;
     }
-
     public void loadDriver()
     {
         try {
@@ -70,6 +68,16 @@ public class DatabaseConnection {
         }
         return null;
     }
+//    public ResultSet executeUpdate(final String query) {
+////        try {
+////            ResultSet resultSet = this.statement.executeUpdate(query);
+////            return resultSet;
+////        }
+////        catch (SQLException e){
+////            e.printStackTrace();
+////        }
+////        return null;
+//    }
     public ResultSet executeQueryWithVariables(String query, String[] variables) {
         try {
             PreparedStatement ps = this.connection.prepareStatement(query);
@@ -83,6 +91,18 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
         return null;
+    }
+    public void executeUpdateWithVariables(String query, String[] variables) {
+        try {
+            PreparedStatement ps = this.connection.prepareStatement(query);
+            for (int index = 0; index < variables.length; index++) {
+                ps.setString(index + 1, variables[index]);
+            }
+            ps.executeUpdate();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
     }
     public void printQuery(final ResultSet resultSet) {
         try {
@@ -107,7 +127,6 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
     }
-
     public static void main(String[] args) {
 
     }
