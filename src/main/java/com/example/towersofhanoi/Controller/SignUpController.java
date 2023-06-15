@@ -40,11 +40,22 @@ public class SignUpController {
                 variables[3] = passwordField.getText();
                 databaseConnection.executeUpdateWithVariables(query, variables);
 
-                query = "SELECT user_id FROM " + databaseConnection.tables[0] + " WHERE username = ?";
+                query = "SELECT * FROM " + databaseConnection.tables[0] + " WHERE username = ?";
                 variables = new String[1];
                 variables[0] = usernameTextField.getText();
                 ResultSet resultSet = databaseConnection.executeQueryWithVariables(query, variables);
-                databaseConnection.printQuery(resultSet);
+                // databaseConnection.printQuery(resultSet);
+                try {
+                    if (resultSet.next()) {
+                        Users.user_id = resultSet.getInt("user_id");
+                        Users.first_name = resultSet.getString("first_name");
+                        Users.last_name = resultSet.getString("last_name");
+                        Users.username = resultSet.getString("username");
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    // Handle the exception appropriately (e.g., show an error message)
+                }
 
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
