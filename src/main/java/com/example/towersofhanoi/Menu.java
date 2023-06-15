@@ -1,5 +1,6 @@
 package com.example.towersofhanoi;
 
+import com.example.towersofhanoi.Controller.MenuController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -21,6 +22,10 @@ public class Menu extends Application {
         public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
+
+        MenuController menuController = fxmlLoader.getController();
+        menuController.setUsername();
+
         primaryStage.setMaximized(true);
         primaryStage.setTitle("Menu");
         primaryStage.setScene(scene);

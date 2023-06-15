@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -12,6 +13,11 @@ import java.io.IOException;
 public class MenuController {
     @FXML
     private Button playButton, tutorialButton, optionsButton, statisticsButton, settingsButton, quitButton;
+    @FXML
+    private Label usernameLabel;
+    public void setUsername() {
+        usernameLabel.setText(Users.username);
+    }
     public void playButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
@@ -50,5 +56,4 @@ public class MenuController {
         Stage stage = (Stage) quitButton.getScene().getWindow();
         stage.close();
     }
-
 }
