@@ -1,9 +1,6 @@
 package com.example.towersofhanoi.Controller;
 
-import com.example.towersofhanoi.DatabaseConnection;
-import com.example.towersofhanoi.Game;
-import com.example.towersofhanoi.Play;
-import com.example.towersofhanoi.Tutorial;
+import com.example.towersofhanoi.*;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -79,7 +76,7 @@ public class PlayController {
             databaseConnection.Statement();
             String query = "INSERT INTO statistics (user_id, disks, points, time) VALUES (?, ?, ?, time)";
             String[] variables = new String[4];
-            variables[0] = Users.user_id;
+            variables[0] = Integer.toString(Users.user_id);
             variables[1] = Byte.toString(Game.numberOfDisks);
             variables[2] = Integer.toString(Play.playerGame.score);
             variables[3] = time.toString();

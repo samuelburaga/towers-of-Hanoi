@@ -2,6 +2,7 @@ package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.DatabaseConnection;
 import com.example.towersofhanoi.Menu;
+import com.example.towersofhanoi.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -28,11 +29,18 @@ public class SignUpController {
                 databaseConnection.Statement();
                 String query = "INSERT INTO users (first_name, last_name, username, password, created_at) VALUES (?, ?, ?, ?, NOW())";
                 String[] variables = new String[4];
+
+                Users.first_name = firstNameTextField.getText();
+                Users.last_name = lastNameTextField.getText();
+                Users.username = usernameTextField.getText();
+
                 variables[0] = firstNameTextField.getText();
                 variables[1] = lastNameTextField.getText();
                 variables[2] = usernameTextField.getText();
                 variables[3] = passwordField.getText();
                 databaseConnection.executeUpdateWithVariables(query, variables);
+
+
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
                 thisStage.hide();
