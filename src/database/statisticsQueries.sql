@@ -1,0 +1,11 @@
+-- INSERT INTO statistics (users_user_id, disks, points, time) VALUES (1, 3, 100, 20);
+-- INSERT INTO statistics (users_user_id, disks, points, time) VALUES (2, 4, 80, 30);
+-- INSERT INTO statistics (users_user_id, disks, points, time) VALUES (3, 2, 100, 10);
+-- INSERT INTO statistics (users_user_id, disks, points, time) VALUES (4, 5, 30, 50);
+-- INSERT INTO statistics (users_user_id, disks, points, time) VALUES (5, 7, 45, 40);
+-- INSERT INTO statistics (users_user_id, disks, points, time) VALUES (1, 2, 200, 5);
+-- INSERT INTO statistics (users_user_id, disks, points, time) VALUES (2, 1, 250, 3);
+-- INSERT INTO statistics (users_user_id, disks, points, time) VALUES (3, 8, 100, '00:03:00');
+-- INSERT INTO statistics (users_user_id, disks, points, time) VALUES (1, 5, 200, '00:02:00');
+-- INSERT INTO statistics (users_user_id, disks, points, time) VALUES (2, 4, 175, '00:01:00');
+SELECT * FROM statistics
