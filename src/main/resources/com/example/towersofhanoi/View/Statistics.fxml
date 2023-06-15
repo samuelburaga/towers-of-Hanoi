@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.towersofhanoi.Controller.StatisticsController">
    <children>
@@ -12,5 +13,13 @@
             <Font name="Mongolian Baiti" size="100.0" />
          </font>
       </Label>
+      <TableView fx:id="statisticsTable" layoutX="111.0" layoutY="240.0" prefHeight="641.0" prefWidth="778.0">
+        <columns>
+          <TableColumn fx:id="usernameColumn" prefWidth="180.0" text="Username" />
+          <TableColumn fx:id="pointsColumn" minWidth="0.0" prefWidth="200.0" text="Points" />
+            <TableColumn fx:id="timeColumn" prefWidth="176.0" text="Time" />
+            <TableColumn fx:id="disksColumn" prefWidth="221.0" text="Disks" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

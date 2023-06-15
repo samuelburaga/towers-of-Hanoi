@@ -8,7 +8,7 @@ public class DatabaseConnection {
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String hostname = "localhost", port = "3306";
     public static final String database = "towers-of-hanoi";
-    public static final String [] tables = {"users", "scores"};
+    public static final String [] tables = {"users", "statistics"};
     static final String JDBC_URL = "jdbc:mysql://" + hostname + ":" + port + "/" + database;
     protected Connection connection;
     protected Statement statement;

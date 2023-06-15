@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class MenuController {
     @FXML
@@ -38,7 +39,7 @@ public class MenuController {
         Options options = new Options();
         options.start(new Stage());
     }
-    public void statisticsButtonOnAction(ActionEvent e) throws IOException {
+    public void statisticsButtonOnAction(ActionEvent e) throws IOException, SQLException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.hide();
