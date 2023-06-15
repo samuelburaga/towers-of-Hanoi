@@ -29,7 +29,7 @@ public class LogInController {
     private Button logInButton, cancelButton;
     public void logInButtonOnAction(ActionEvent e) throws IOException {
         if(usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
-            if(validateLogIn()) {
+            if(isLogInValid()) {
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
                 thisStage.hide();
@@ -48,7 +48,7 @@ public class LogInController {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
-    public boolean validateLogIn() {
+    public boolean isLogInValid() {
         DatabaseConnection dc = new DatabaseConnection();
         dc.connect();
         dc.Statement();

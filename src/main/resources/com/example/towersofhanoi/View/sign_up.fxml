@@ -59,8 +59,8 @@
                         <Font name="Mongolian Baiti" size="20.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="passwordTextField" prefHeight="25.0" prefWidth="161.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="firstNameTextField" onAction="#firstNameTextField" prefHeight="25.0" prefWidth="131.0" promptText="First name" GridPane.columnIndex="1" />
+                  <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="161.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="firstNameTextField" prefHeight="25.0" prefWidth="131.0" promptText="First name" GridPane.columnIndex="1" />
                   <TextField fx:id="lastNameTextField" promptText="Last name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="usernameTextField" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
