@@ -107,23 +107,19 @@ public class DatabaseConnection {
     public void printQuery(final ResultSet resultSet) {
         try {
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-            while (resultSet.next())
-            {
-                int columnsNumber = resultSetMetaData.getColumnCount();
-                while (resultSet.next()) {
-                    for (int i = 1; i <= columnsNumber; i++)
-                    {
-                        if (i > 1) {
-                            System.out.print(",  ");
-                        }
-                        String columnValue = resultSet.getString(i);
-                        System.out.print(columnValue + " " + resultSetMetaData.getColumnName(i));
+            int columnsNumber = resultSetMetaData.getColumnCount();
+
+            while (resultSet.next()) {
+                for (int i = 1; i <= columnsNumber; i++) {
+                    if (i > 1) {
+                        System.out.print(", ");
                     }
-                    System.out.println("");
+                    String columnValue = resultSet.getString(i);
+                    System.out.print(columnValue + " " + resultSetMetaData.getColumnName(i));
                 }
+                System.out.println();
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

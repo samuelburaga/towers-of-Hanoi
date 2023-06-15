@@ -40,6 +40,11 @@ public class SignUpController {
                 variables[3] = passwordField.getText();
                 databaseConnection.executeUpdateWithVariables(query, variables);
 
+                query = "SELECT user_id FROM " + databaseConnection.tables[0] + " WHERE username = ?";
+                variables = new String[1];
+                variables[0] = usernameTextField.getText();
+                ResultSet resultSet = databaseConnection.executeQueryWithVariables(query, variables);
+                databaseConnection.printQuery(resultSet);
 
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
