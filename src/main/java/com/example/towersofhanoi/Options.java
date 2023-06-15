@@ -17,7 +17,6 @@ public class Options extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Options.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
         primaryStage.setMaximized(true);
-        primaryStage.setFullScreen(true);
         primaryStage.setTitle("Options");
         primaryStage.setScene(scene);
         primaryStage.show();

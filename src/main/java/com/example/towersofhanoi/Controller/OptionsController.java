@@ -34,17 +34,17 @@ public class OptionsController {
         }
         clickedLabel.setStyle(clickedColor); // Set the color for the newly clicked label
         previousClickedLabel = clickedLabel; // Update the previously clicked label
-        // System.out.println(Game.disks);
     }
     public void backButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
+        thisStage.hide();
         Menu menu = new Menu();
         menu.start(new Stage());
     }
     public void playNowButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
-
+        thisStage.hide();
     }
 }
