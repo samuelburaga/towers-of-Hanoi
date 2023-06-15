@@ -3,5 +3,5 @@ import java.sql.*;
 
 public class Users {
     public static int user_id;
-    public static String first_name, last_name, username;
+    public static String first_name = "first_name", last_name = "last_name", username = "username";
 }
