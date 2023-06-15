@@ -70,7 +70,7 @@ public class DatabaseConnection {
         }
         return null;
     }
-    public ResultSet exectureQueryWithVariables(String query, String[] variables) {
+    public ResultSet executeQueryWithVariables(String query, String[] variables) {
         try {
             PreparedStatement ps = this.connection.prepareStatement(query);
             for (int index = 0; index < variables.length; index++) {

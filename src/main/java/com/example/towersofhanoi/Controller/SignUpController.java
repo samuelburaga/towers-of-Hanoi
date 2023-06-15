@@ -51,7 +51,7 @@ public class SignUpController {
           String query = "SELECT EXISTS (SELECT * FROM " + databaseConnection.tables[0] + " WHERE username = ?)";
           String[] variables = new String[1];
           variables[0] = usernameTextField.getText();
-          ResultSet check = databaseConnection.exectureQueryWithVariables(query, variables);
+          ResultSet check = databaseConnection.executeQueryWithVariables(query, variables);
           try {
               if (check.next())
               {

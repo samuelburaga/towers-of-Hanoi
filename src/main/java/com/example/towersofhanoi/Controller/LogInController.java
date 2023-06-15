@@ -56,7 +56,7 @@ public class LogInController {
         String[] variables = new String[2];
         variables[0] = usernameTextField.getText();
         variables[1] = passwordField.getText();
-        ResultSet check = dc.exectureQueryWithVariables(query, variables);
+        ResultSet check = dc.executeQueryWithVariables(query, variables);
         try {
             if (check.next())
             {
