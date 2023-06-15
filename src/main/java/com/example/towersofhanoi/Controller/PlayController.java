@@ -1,5 +1,6 @@
 package com.example.towersofhanoi.Controller;
 
+import com.example.towersofhanoi.DatabaseConnection;
 import com.example.towersofhanoi.Game;
 import com.example.towersofhanoi.Play;
 import com.example.towersofhanoi.Tutorial;
@@ -18,7 +19,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-
+import java.sql.Time;
 public class PlayController {
     @FXML
     private Pane rodA, rodB, rodC;
@@ -66,9 +67,24 @@ public class PlayController {
             }
         }
         else {
+
             Play.playerGame.endTime = System.currentTimeMillis();
             Play.playerGame.duration = Play.playerGame.endTime - Play.playerGame.startTime;
-            System.out.println(Play.playerGame.duration);
+            Play.playerGame.score = (int) (100 / (Play.playerGame.duration / 1000));
+
+
+            Time time = new Time(Play.playerGame.duration);
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            databaseConnection.connect();
+            databaseConnection.Statement();
+            String query = "INSERT INTO statistics (user_id, disks, points, time) VALUES (?, ?, ?, time)";
+            String[] variables = new String[4];
+            variables[0] = Users.user_id;
+            variables[1] = Byte.toString(Game.numberOfDisks);
+            variables[2] = Integer.toString(Play.playerGame.score);
+            variables[3] = time.toString();
+            databaseConnection.executeUpdateWithVariables(query, variables);
+
             Stage stage = (Stage) clickedButton.getScene().getWindow();
             Parent root = FXMLLoader.load(Tutorial.class.getResource("View/Solved.fxml"));
             Scene solvedScene = new Scene(root);

@@ -91,11 +91,6 @@ public class PlayerGame extends Game {
             moveButton.setStyle("-fx-background-color: #0FB4BB;");
             animateDiskMovement(disk, toPane);
         });
-//        try {
-//            TimeUnit.MILLISECONDS.sleep((long) moveDelay.toMillis());
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         moveButton.setStyle("-fx-background-color: #FA8163;");
     }
 }
