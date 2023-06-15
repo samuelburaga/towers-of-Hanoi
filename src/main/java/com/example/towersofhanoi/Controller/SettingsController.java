@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 public class SettingsController {
     @FXML
     private Button changeFirstNameButton, changeLastNameButton, changeUsernameButton, changePasswordButton, changeProfilePictureButton;
+    @FXML
+    private Button deleteAccountButton;
     public void changeFirstNameButtonOnAction(ActionEvent e) {
 
     }
@@ -71,4 +73,34 @@ public class SettingsController {
 
     }
 
+    public void  deleteAccountButtonOnAction(ActionEvent e) {
+        // Create the confirmation alert
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Delete Account");
+        confirmationAlert.setHeaderText(null);
+        confirmationAlert.setContentText("Are you sure you want to delete your account?");
+
+        // Customize the alert buttons
+        ButtonType yesButton = new ButtonType("Yes");
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonType.CANCEL.getButtonData());
+        confirmationAlert.getButtonTypes().setAll(yesButton, cancelButton);
+
+        // Show the confirmation alert and wait for a response
+        confirmationAlert.showAndWait().ifPresent(buttonType -> {
+            if (buttonType == yesButton) {
+                // Perform account deletion
+                System.out.println("Account deleted.");
+                DatabaseConnection databaseConnection = new DatabaseConnection();
+                databaseConnection.connect();
+                databaseConnection.Statement();
+                String query = "DELETE FROM " + databaseConnection.tables[0] + " WHERE username = ?";
+                String[] variables = new String[1];
+                variables[0] = Users.username;
+                databaseConnection.executeUpdateWithVariables(query, variables);
+                Node node = (Node) e.getSource();
+                Stage thisStage = (Stage) node.getScene().getWindow();
+                thisStage.hide();
+            }
+        });
+    }
 }
