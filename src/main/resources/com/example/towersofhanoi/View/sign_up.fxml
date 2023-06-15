@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.towersofhanoi.Controller.SignUpController">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="225.0" style="-fx-background-color: #FA8163;" BorderPane.alignment="CENTER">
          <children>
@@ -59,18 +59,18 @@
                         <Font name="Mongolian Baiti" size="20.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="passwordTF" prefHeight="25.0" prefWidth="161.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="firstNameTF" prefHeight="25.0" prefWidth="131.0" promptText="First name" GridPane.columnIndex="1" />
-                  <TextField fx:id="lastNameTF" promptText="Last name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="usernameTF" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <PasswordField fx:id="passwordTextField" prefHeight="25.0" prefWidth="161.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="firstNameTextField" onAction="#firstNameTextField" prefHeight="25.0" prefWidth="131.0" promptText="First name" GridPane.columnIndex="1" />
+                  <TextField fx:id="lastNameTextField" promptText="Last name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="usernameTextField" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-            <Label layoutX="139.0" layoutY="25.0" text="Sign Up" textFill="#fa8163">
+            <Label fx:id="signUpLabel" layoutX="139.0" layoutY="25.0" text="Sign Up" textFill="#fa8163">
                <font>
                   <Font name="Mongolian Baiti" size="30.0" />
                </font>
             </Label>
-            <Button fx:id="sign_upButton" layoutX="43.0" layoutY="318.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="291.0" style="-fx-background-color: #0fb4bb;" text="Sign Up" textFill="WHITE">
+            <Button fx:id="signUpButton" layoutX="43.0" layoutY="318.0" mnemonicParsing="false" onAction="#signUpButtonOnAction" prefHeight="19.0" prefWidth="291.0" style="-fx-background-color: #0fb4bb;" text="Sign Up" textFill="WHITE">
                <font>
                   <Font name="Mongolian Baiti" size="20.0" />
                </font>
