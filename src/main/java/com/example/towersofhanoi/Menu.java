@@ -12,6 +12,7 @@ import javax.sound.sampled.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class Menu extends Application {
     public static boolean musicPlays = false;
@@ -33,19 +34,21 @@ public class Menu extends Application {
         backgroundMusic();
     }
     public static void backgroundMusic() {
-        String filePath = "D:/ULBS/Anul II/Semestrul II/Modulul 2/Metode avansate de programare/Project/towers-of-Hanoi/src/resources/Stay Retro.wav";
+        String filePath = "/sounds/Stay Retro.wav"; // Path relative to the "res" folder
         try {
-            File music = new File(filePath);
-            if(music.exists() && musicPlays == false) {
-                AudioInputStream ais = AudioSystem.getAudioInputStream(music);
-                Clip clip = AudioSystem.getClip();
-                clip.open(ais);
-                clip.start();
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
-                musicPlays = true;
+            URL resourceUrl = Menu.class.getResource(filePath);
+            if (resourceUrl != null && !musicPlays) {
+                File music = new File(resourceUrl.toURI());
+                if (music.exists()) {
+                    AudioInputStream ais = AudioSystem.getAudioInputStream(music);
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(ais);
+                    clip.start();
+                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+                    musicPlays = true;
+                }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
