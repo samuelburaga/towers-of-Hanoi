@@ -56,6 +56,16 @@ public class MySQLConnection implements Database {
         }
         return null;
     }
+    //    public ResultSet executeUpdate(final String query) {
+//        try {
+//            ResultSet resultSet = this.statement.executeUpdate(query);
+//            return resultSet;
+//        }
+//        catch (SQLException e){
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
     public ResultSet executeQueryWithVariables(String query, String[] variables) {
         try {
             PreparedStatement ps = this.connection.prepareStatement(query);
@@ -100,6 +110,7 @@ public class MySQLConnection implements Database {
             e.printStackTrace();
         }
     }
+    @Override
     public boolean checkIfUserExists(final String username, final String password) {
         String query = "SELECT EXISTS (SELECT * FROM " + this.tables[0] + " WHERE username = ? AND password = ?)";
         String[] variables = new String[2];
@@ -118,6 +129,29 @@ public class MySQLConnection implements Database {
             e.printStackTrace();
         }
         return false;
+    }
+    @Override
+    public void deleteAccount(final String username) {
+        String query = "DELETE FROM " + this.tables[0] + " WHERE username = ?";
+        String[] variables = new String[1];
+        variables[0] = Users.username;
+        this.executeUpdateWithVariables(query, variables);
+        System.out.println("Account deleted.");
+    }
+    @Override
+    public void updateUsername(final String currentUsername, final String newUsername) {
+        String query = "UPDATE " + this.tables[0] + " SET username = ? WHERE username = ?";
+        String[] variables = new String[2];
+        variables[0] = newUsername;
+        variables[1] = currentUsername;
+        this.executeUpdateWithVariables(query, variables);
+    }
+    public ResultSet getUserByUsername(final String username) {
+        String query = "SELECT * FROM " + this.tables[0] + " WHERE username = ?";
+        String[] variables = new String[1];
+        variables[0] = username;
+        ResultSet resultSet = this.executeQueryWithVariables(query, variables);
+        return resultSet;
     }
     public static void main(String[] args) {
     }
