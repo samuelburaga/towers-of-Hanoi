@@ -1,9 +1,7 @@
 package com.example.towersofhanoi.Controller;
 
-import com.example.towersofhanoi.DatabaseConnection;
-import com.example.towersofhanoi.HelloApplication;
+import com.example.towersofhanoi.*;
 import com.example.towersofhanoi.Menu;
-import com.example.towersofhanoi.Users;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,12 +26,6 @@ public class LogInController {
     private Button logInButton, cancelButton;
     public void logInButtonOnAction(ActionEvent e) throws IOException, SQLException {
         if(usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
-
-            DatabaseConnection databaseConnection = new DatabaseConnection();
-            databaseConnection.connect();
-            databaseConnection.createStatement();
-            databaseConnection.isLogInValid();
-
             if(isLogInValid()) {
                 DatabaseConnection databaseConnection = new DatabaseConnection();
                 databaseConnection.connect();
@@ -81,25 +73,29 @@ public class LogInController {
         stage.close();
     }
     public boolean isLogInValid() {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        databaseConnection.connect();
-        databaseConnection.createStatement();
-        String query = "SELECT EXISTS (SELECT * FROM " + databaseConnection.tables[0] + " WHERE username = ? AND password = ?)";
-        String[] variables = new String[2];
-        variables[0] = usernameTextField.getText();
-        variables[1] = passwordField.getText();
-        ResultSet check = databaseConnection.executeQueryWithVariables(query, variables);
-        try {
-            if (check.next())
-            {
-                int exists = check.getInt(1);
-                boolean existsResult = (exists == 1);
-                return existsResult;
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+//        DatabaseConnection databaseConnection = new DatabaseConnection();
+//        databaseConnection.connect();
+//        databaseConnection.createStatement();
+//        String query = "SELECT EXISTS (SELECT * FROM " + databaseConnection.tables[0] + " WHERE username = ? AND password = ?)";
+//        String[] variables = new String[2];
+//        variables[0] = usernameTextField.getText();
+//        variables[1] = passwordField.getText();
+//        ResultSet check = databaseConnection.executeQueryWithVariables(query, variables);
+//        try {
+//            if (check.next())
+//            {
+//                int exists = check.getInt(1);
+//                boolean existsResult = (exists == 1);
+//                return existsResult;
+//            }
+//        }
+//        catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return false;
+
+        Database mySQLConnection = new MySQLConnection();
+        mySQLConnection.connect();
+        return mySQLConnection.checkIfUserExists();
     }
 }
