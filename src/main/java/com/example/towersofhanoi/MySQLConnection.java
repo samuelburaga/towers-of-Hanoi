@@ -162,6 +162,24 @@ public class MySQLConnection implements DatabaseConnection {
         variables[3] = password;
         this.executeUpdateWithVariables(query, variables);
     }
+    public int getLatestUserId() {
+        int user_id = -1; // Default value if no user_id is found
+        try {
+            // Create a statement object
+            // Execute the query
+            ResultSet resultSet = this.executeQuery("SELECT MAX(user_id) FROM users");
+            // Check if the result set has a value
+            if (resultSet.next()) {
+                user_id = resultSet.getInt(1);
+            }
+            // Close the result set and statement
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user_id;
+    }
     public static void main(String[] args) {
     }
 }

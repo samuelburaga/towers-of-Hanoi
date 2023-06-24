@@ -24,25 +24,22 @@ public class StatisticsController {
     public void showStatistics() throws SQLException {
         DatabaseConnection mySQLConnection = new MySQLConnection();
         mySQLConnection.connect();
-        String query = "SELECT * FROM " + ((MySQLConnection) mySQLConnection).tables[1] + " ORDER BY points DESC LIMIT 10";
+        String query = "SELECT s.points, s.disks, s.time, u.username FROM statistics s " +
+                "JOIN users u ON s.users_user_id = u.user_id " +
+                "ORDER BY s.points DESC, s.time ASC, s.disks DESC, u.user_id ASC LIMIT 10";
         ResultSet resultSet = ((MySQLConnection) mySQLConnection).executeQuery(query);
-        // databaseConnection.printQuery(resultSet);
-
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("Username")); // Assuming "name" is the column name in the database
-        pointsColumn.setCellValueFactory(new PropertyValueFactory<>("Points")); // Assuming "points" is the column name in the database
-        timeColumn.setCellValueFactory(new PropertyValueFactory<>("Time")); // Assuming "points" is the column name in the database
-        disksColumn.setCellValueFactory(new PropertyValueFactory<>("Disks")); // Assuming "points" is the column name in the database
-
-        // Clear existing rows
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        pointsColumn.setCellValueFactory(new PropertyValueFactory<>("points"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        disksColumn.setCellValueFactory(new PropertyValueFactory<>("disks"));
         statisticsTable.getItems().clear();
-        // Populate the table with query results
+
         while (resultSet.next()) {
-            // String username = resultSet.getString("name");
             int points = resultSet.getInt("points");
             int disks = resultSet.getInt("disks");
             Time time = resultSet.getTime("time");
-            System.out.println(time);
-            StatisticsData data = new StatisticsData("username", points, time, disks);
+            String username = resultSet.getString("username");
+            StatisticsData data = new StatisticsData(username, points, time, disks);
             statisticsTable.getItems().add(data);
         }
     }

@@ -25,26 +25,10 @@ public class SignUpController {
             mySQLConnection.connect();
             if(mySQLConnection.checkIfUserExists(usernameTextField.getText(), passwordField.getText()) == false) {
                 ((MySQLConnection) mySQLConnection).insertNewUser(firstNameTextField.getText(), lastNameTextField.getText(), usernameTextField.getText(), passwordField.getText());
+                User.user_id = ((MySQLConnection) mySQLConnection).getLatestUserId();
                 User.first_name = firstNameTextField.getText();
                 User.last_name = lastNameTextField.getText();
                 User.username = usernameTextField.getText();
-
-//                query = "SELECT * FROM " + this.tables[0] + " WHERE username = ?";
-//                variables = new String[1];
-//                variables[0] = usernameTextField.getText();
-//                ResultSet resultSet = this.executeQueryWithVariables(query, variables);
-//                // databaseConnection.printQuery(resultSet);
-//                try {
-//                    if (resultSet.next()) {
-//                        Users.user_id = resultSet.getInt("user_id");
-//                        Users.first_name = resultSet.getString("first_name");
-//                        Users.last_name = resultSet.getString("last_name");
-//                        Users.username = resultSet.getString("username");
-//                    }
-//                } catch (SQLException ex) {
-//                    ex.printStackTrace();
-//                    // Handle the exception appropriately (e.g., show an error message)
-//                }
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
                 thisStage.hide();
