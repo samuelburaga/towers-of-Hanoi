@@ -12,24 +12,6 @@ public class DatabaseConnection {
     static final String JDBC_URL = "jdbc:mysql://" + hostname + ":" + port + "/" + database;
     protected Connection connection;
     protected Statement statement;
-    public DatabaseConnection() {
-
-    }
-    public DatabaseConnection(Connection connection) {
-        this.connection = connection;
-    }
-    public Connection getConnection() {
-        return this.connection;
-    }
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-    public Statement getStatement() {
-        return statement;
-    }
-    public void setStatement(Statement statement) {
-        this.statement = statement;
-    }
     public void loadDriver()
     {
         try {
@@ -49,7 +31,7 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
     }
-    public void Statement()
+    public void createStatement()
     {
         try {
             this.statement = connection.createStatement();
@@ -69,14 +51,14 @@ public class DatabaseConnection {
         return null;
     }
 //    public ResultSet executeUpdate(final String query) {
-////        try {
-////            ResultSet resultSet = this.statement.executeUpdate(query);
-////            return resultSet;
-////        }
-////        catch (SQLException e){
-////            e.printStackTrace();
-////        }
-////        return null;
+//        try {
+//            ResultSet resultSet = this.statement.executeUpdate(query);
+//            return resultSet;
+//        }
+//        catch (SQLException e){
+//            e.printStackTrace();
+//        }
+//        return null;
 //    }
     public ResultSet executeQueryWithVariables(String query, String[] variables) {
         try {
@@ -108,7 +90,6 @@ public class DatabaseConnection {
         try {
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int columnsNumber = resultSetMetaData.getColumnCount();
-
             while (resultSet.next()) {
                 for (int i = 1; i <= columnsNumber; i++) {
                     if (i > 1) {
@@ -124,6 +105,5 @@ public class DatabaseConnection {
         }
     }
     public static void main(String[] args) {
-
     }
 }

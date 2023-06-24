@@ -24,7 +24,7 @@ public class StatisticsController {
     public void showStatistics() throws SQLException {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         databaseConnection.connect();
-        databaseConnection.Statement();
+        databaseConnection.createStatement();
         String query = "SELECT * FROM " + databaseConnection.tables[1] + " ORDER BY points DESC LIMIT 10";
         ResultSet resultSet = databaseConnection.executeQuery(query);
         // databaseConnection.printQuery(resultSet);

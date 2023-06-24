@@ -26,7 +26,7 @@ public class SignUpController {
             if(isSignUpValid()) {
                 DatabaseConnection databaseConnection = new DatabaseConnection();
                 databaseConnection.connect();
-                databaseConnection.Statement();
+                databaseConnection.createStatement();
                 String query = "INSERT INTO users (first_name, last_name, username, password, created_at) VALUES (?, ?, ?, ?, NOW())";
                 String[] variables = new String[4];
 
@@ -82,7 +82,7 @@ public class SignUpController {
     public boolean isSignUpValid() {
           DatabaseConnection databaseConnection = new DatabaseConnection();
           databaseConnection.connect();
-          databaseConnection.Statement();
+          databaseConnection.createStatement();
           String query = "SELECT EXISTS (SELECT * FROM " + databaseConnection.tables[0] + " WHERE username = ?)";
           String[] variables = new String[1];
           variables[0] = usernameTextField.getText();

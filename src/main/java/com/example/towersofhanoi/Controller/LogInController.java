@@ -28,10 +28,16 @@ public class LogInController {
     private Button logInButton, cancelButton;
     public void logInButtonOnAction(ActionEvent e) throws IOException, SQLException {
         if(usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
+
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            databaseConnection.connect();
+            databaseConnection.createStatement();
+            databaseConnection.isLogInValid();
+
             if(isLogInValid()) {
                 DatabaseConnection databaseConnection = new DatabaseConnection();
                 databaseConnection.connect();
-                databaseConnection.Statement();
+                databaseConnection.createStatement();
                 String query = "SELECT * FROM " + databaseConnection.tables[0] + " WHERE username = ?";
                 String[] variables = new String[1];
                 variables[0] = usernameTextField.getText();
@@ -77,7 +83,7 @@ public class LogInController {
     public boolean isLogInValid() {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         databaseConnection.connect();
-        databaseConnection.Statement();
+        databaseConnection.createStatement();
         String query = "SELECT EXISTS (SELECT * FROM " + databaseConnection.tables[0] + " WHERE username = ? AND password = ?)";
         String[] variables = new String[2];
         variables[0] = usernameTextField.getText();

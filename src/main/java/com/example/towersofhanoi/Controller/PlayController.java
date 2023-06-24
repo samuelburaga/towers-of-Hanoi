@@ -73,7 +73,7 @@ public class PlayController {
             Time time = new Time(Play.playerGame.duration);
             DatabaseConnection databaseConnection = new DatabaseConnection();
             databaseConnection.connect();
-            databaseConnection.Statement();
+            databaseConnection.createStatement();
             String query = "INSERT INTO statistics (user_id, disks, points, time) VALUES (?, ?, ?, time)";
             String[] variables = new String[4];
             variables[0] = Integer.toString(Users.user_id);
