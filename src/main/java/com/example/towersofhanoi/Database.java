@@ -1,5 +1,6 @@
 package com.example.towersofhanoi;
 
-public class Database {
-
+public interface Database {
+    void connect();
+    void disconnect();
 }
