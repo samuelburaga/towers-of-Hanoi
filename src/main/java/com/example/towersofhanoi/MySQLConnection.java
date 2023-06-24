@@ -134,7 +134,7 @@ public class MySQLConnection implements DatabaseConnection {
     public void deleteAccount(final String username) {
         String query = "DELETE FROM " + this.tables[0] + " WHERE username = ?";
         String[] variables = new String[1];
-        variables[0] = Users.username;
+        variables[0] = User.username;
         this.executeUpdateWithVariables(query, variables);
         System.out.println("Account deleted.");
     }

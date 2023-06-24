@@ -32,10 +32,10 @@ public class LogInController {
                 ResultSet resultSet = ((MySQLConnection) mySQLConnection).getUserByUsername(usernameTextField.getText());
                 try {
                     if (resultSet.next()) {
-                        Users.user_id = resultSet.getInt("user_id");
-                        Users.first_name = resultSet.getString("first_name");
-                        Users.last_name = resultSet.getString("last_name");
-                        Users.username = resultSet.getString("username");
+                        User.user_id = resultSet.getInt("user_id");
+                        User.first_name = resultSet.getString("first_name");
+                        User.last_name = resultSet.getString("last_name");
+                        User.username = resultSet.getString("username");
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();

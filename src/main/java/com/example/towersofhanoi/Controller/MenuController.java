@@ -17,7 +17,7 @@ public class MenuController {
     @FXML
     private Label usernameLabel;
     public void setUsername() {
-        usernameLabel.setText(Users.username);
+        usernameLabel.setText(User.username);
     }
     public void playButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();

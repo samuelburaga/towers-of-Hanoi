@@ -41,8 +41,8 @@ public class SettingsController {
                 String username = usernameField.getText();
                 DatabaseConnection mySQLConnection = new MySQLConnection();
                 mySQLConnection.connect();
-                mySQLConnection.updateUsername(Users.username, usernameField.getText());
-                Users.username = usernameField.getText();
+                mySQLConnection.updateUsername(User.username, usernameField.getText());
+                User.username = usernameField.getText();
                 // dialog.close();
             }
         };
@@ -72,7 +72,7 @@ public class SettingsController {
                 // Perform account deletion
                 DatabaseConnection mySQLConnection = new MySQLConnection();
                 mySQLConnection.connect();
-                mySQLConnection.deleteAccount(Users.username);
+                mySQLConnection.deleteAccount(User.username);
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
                 thisStage.hide();

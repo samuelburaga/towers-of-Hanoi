@@ -75,7 +75,7 @@ public class PlayController {
             mySQLConnection.connect();
             String query = "INSERT INTO statistics (user_id, disks, points, time) VALUES (?, ?, ?, time)";
             String[] variables = new String[4];
-            variables[0] = Integer.toString(Users.user_id);
+            variables[0] = Integer.toString(User.user_id);
             variables[1] = Byte.toString(Game.numberOfDisks);
             variables[2] = Integer.toString(Play.playerGame.score);
             variables[3] = time.toString();

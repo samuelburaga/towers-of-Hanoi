@@ -25,9 +25,9 @@ public class SignUpController {
             mySQLConnection.connect();
             if(mySQLConnection.checkIfUserExists(usernameTextField.getText(), passwordField.getText()) == false) {
                 ((MySQLConnection) mySQLConnection).insertNewUser(firstNameTextField.getText(), lastNameTextField.getText(), usernameTextField.getText(), passwordField.getText());
-                Users.first_name = firstNameTextField.getText();
-                Users.last_name = lastNameTextField.getText();
-                Users.username = usernameTextField.getText();
+                User.first_name = firstNameTextField.getText();
+                User.last_name = lastNameTextField.getText();
+                User.username = usernameTextField.getText();
 
 //                query = "SELECT * FROM " + this.tables[0] + " WHERE username = ?";
 //                variables = new String[1];
