@@ -1,5 +1,7 @@
 package com.example.towersofhanoi;
 
+import javafx.scene.control.TableView;
+
 import java.sql.*;
 
 public class MySQLConnection implements DatabaseConnection <ResultSet> {
@@ -146,6 +148,7 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
         variables[1] = currentUsername;
         this.executeUpdateWithVariables(query, variables);
     }
+    @Override
     public ResultSet getUserByUsername(final String username) {
         String query = "SELECT * FROM " + this.tables[0] + " WHERE username = ?";
         String[] variables = new String[1];
@@ -153,6 +156,7 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
         ResultSet resultSet = this.executeQueryWithVariables(query, variables);
         return resultSet;
     }
+    @Override
     public void insertNewUser(final String first_name, final String last_name, final String username, final String password) {
         String query = "INSERT INTO users (first_name, last_name, username, password, created_at) VALUES (?, ?, ?, ?, NOW())";
         String[] variables = new String[4];
@@ -162,6 +166,7 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
         variables[3] = password;
         this.executeUpdateWithVariables(query, variables);
     }
+    @Override
     public int getLatestUserId() {
         int user_id = -1; // Default value if no user_id is found
         try {
@@ -179,6 +184,26 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
             e.printStackTrace();
         }
         return user_id;
+    }
+    @Override
+    public void extractStatistics(TableView<StatisticsData> statisticsTable) {
+        String query = "SELECT s.points, s.disks, s.time, u.username FROM statistics s " +
+                "JOIN users u ON s.users_user_id = u.user_id " +
+                "ORDER BY s.points DESC, s.time ASC, s.disks DESC, u.user_id ASC LIMIT 10";
+        ResultSet resultSet = this.executeQuery(query);
+        try {
+            while (resultSet.next()) {
+                int points = resultSet.getInt("points");
+                int disks = resultSet.getInt("disks");
+                Time time = resultSet.getTime("time");
+                String username = resultSet.getString("username");
+                StatisticsData data = new StatisticsData(username, points, time, disks);
+                statisticsTable.getItems().add(data);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     public static void main(String[] args) {
     }

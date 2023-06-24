@@ -10,10 +10,17 @@ import com.mongodb.client.model.ReturnDocument;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MongoDBConnection implements DatabaseConnection <Document>{
     private MongoDatabase mongoDatabase;
@@ -45,6 +52,7 @@ public class MongoDBConnection implements DatabaseConnection <Document>{
         cursor.close();
         return exists;
     }
+    @Override
     public Document getUserByUsername(String username) {
         MongoCollection<Document> collection = mongoDatabase.getCollection("users");
         // Create a query to retrieve the user based on the username
@@ -53,8 +61,14 @@ public class MongoDBConnection implements DatabaseConnection <Document>{
         Document userDocument = collection.find(query).first();
         return userDocument;
     }
-    public void insertUser(String firstName, String lastName, String username, String password, String collectionName) {
-        MongoCollection<Document> collection = mongoDatabase.getCollection(collectionName);
+
+    @Override
+    public int getLatestUserId() {
+        return 0;
+    }
+    @Override
+    public void insertNewUser(final String firstName, final String lastName, final String username, final String password) {
+        MongoCollection<Document> collection = mongoDatabase.getCollection(COLLECTIONS[0]);
         // Retrieve the next sequence value for user_id
         int user_id = getNextSequenceValue("user_id");
         // Create a new user document
@@ -83,6 +97,7 @@ public class MongoDBConnection implements DatabaseConnection <Document>{
         // Retrieve and return the updated value
         return sequenceDocument.getInteger("value");
     }
+    @Override
     public void updateUsername(final String currentUsername, final String newUsername) {
         MongoCollection<Document> collection = mongoDatabase.getCollection("users");
         Bson filter = Filters.eq("username", currentUsername);
@@ -126,5 +141,47 @@ public class MongoDBConnection implements DatabaseConnection <Document>{
         } else {
             System.out.println("Failed to delete account.");
         }
+    }
+    @Override
+    public void extractStatistics(TableView<StatisticsData> statisticsTable) {
+        MongoCollection<Document> collection = this.mongoDatabase.getCollection(COLLECTIONS[1]);
+        // Create a sort criteria to order by points in descending order
+        Document sortCriteria = new Document("points", -1) // Sort by points descending (-1)
+                .append("time", 1) // Sort by time ascending (1)
+                .append("disks", -1) // Sort by disks descending (-1)
+                .append("user_id", 1); // Sort by user ID ascending (1)
+        // Retrieve the top 10 documents ordered by points
+        List<Document> documents = collection.find()
+                .sort(sortCriteria)
+                .limit(10)
+                .into(new ArrayList<>());
+        // Clear existing rows
+        statisticsTable.getItems().clear();
+        // Iterate over the retrieved documents and populate the table
+        for (Document document : documents) {
+            // Retrieve the user_id from the statistics document
+            int userId = document.getInteger("users_user_id");
+            // Retrieve the corresponding username from the users collection
+            String username = getUsernameFromUsersCollection(userId);
+            // Retrieve other fields from the statistics document
+            int points = document.getInteger("points");
+            int disks = document.getInteger("disks");
+            String time = document.getString("time");
+            // Create a StatisticsData object and add it to the table
+            StatisticsData data = new StatisticsData(username, points, time, disks);
+            statisticsTable.getItems().add(data);
+        }
+    }
+    private String getUsernameFromUsersCollection(int userId) {
+        MongoCollection<Document> usersCollection = this.mongoDatabase.getCollection(COLLECTIONS[0]);
+        // Create a query to find the user document with the given user_id
+        Document query = new Document("user_id", userId);
+        // Retrieve the user document
+        Document userDocument = usersCollection.find(query).first();
+        // Extract the username from the user document
+        if (userDocument != null) {
+            return userDocument.getString("username");
+        }
+        return null; // Return null if user document not found
     }
 }

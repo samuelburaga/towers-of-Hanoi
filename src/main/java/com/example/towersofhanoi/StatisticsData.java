@@ -2,11 +2,11 @@ package com.example.towersofhanoi;
 
 import java.sql.Time;
 
-public class StatisticsData {
+public class StatisticsData <T> {
     private String usernameColumn;
     private int pointsColumn, disksColumn;
-    private Time timeColumn;
-    public StatisticsData(String username, int points, Time time, int disks) {
+    private T timeColumn;
+    public StatisticsData(String username, int points, T time, int disks) {
         this.usernameColumn = username;
         this.pointsColumn = points;
         this.disksColumn = disks;
@@ -21,7 +21,7 @@ public class StatisticsData {
     public int getDisks() {
         return this.disksColumn;
     }
-    public Time getTime() {
+    public T getTime() {
         return this.timeColumn;
     }
 }

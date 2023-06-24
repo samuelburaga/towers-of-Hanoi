@@ -30,17 +30,7 @@ public class LogInController {
             mySQLConnection.connect();
             if(mySQLConnection.checkIfUserExists(usernameTextField.getText(), passwordField.getText())) {
                 ResultSet resultSet = ((MySQLConnection) mySQLConnection).getUserByUsername(usernameTextField.getText());
-                try {
-                    if (resultSet.next()) {
-                        User.user_id = resultSet.getInt("user_id");
-                        User.first_name = resultSet.getString("first_name");
-                        User.last_name = resultSet.getString("last_name");
-                        User.username = resultSet.getString("username");
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    // Handle the exception appropriately (e.g., show an error message)
-                }
+                User.updateData(resultSet);
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
                 thisStage.hide();
