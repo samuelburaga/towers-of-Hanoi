@@ -2,7 +2,7 @@ package com.example.towersofhanoi;
 
 import java.sql.*;
 
-public class MySQLConnection implements DatabaseConnection {
+public class MySQLConnection implements DatabaseConnection <ResultSet> {
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String USERNAME = "root", PASSWORD = "hackerman";
     private static final String HOSTNAME = "localhost", PORT = "3306";

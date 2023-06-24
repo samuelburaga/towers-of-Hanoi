@@ -15,7 +15,7 @@ import org.bson.conversions.Bson;
 
 import java.util.Date;
 
-public class MongoDBConnection implements DatabaseConnection {
+public class MongoDBConnection implements DatabaseConnection <Document>{
     private MongoDatabase mongoDatabase;
     private MongoClient mongoClient;
     private static final String hostname = "localhost";
@@ -44,6 +44,14 @@ public class MongoDBConnection implements DatabaseConnection {
         boolean exists = cursor.hasNext();
         cursor.close();
         return exists;
+    }
+    public Document getUserByUsername(String username) {
+        MongoCollection<Document> collection = mongoDatabase.getCollection("users");
+        // Create a query to retrieve the user based on the username
+        Document query = new Document("username", username);
+        // Retrieve the user document
+        Document userDocument = collection.find(query).first();
+        return userDocument;
     }
     public void insertUser(String firstName, String lastName, String username, String password, String collectionName) {
         MongoCollection<Document> collection = mongoDatabase.getCollection(collectionName);
