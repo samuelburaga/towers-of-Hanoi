@@ -14,6 +14,8 @@ module com.example.towersofhanoi {
     requires java.sql;
     requires java.desktop;
 
+    requires mongo.java.driver;
+
     opens com.example.towersofhanoi to javafx.fxml;
     exports com.example.towersofhanoi;
     exports com.example.towersofhanoi.Controller;
