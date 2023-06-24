@@ -86,8 +86,8 @@ public class MongoDBConnection implements Database {
             System.out.println("Failed to update username.");
         }
     }
-    public boolean checkIfUser2(String username, String password, String collectionName) {
-        MongoCollection<Document> collection = mongoDatabase.getCollection(collectionName);
+    public boolean checkIfUser2(String username, String password) {
+        MongoCollection<Document> collection = mongoDatabase.getCollection(COLLECTIONS[0]);
         // Create a query to check if the user exists
         Document query = new Document("username", username);
         // Retrieve documents matching the query

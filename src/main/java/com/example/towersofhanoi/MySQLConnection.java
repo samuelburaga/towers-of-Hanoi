@@ -153,6 +153,15 @@ public class MySQLConnection implements Database {
         ResultSet resultSet = this.executeQueryWithVariables(query, variables);
         return resultSet;
     }
+    public void insertNewUser(final String first_name, final String last_name, final String username, final String password) {
+        String query = "INSERT INTO users (first_name, last_name, username, password, created_at) VALUES (?, ?, ?, ?, NOW())";
+        String[] variables = new String[4];
+        variables[0] = first_name;
+        variables[1] = last_name;
+        variables[2] = username;
+        variables[3] = password;
+        this.executeUpdateWithVariables(query, variables);
+    }
     public static void main(String[] args) {
     }
 }

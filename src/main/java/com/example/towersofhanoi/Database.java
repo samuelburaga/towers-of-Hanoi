@@ -9,4 +9,5 @@ public interface Database {
     void deleteAccount(final String username);
     void updateUsername(final String currentUsername, final String newUsername);
     // void getUserByUsername(final String username);
+    // void insertNewUser(final String first_name, final String last_name, final String username, final String password);
 }
