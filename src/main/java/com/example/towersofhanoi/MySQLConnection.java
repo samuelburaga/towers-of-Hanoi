@@ -2,13 +2,13 @@ package com.example.towersofhanoi;
 
 import java.sql.*;
 
-public class MySQLConnection implements Database {
+public class MySQLConnection implements DatabaseConnection {
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String USERNAME = "root", PASSWORD = "hackerman";
     private static final String HOSTNAME = "localhost", PORT = "3306";
     public static final String database = "towers-of-hanoi";
     private static final String JDBC_URL = "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + database;
-    private static final String [] tables = {"users", "statistics", "achievements", "notifications", "complaints"};
+    public static final String [] tables = {"users", "statistics", "achievements", "notifications", "complaints"};
     private Connection connection;
     private Statement statement;
     public MySQLConnection() {

@@ -39,7 +39,7 @@ public class SettingsController {
             @Override
             public void handle(ActionEvent event) {
                 String username = usernameField.getText();
-                Database mySQLConnection = new MySQLConnection();
+                DatabaseConnection mySQLConnection = new MySQLConnection();
                 mySQLConnection.connect();
                 mySQLConnection.updateUsername(Users.username, usernameField.getText());
                 Users.username = usernameField.getText();
@@ -70,7 +70,7 @@ public class SettingsController {
         confirmationAlert.showAndWait().ifPresent(buttonType -> {
             if (buttonType == yesButton) {
                 // Perform account deletion
-                Database mySQLConnection = new MySQLConnection();
+                DatabaseConnection mySQLConnection = new MySQLConnection();
                 mySQLConnection.connect();
                 mySQLConnection.deleteAccount(Users.username);
                 Node node = (Node) e.getSource();

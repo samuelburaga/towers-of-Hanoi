@@ -21,7 +21,7 @@ public class SignUpController {
     private Button signUpButton;
     public void signUpButtonOnAction(ActionEvent e) throws IOException {
         if(firstNameTextField.getText().isBlank() == false && lastNameTextField.getText().isBlank() == false && usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
-            Database mySQLConnection = new MySQLConnection();
+            DatabaseConnection mySQLConnection = new MySQLConnection();
             mySQLConnection.connect();
             if(mySQLConnection.checkIfUserExists(usernameTextField.getText(), passwordField.getText()) == false) {
                 ((MySQLConnection) mySQLConnection).insertNewUser(firstNameTextField.getText(), lastNameTextField.getText(), usernameTextField.getText(), passwordField.getText());

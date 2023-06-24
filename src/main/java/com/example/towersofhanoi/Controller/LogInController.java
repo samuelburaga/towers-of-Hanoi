@@ -26,7 +26,7 @@ public class LogInController {
     private Button logInButton, cancelButton;
     public void logInButtonOnAction(ActionEvent e) throws IOException, SQLException {
         if(usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
-            Database mySQLConnection = new MySQLConnection();
+            DatabaseConnection mySQLConnection = new MySQLConnection();
             mySQLConnection.connect();
             if(mySQLConnection.checkIfUserExists(usernameTextField.getText(), passwordField.getText())) {
                 ResultSet resultSet = ((MySQLConnection) mySQLConnection).getUserByUsername(usernameTextField.getText());

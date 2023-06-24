@@ -15,7 +15,7 @@ import org.bson.conversions.Bson;
 
 import java.util.Date;
 
-public class MongoDBConnection implements Database {
+public class MongoDBConnection implements DatabaseConnection {
     private MongoDatabase mongoDatabase;
     private MongoClient mongoClient;
     private static final String hostname = "localhost";

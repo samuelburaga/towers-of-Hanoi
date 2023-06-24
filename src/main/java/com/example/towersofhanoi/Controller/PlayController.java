@@ -71,16 +71,15 @@ public class PlayController {
 
 
             Time time = new Time(Play.playerGame.duration);
-            DatabaseConnection databaseConnection = new DatabaseConnection();
-            databaseConnection.connect();
-            databaseConnection.createStatement();
+            DatabaseConnection mySQLConnection = new MySQLConnection();
+            mySQLConnection.connect();
             String query = "INSERT INTO statistics (user_id, disks, points, time) VALUES (?, ?, ?, time)";
             String[] variables = new String[4];
             variables[0] = Integer.toString(Users.user_id);
             variables[1] = Byte.toString(Game.numberOfDisks);
             variables[2] = Integer.toString(Play.playerGame.score);
             variables[3] = time.toString();
-            databaseConnection.executeUpdateWithVariables(query, variables);
+            ((MySQLConnection) mySQLConnection).executeUpdateWithVariables(query, variables);
 
             Stage stage = (Stage) clickedButton.getScene().getWindow();
             Parent root = FXMLLoader.load(Tutorial.class.getResource("View/Solved.fxml"));

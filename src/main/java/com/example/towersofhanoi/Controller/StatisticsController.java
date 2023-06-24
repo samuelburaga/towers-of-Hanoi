@@ -1,6 +1,7 @@
 package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.DatabaseConnection;
+import com.example.towersofhanoi.MySQLConnection;
 import com.example.towersofhanoi.StatisticsData;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -9,7 +10,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.sql.Time;
 
 public class StatisticsController {
@@ -22,13 +22,11 @@ public class StatisticsController {
     @FXML
     private TableColumn<StatisticsData, Time> timeColumn;
     public void showStatistics() throws SQLException {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        databaseConnection.connect();
-        databaseConnection.createStatement();
-        String query = "SELECT * FROM " + databaseConnection.tables[1] + " ORDER BY points DESC LIMIT 10";
-        ResultSet resultSet = databaseConnection.executeQuery(query);
+        DatabaseConnection mySQLConnection = new MySQLConnection();
+        mySQLConnection.connect();
+        String query = "SELECT * FROM " + ((MySQLConnection) mySQLConnection).tables[1] + " ORDER BY points DESC LIMIT 10";
+        ResultSet resultSet = ((MySQLConnection) mySQLConnection).executeQuery(query);
         // databaseConnection.printQuery(resultSet);
-
 
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("Username")); // Assuming "name" is the column name in the database
         pointsColumn.setCellValueFactory(new PropertyValueFactory<>("Points")); // Assuming "points" is the column name in the database
