@@ -51,7 +51,7 @@ public class PlayController {
         String clickedButtonId = clickedButton.getId();
         char fromRod = clickedButtonId.charAt(0);
         char toRod = clickedButtonId.charAt(3);
-        if(Play.playerGame.isGameOver() == false) {
+       // if(Play.playerGame.isGameOver() == false) {
             if(Play.playerGame.isMoveValid(fromRod, toRod)) {
                 Play.playerGame.runAnimation(fromRod, toRod);
             }
@@ -62,30 +62,27 @@ public class PlayController {
                 alert.setContentText("This move is not allowed.");
                 alert.showAndWait();
             }
-        }
-        else {
-
-            Play.playerGame.endTime = System.currentTimeMillis();
-            Play.playerGame.duration = Play.playerGame.endTime - Play.playerGame.startTime;
-            Play.playerGame.score = (int) (100 / (Play.playerGame.duration / 1000));
-
-
-            Time time = new Time(Play.playerGame.duration);
-            DatabaseConnection mySQLConnection = new MySQLConnection();
-            mySQLConnection.connect();
-            String query = "INSERT INTO statistics (user_id, disks, points, time) VALUES (?, ?, ?, time)";
-            String[] variables = new String[4];
-            variables[0] = Integer.toString(User.user_id);
-            variables[1] = Byte.toString(Play.playerGame.getNumberOfDisks());
-            variables[2] = Integer.toString(Play.playerGame.score);
-            variables[3] = time.toString();
-            ((MySQLConnection) mySQLConnection).executeUpdateWithVariables(query, variables);
-
-            Stage stage = (Stage) clickedButton.getScene().getWindow();
-            Parent root = FXMLLoader.load(Tutorial.class.getResource("View/Solved.fxml"));
-            Scene solvedScene = new Scene(root);
-            stage.setScene(solvedScene);
-            stage.show();
-        }
+    //    }
+//        else {
+//
+//            Play.playerGame.endTime = System.currentTimeMillis();
+//            Play.playerGame.duration = Play.playerGame.endTime - Play.playerGame.startTime;
+//            Play.playerGame.score = (int) (100 / (Play.playerGame.duration / 1000));
+//            Time time = new Time(Play.playerGame.duration);
+//            DatabaseConnection mySQLConnection = new MySQLConnection();
+//            mySQLConnection.connect();
+//            String query = "INSERT INTO statistics (user_id, disks, points, time) VALUES (?, ?, ?, time)";
+//            String[] variables = new String[4];
+//            variables[0] = Integer.toString(User.user_id);
+//            variables[1] = Byte.toString(Play.playerGame.getNumberOfDisks());
+//            variables[2] = Integer.toString(Play.playerGame.score);
+//            variables[3] = time.toString();
+//            ((MySQLConnection) mySQLConnection).executeUpdateWithVariables(query, variables);
+//            Stage stage = (Stage) clickedButton.getScene().getWindow();
+//            Parent root = FXMLLoader.load(Tutorial.class.getResource("View/Solved.fxml"));
+//            Scene solvedScene = new Scene(root);
+//            stage.setScene(solvedScene);
+//            stage.show();
+//        }
     }
 }

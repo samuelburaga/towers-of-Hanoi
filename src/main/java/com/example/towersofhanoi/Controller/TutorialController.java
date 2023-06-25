@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -22,6 +23,8 @@ import java.io.IOException;
 import java.sql.SQLOutput;
 
 public class TutorialController {
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     private Pane rodA, rodB, rodC;
     @FXML
@@ -48,6 +51,7 @@ public class TutorialController {
         });
     }
     public void connectGameToUI() {
+        Tutorial.automaticGame.setAnchorPane(anchorPane);
         Tutorial.automaticGame.setRods(rodA, rodB, rodC);
         Tutorial.automaticGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
     }
@@ -58,12 +62,12 @@ public class TutorialController {
         double arcWidth = 30.0, arcHeight = 30.0;
         for (byte index = 0; index < Tutorial.automaticGame.getNumberOfDisks(); index++) {
             Rectangle disk = new Rectangle(diskWidth - (index * 12), diskHeight);
-            disk.setX(initialX + (index * 6));
+            disk.setLayoutX(initialX + (index * 6));
             disk.setLayoutY(initialY - (index * diskHeight));
             disk.setArcHeight(arcHeight);
             disk.setArcWidth(arcWidth);
             disk.setFill(Color.valueOf("#0FB4BB")); // Adjust as needed
-            disk.setStroke(Color.WHITE); // Adjust as needed
+            // disk.setStroke(Color.WHITE); // Adjust as needed
             rodA.getChildren().add(disk);
         }
     }

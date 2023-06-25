@@ -68,7 +68,7 @@ public class OptionsController implements Initializable {
         }
         saveChangesButton.setStyle(clickedColor); // Set the color for the newly clicked label
         previousClickedButton = saveChangesButton; // Update the previously clicked label
-        Game.moveDelay = Duration.millis(moveAnimationSpeed);
+        Game.moveAnimationSpeed = Duration.millis(moveAnimationSpeed);
         Game.DISKS = numberOfDisks;
     }
     public void playNowButtonOnAction(ActionEvent e) throws IOException {
