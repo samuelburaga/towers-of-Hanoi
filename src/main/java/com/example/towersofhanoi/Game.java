@@ -18,7 +18,7 @@ public abstract class Game {
     public static boolean gameOver = false;
     public long startTime, endTime, duration;
     public int score;
-    protected Duration moveDelay = Duration.seconds(1.5);
+    protected Duration moveDelay = Duration.seconds(1);
     protected Thread animationThread;
     protected Pane rodA, rodB, rodC; // Add references to the rod panes
     public Button moveButton;
