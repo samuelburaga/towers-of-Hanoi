@@ -24,10 +24,10 @@ public class OptionsController {
     private Label option1, option2, option3, option4, option5, option6, option7, option8, option9, option10;
     @FXML
     private Label previousClickedLabel;
+    private String defaultColor = "-fx-background-color: #333E41;"; // Set the default color
+    private String clickedColor = "-fx-background-color: #0FB4BB;"; // Set the desired color
     public void optionOnMouseClicked(MouseEvent e) {
         Label clickedLabel = (Label) e.getSource();
-        String clickedColor = "-fx-background-color: #0FB4BB;"; // Set the desired color
-        String defaultColor = "-fx-background-color: #333E41;"; // Set the default color
         Game.numberOfDisks = Byte.parseByte(clickedLabel.getText());
         if (previousClickedLabel != null) {
             previousClickedLabel.setStyle(defaultColor); // Revert the color of the previously clicked label

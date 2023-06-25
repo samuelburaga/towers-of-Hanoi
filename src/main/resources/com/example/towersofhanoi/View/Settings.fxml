@@ -12,32 +12,32 @@
             <Font name="Mongolian Baiti" size="100.0" />
          </font>
       </Label>
-      <Button fx:id="changeProfilePictureButton" layoutX="75.0" layoutY="736.0" mnemonicParsing="false" onAction="#changeProfilePictureButtonnOnAction" prefHeight="125.0" prefWidth="850.0" style="-fx-background-color: #333e41;" text="CHANGE PROFILE PICTURE" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="changeProfilePictureButton" layoutX="73.0" layoutY="638.0" mnemonicParsing="false" onAction="#changeProfilePictureButtonnOnAction" prefHeight="125.0" prefWidth="850.0" style="-fx-background-color: #333e41;" text="CHANGE PROFILE PICTURE" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Mongolian Baiti" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="changeFirstNameButton" layoutX="75.0" layoutY="363.0" mnemonicParsing="false" onAction="#changeFirstNameButtonOnAction" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE FIRST NAME" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="changeFirstNameButton" layoutX="75.0" layoutY="296.0" mnemonicParsing="false" onAction="#changeFirstNameButtonOnAction" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE FIRST NAME" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Mongolian Baiti" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="changeLastNameButton" layoutX="562.0" layoutY="363.0" mnemonicParsing="false" onAction="#changeLastNameButtonOnAction" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE LAST NAME" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="changeLastNameButton" layoutX="562.0" layoutY="296.0" mnemonicParsing="false" onAction="#changeLastNameButtonOnAction" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE LAST NAME" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Mongolian Baiti" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="changeUsernameButton" layoutX="75.0" layoutY="516.0" mnemonicParsing="false" onAction="#changeUsernameButtonOnAction" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE USERNAME" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="changeUsernameButton" layoutX="75.0" layoutY="449.0" mnemonicParsing="false" onAction="#changeUsernameButtonOnAction" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE USERNAME" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Mongolian Baiti" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="changePasswordButton" layoutX="562.0" layoutY="516.0" mnemonicParsing="false" onAction="#changePasswordButtonOnAction" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE PASSWORD" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="changePasswordButton" layoutX="562.0" layoutY="449.0" mnemonicParsing="false" onAction="#changePasswordButtonOnAction" prefHeight="125.0" prefWidth="363.0" style="-fx-background-color: #333e41;" text="CHANGE PASSWORD" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Mongolian Baiti" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="deleteAccountButton" layoutX="372.0" layoutY="922.0" mnemonicParsing="false" onAction="#deleteAccountButtonOnAction" style="-fx-background-color: red;" text="DELETE ACCOUNT" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="deleteAccountButton" layoutX="368.0" layoutY="821.0" mnemonicParsing="false" onAction="#deleteAccountButtonOnAction" style="-fx-background-color: red;" text="DELETE ACCOUNT" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Mongolian Baiti" size="25.0" />
          </font>
