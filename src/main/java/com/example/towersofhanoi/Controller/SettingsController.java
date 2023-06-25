@@ -82,11 +82,6 @@ public class SettingsController {
         previousClickedButton = changeProfilePictureButton; // Update the previously clicked label
     }
     public void  deleteAccountButtonOnAction(ActionEvent e) {
-        if (previousClickedButton != null) {
-            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked label
-        }
-        deleteAccountButton.setStyle(clickedColor); // Set the color for the newly clicked label
-        previousClickedButton = deleteAccountButton; // Update the previously clicked label
         // Create the confirmation alert
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmationAlert.setTitle("Delete Account");

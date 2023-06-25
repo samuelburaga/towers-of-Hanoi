@@ -7,12 +7,12 @@
 
 <AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.towersofhanoi.Controller.SettingsController">
    <children>
-      <Label fx:id="settingsLabel" layoutX="253.0" layoutY="74.0" text="SETTINGS">
+      <Label fx:id="settingsLabel" layoutX="273.0" layoutY="73.0" text="SETTINGS">
          <font>
             <Font name="Mongolian Baiti" size="100.0" />
          </font>
       </Label>
-      <Button fx:id="changeProfilePictureButton" layoutX="73.0" layoutY="638.0" mnemonicParsing="false" onAction="#changeProfilePictureButtonnOnAction" prefHeight="125.0" prefWidth="850.0" style="-fx-background-color: #333e41;" text="CHANGE PROFILE PICTURE" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="changeProfilePictureButton" layoutX="75.0" layoutY="618.0" mnemonicParsing="false" onAction="#changeProfilePictureButtonnOnAction" prefHeight="125.0" prefWidth="850.0" style="-fx-background-color: #333e41;" text="CHANGE PROFILE PICTURE" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Mongolian Baiti" size="30.0" />
          </font>
@@ -37,9 +37,9 @@
             <Font name="Mongolian Baiti" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="deleteAccountButton" layoutX="368.0" layoutY="821.0" mnemonicParsing="false" onAction="#deleteAccountButtonOnAction" style="-fx-background-color: red;" text="DELETE ACCOUNT" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="deleteAccountButton" layoutX="342.0" layoutY="826.0" mnemonicParsing="false" onAction="#deleteAccountButtonOnAction" prefHeight="68.0" prefWidth="325.0" style="-fx-background-color: red;" text="DELETE ACCOUNT" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Mongolian Baiti" size="25.0" />
+            <Font name="Mongolian Baiti" size="30.0" />
          </font>
       </Button>
    </children>
