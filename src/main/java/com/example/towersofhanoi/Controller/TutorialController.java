@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 
 public class TutorialController {
     @FXML
@@ -32,7 +33,6 @@ public class TutorialController {
     private Scene scene;
     private Parent root;
     public void solveButtonOnAction(ActionEvent e) {
-        Tutorial.createGame();
         connectGameToUI();
         Tutorial.automaticGame.startTime = System.currentTimeMillis(); // Record the start time
         Tutorial.automaticGame.runAlgorithm(() -> {
@@ -51,16 +51,15 @@ public class TutorialController {
         Tutorial.automaticGame.setRods(rodA, rodB, rodC);
         Tutorial.automaticGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
     }
-
     public void drawDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
         double diskWidth = 198.0, diskHeight = 60.0; // Adjust as needed
         double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // Adjust as needed
         double arcWidth = 30.0, arcHeight = 30.0;
-        for (byte i = 0; i < Game.numberOfDisks; i++) {
-            Rectangle disk = new Rectangle(diskWidth - (i * 12), diskHeight);
-            disk.setX(initialX + (i * 6));
-            disk.setLayoutY(initialY - (i * diskHeight));
+        for (byte index = 0; index < Tutorial.automaticGame.getNumberOfDisks(); index++) {
+            Rectangle disk = new Rectangle(diskWidth - (index * 12), diskHeight);
+            disk.setX(initialX + (index * 6));
+            disk.setLayoutY(initialY - (index * diskHeight));
             disk.setArcHeight(arcHeight);
             disk.setArcWidth(arcWidth);
             disk.setFill(Color.valueOf("#0FB4BB")); // Adjust as needed

@@ -13,7 +13,8 @@ import javafx.util.Duration;
 import java.util.concurrent.TimeUnit;
 
 public abstract class Game {
-    public static byte numberOfDisks = 2;
+    public static byte DISKS = 2;
+    protected byte numberOfDisks = 2;
     private static long numberOfMoves = 0;
     public static boolean gameOver = false;
     public long startTime, endTime, duration;
@@ -23,11 +24,11 @@ public abstract class Game {
     protected Pane rodA, rodB, rodC; // Add references to the rod panes
     public Button moveButton;
     protected Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
+    public byte getNumberOfDisks() {
+        return numberOfDisks;
+    }
     public Game() {
 
-    }
-    public Game(final byte disks) {
-        numberOfDisks = disks;
     }
     public void setRods(Pane A, Pane B, Pane C) {
         rodA = A;

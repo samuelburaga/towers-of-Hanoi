@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class AutomaticGame extends Game {
     public boolean isGameOver() {
         byte disksOnLastRod = (byte) rodC.getChildren().size();
-        gameOver = disksOnLastRod == numberOfDisks ? true:false;
+        gameOver = disksOnLastRod == this.numberOfDisks ? true:false;
         return gameOver;
     }
     public void recursiveHanoi(byte numberOfDisks, char fromRod, char toRod, char auxRod) {
@@ -24,7 +24,7 @@ public class AutomaticGame extends Game {
         recursiveHanoi((byte) (numberOfDisks - 1), auxRod, toRod, fromRod);
     }
     public void runAlgorithm(Runnable onFinishCallback) {
-        animationThread = new Thread(new Animation(onFinishCallback));
+        animationThread = new Thread(AutomaticGame.this.new Animation(onFinishCallback));
         animationThread.start();
     }
     private class Animation implements Runnable {

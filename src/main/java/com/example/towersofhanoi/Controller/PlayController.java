@@ -28,7 +28,7 @@ public class PlayController {
         double diskWidth = 198.0, diskHeight = 60.0; // Adjust as needed
         double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // Adjust as needed
         double arcWidth = 30.0, arcHeight = 30.0;
-        for (byte i = 0; i < Game.numberOfDisks; i++) {
+        for (byte i = 0; i < Play.playerGame.getNumberOfDisks(); i++) {
             Rectangle disk = new Rectangle(diskWidth - (i * 12), diskHeight);
             disk.setX(initialX + (i * 6));
             disk.setLayoutY(initialY - (i * diskHeight));
@@ -76,7 +76,7 @@ public class PlayController {
             String query = "INSERT INTO statistics (user_id, disks, points, time) VALUES (?, ?, ?, time)";
             String[] variables = new String[4];
             variables[0] = Integer.toString(User.user_id);
-            variables[1] = Byte.toString(Game.numberOfDisks);
+            variables[1] = Byte.toString(Play.playerGame.getNumberOfDisks());
             variables[2] = Integer.toString(Play.playerGame.score);
             variables[3] = time.toString();
             ((MySQLConnection) mySQLConnection).executeUpdateWithVariables(query, variables);
