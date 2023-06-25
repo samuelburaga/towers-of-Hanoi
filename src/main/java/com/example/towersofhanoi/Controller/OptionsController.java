@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseDragEvent;
@@ -31,14 +32,18 @@ public class OptionsController implements Initializable {
     @FXML
     private Label previousClickedLabel;
     @FXML
+    private Button backButton, saveChangesButton, playNowButton;
+    @FXML
+    private Button previousClickedButton;
+    @FXML
     private Slider moveAnimationSpeedSlider;
-    private String defaultColor = "-fx-background-color: #333E41;"; // Set the default color
+    private String defaultColor = "-fx-background-color: #FA8163;"; // Set the default color
     private String clickedColor = "-fx-background-color: #0FB4BB;"; // Set the desired color
-    private int numberOfDisks;
-    private double moveAnimationSpeed;
+    private byte numberOfDisks;
+    private double moveAnimationSpeed = 1.5;
     public void optionOnMouseClicked(MouseEvent e) {
         Label clickedLabel = (Label) e.getSource();
-        Game.numberOfDisks = Byte.parseByte(clickedLabel.getText());
+        numberOfDisks = Byte.parseByte(clickedLabel.getText());
         if (previousClickedLabel != null) {
             previousClickedLabel.setStyle(defaultColor); // Revert the color of the previously clicked label
         }
@@ -46,13 +51,32 @@ public class OptionsController implements Initializable {
         previousClickedLabel = clickedLabel; // Update the previously clicked label
     }
     public void backButtonOnAction(ActionEvent e) throws IOException {
+        if (previousClickedButton != null) {
+            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked label
+        }
+        backButton.setStyle(clickedColor); // Set the color for the newly clicked label
+        previousClickedButton = backButton; // Update the previously clicked label
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.hide();
         Menu menu = new Menu();
         menu.start(new Stage());
     }
+    public void saveChangesButtonOnAction(ActionEvent e) {
+        if (previousClickedButton != null) {
+            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked label
+        }
+        saveChangesButton.setStyle(clickedColor); // Set the color for the newly clicked label
+        previousClickedButton = saveChangesButton; // Update the previously clicked label
+        Game.moveDelay = Duration.millis(moveAnimationSpeed);
+        Game.numberOfDisks = numberOfDisks;
+    }
     public void playNowButtonOnAction(ActionEvent e) throws IOException {
+        if (previousClickedButton != null) {
+            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked label
+        }
+        playNowButton.setStyle(clickedColor); // Set the color for the newly clicked label
+        previousClickedButton = playNowButton; // Update the previously clicked label
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.hide();
