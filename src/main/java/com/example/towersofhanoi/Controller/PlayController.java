@@ -77,7 +77,6 @@ public class PlayController {
                     // Create a new `Time` object using the hours, minutes, and seconds
                     playerGame.time = new Time(hours, minutes, seconds);
                     playerGame.points = playerGame.numberOfGoodMoves * 10 - playerGame.numberOfBadMoves;
-                    System.out.println(playerGame.points);
                     // insertStatisticsInDatabase();
                     switchToSolvedScene();
                 }
@@ -114,23 +113,6 @@ public class PlayController {
         variables[3] = playerGame.time.toString();
         ((MySQLConnection) mySQLConnection).executeUpdateWithVariables(query, variables);
     }
-//    private void switchToSolvedScene() {
-//        Stage stage = (Stage) rodA.getScene().getWindow();
-//        Parent root;
-//        try {
-//            root = FXMLLoader.load(TutorialView.class.getResource("UserSolved.fxml"));
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        Scene solvedScene = new Scene(root);
-//        PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Let the animation finish
-//        pause.setOnFinished(event -> {
-//            stage.setScene(solvedScene);
-//            stage.show();
-//        });
-//        pause.play();
-//    }
-
     private void switchToSolvedScene() {
         Stage stage = (Stage) rodA.getScene().getWindow();
         Parent root;

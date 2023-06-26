@@ -17,7 +17,7 @@ public class UserSolvedView extends Application {
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserSolved.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
-        primaryStage.setTitle("UserSolved");
+        primaryStage.setTitle("User solution - Statistics");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -1,7 +1,7 @@
 package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.Model.AutomaticGame;
-import com.example.towersofhanoi.View.TutorialView;
+import com.example.towersofhanoi.View.ComputerSolvedView;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +16,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javax.swing.text.html.Option;
 import java.io.IOException;
+import java.sql.Time;
 
 public class TutorialController {
     @FXML
@@ -38,15 +38,18 @@ public class TutorialController {
         // run the algorithm
         this.automaticGame.runAlgorithm(() -> {
             this.automaticGame.endTime = System.currentTimeMillis(); // Record the end time
-            this.automaticGame.duration = this.automaticGame.endTime - this.automaticGame.startTime;
+            this.automaticGame.duration = (this.automaticGame.endTime - this.automaticGame.startTime) / 1000;
             this.automaticGame.gameOver = true;
-            System.out.println("Towers of Hanoi was solved in " + this.automaticGame.duration + " milliseconds.");
-            try {
-                switchToSolvedScene();
-            }
-            catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            // Extract hours, minutes, and seconds from the duration
+            int hours = (int) (automaticGame.duration / 3600);
+            int minutes = (int) ((automaticGame.duration % 3600) / 60);
+            int seconds = (int) (automaticGame.duration % 60);
+            // Create a new `Time` object using the hours, minutes, and seconds
+            this.automaticGame.time = new Time(hours, minutes, seconds);
+            this.automaticGame.numberOfMoves = (int) (Math.pow(2, automaticGame.numberOfDisks) - 1);
+            this.automaticGame.numberOfGoodMoves = automaticGame.numberOfMoves;
+            this.automaticGame.numberOfBadMoves = 0;
+            switchToSolvedScene();
         });
     } // start the automatic game
     public void connectGameToUI() {
@@ -74,9 +77,18 @@ public class TutorialController {
             rodA.getChildren().add(disk);
         }
     } // draw the disks on the screen
-    public void switchToSolvedScene() throws IOException {
-        Stage stage = (Stage) solveButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(TutorialView.class.getResource("Solved.fxml"));
+    private void switchToSolvedScene() {
+        Stage stage = (Stage) rodA.getScene().getWindow();
+        Parent root;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ComputerSolvedView.class.getResource("ComputerSolved.fxml"));
+            root = fxmlLoader.load();
+            ComputerSolvedController controller = fxmlLoader.getController();
+            // Set the statistics in the controller
+            controller.setStatistics(this.automaticGame);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Scene solvedScene = new Scene(root);
         PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Let the animation finish
         pause.setOnFinished(event -> {
@@ -84,5 +96,5 @@ public class TutorialController {
             stage.show();
         });
         pause.play();
-    } // show this solution's statistics
+    }
 }
