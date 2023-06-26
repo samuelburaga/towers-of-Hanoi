@@ -1,5 +1,6 @@
-package com.example.towersofhanoi;
+package com.example.towersofhanoi.Model;
 
+import com.example.towersofhanoi.View.TutorialView;
 import javafx.application.Platform;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -17,7 +18,7 @@ public class TutorialThread implements Runnable {
     }
     public void run() {
         Platform.runLater(() -> {
-            Tutorial tutorial = new Tutorial();
+            TutorialView tutorial = new TutorialView();
             Stage tutorialStage = new Stage();
             tutorialStage.initOwner(ownerWindow);
             tutorialStage.initModality(Modality.NONE);

@@ -1,4 +1,4 @@
-package com.example.towersofhanoi;
+package com.example.towersofhanoi.View;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Options extends Application {
+public class OptionsView extends Application {
     public static void main(String[] args) {
         launch(args);
     }

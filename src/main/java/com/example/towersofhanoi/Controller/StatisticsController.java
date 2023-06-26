@@ -1,8 +1,8 @@
 package com.example.towersofhanoi.Controller;
 
-import com.example.towersofhanoi.DatabaseConnection;
-import com.example.towersofhanoi.MySQLConnection;
-import com.example.towersofhanoi.StatisticsData;
+import com.example.towersofhanoi.Model.DatabaseConnection;
+import com.example.towersofhanoi.Model.MySQLConnection;
+import com.example.towersofhanoi.Model.StatisticsData;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;

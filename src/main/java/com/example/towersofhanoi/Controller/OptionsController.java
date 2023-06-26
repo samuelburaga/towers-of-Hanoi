@@ -1,7 +1,7 @@
 package com.example.towersofhanoi.Controller;
 
-import com.example.towersofhanoi.Game;
-import com.example.towersofhanoi.Menu;
+import com.example.towersofhanoi.Model.Game;
+import com.example.towersofhanoi.View.MenuView;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,7 +51,7 @@ public class OptionsController implements Initializable {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.hide();
-        Menu menu = new Menu();
+        MenuView menu = new MenuView();
         menu.start(new Stage());
     } // go back to the menu
     public void saveChangesButtonOnAction(ActionEvent e) {

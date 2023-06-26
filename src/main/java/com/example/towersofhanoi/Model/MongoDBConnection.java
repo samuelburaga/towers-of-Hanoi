@@ -1,4 +1,4 @@
-package com.example.towersofhanoi;
+package com.example.towersofhanoi.Model;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -19,7 +19,7 @@ import java.util.List;
 
 import javafx.scene.control.TableView;
 
-public class MongoDBConnection implements DatabaseConnection <Document>{
+public class MongoDBConnection implements DatabaseConnection<Document> {
     private MongoDatabase mongoDatabase;
     private MongoClient mongoClient;
     private String HOSTNAME = null;

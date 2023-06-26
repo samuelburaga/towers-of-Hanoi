@@ -1,6 +1,11 @@
 package com.example.towersofhanoi.Controller;
 
-import com.example.towersofhanoi.*;
+import com.example.towersofhanoi.Model.TutorialThread;
+import com.example.towersofhanoi.Model.User;
+import com.example.towersofhanoi.View.OptionsView;
+import com.example.towersofhanoi.View.PlayView;
+import com.example.towersofhanoi.View.SettingsView;
+import com.example.towersofhanoi.View.StatisticsView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -23,7 +28,7 @@ public class MenuController {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.hide();
-        Play play = new Play();
+        PlayView play = new PlayView();
         play.start(new Stage());
     } // play the game
     public void tutorialButtonOnAction(ActionEvent e) throws IOException {
@@ -43,14 +48,14 @@ public class MenuController {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.hide();
-        Statistics statistics = new Statistics();
+        StatisticsView statistics = new StatisticsView();
         statistics.start(new Stage());
     } // show some statistics
     public void settingsButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.hide();
-        Settings settings = new Settings();
+        SettingsView settings = new SettingsView();
         settings.start(new Stage());
     } // change account information
     public void quitButtonOnAction(ActionEvent e) {

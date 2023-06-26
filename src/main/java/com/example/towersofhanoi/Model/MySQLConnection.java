@@ -1,10 +1,10 @@
-package com.example.towersofhanoi;
+package com.example.towersofhanoi.Model;
 
 import javafx.scene.control.TableView;
 
 import java.sql.*;
 
-public class MySQLConnection implements DatabaseConnection <ResultSet> {
+public class MySQLConnection implements DatabaseConnection<ResultSet> {
     private String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver"; // JDBC driver
     private String USERNAME = null, PASSWORD = null; // the username and password of the database
     private String HOSTNAME = null, PORT = null; // hostname and port

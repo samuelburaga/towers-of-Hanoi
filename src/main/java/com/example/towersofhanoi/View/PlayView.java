@@ -1,6 +1,7 @@
-package com.example.towersofhanoi;
+package com.example.towersofhanoi.View;
 
 import com.example.towersofhanoi.Controller.PlayController;
+import com.example.towersofhanoi.Model.PlayerGame;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Play extends Application {
+public class PlayView extends Application {
     public static PlayerGame playerGame;
     public static void main(String[] args) {
         launch(args);

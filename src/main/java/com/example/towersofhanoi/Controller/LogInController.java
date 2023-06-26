@@ -1,7 +1,10 @@
 package com.example.towersofhanoi.Controller;
 
-import com.example.towersofhanoi.*;
-import com.example.towersofhanoi.Menu;
+import com.example.towersofhanoi.View.LogInView;
+import com.example.towersofhanoi.View.MenuView;
+import com.example.towersofhanoi.Model.DatabaseConnection;
+import com.example.towersofhanoi.Model.MySQLConnection;
+import com.example.towersofhanoi.Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -20,10 +23,13 @@ public class LogInController {
     private PasswordField passwordField;
     @FXML
     private Button logInButton, cancelButton;
+    private DatabaseConnection mySQLConnection;
+    public LogInController() {
+        // connect to the database
+        mySQLConnection = new MySQLConnection();
+    }
     public void logInButtonOnAction(ActionEvent e) throws IOException, SQLException {
         if(usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
-            DatabaseConnection mySQLConnection = new MySQLConnection();
-            mySQLConnection.connect();
             // check if the username & password are correct
             if(mySQLConnection.checkIfUserExists(usernameTextField.getText(), passwordField.getText())) {
                 ResultSet resultSet = ((MySQLConnection) mySQLConnection).getUserByUsername(usernameTextField.getText()); // get full user information
@@ -31,7 +37,7 @@ public class LogInController {
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
                 thisStage.hide();
-                Menu menu = new Menu();
+                MenuView menu = new MenuView();
                 menu.start(new Stage()); // go to menu
             }
             else {

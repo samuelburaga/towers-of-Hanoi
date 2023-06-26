@@ -1,4 +1,4 @@
-package com.example.towersofhanoi;
+package com.example.towersofhanoi.View;
 
 import com.example.towersofhanoi.Controller.MenuController;
 import javafx.application.Application;
@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class Menu extends Application {
+public class MenuView extends Application {
     public static boolean musicPlays = false;
     public static void main(String[] args) {
         launch(args);
@@ -32,7 +32,7 @@ public class Menu extends Application {
         String filePath = "/sounds/Stay Retro.wav"; // Path relative to the "res" folder
         // play the music
         try {
-            URL resourceUrl = Menu.class.getResource(filePath);
+            URL resourceUrl = MenuView.class.getResource(filePath);
             if (resourceUrl != null && !musicPlays) {
                 File music = new File(resourceUrl.toURI());
                 if (music.exists()) {

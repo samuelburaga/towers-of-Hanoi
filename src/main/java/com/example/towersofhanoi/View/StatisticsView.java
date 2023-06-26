@@ -1,4 +1,4 @@
-package com.example.towersofhanoi;
+package com.example.towersofhanoi.View;
 
 import com.example.towersofhanoi.Controller.StatisticsController;
 import javafx.application.Application;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class Statistics extends Application {
+public class StatisticsView extends Application {
     public static void main(String[] args) {
         launch(args);
     }

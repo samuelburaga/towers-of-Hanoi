@@ -1,4 +1,4 @@
-package com.example.towersofhanoi;
+package com.example.towersofhanoi.Model;
 
 import javafx.application.Platform;
 import javafx.scene.layout.Pane;

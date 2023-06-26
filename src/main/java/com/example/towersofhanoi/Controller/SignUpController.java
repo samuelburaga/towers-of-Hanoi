@@ -1,6 +1,9 @@
 package com.example.towersofhanoi.Controller;
 
-import com.example.towersofhanoi.*;
+import com.example.towersofhanoi.Model.DatabaseConnection;
+import com.example.towersofhanoi.Model.MySQLConnection;
+import com.example.towersofhanoi.Model.User;
+import com.example.towersofhanoi.View.MenuView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -16,10 +19,13 @@ public class SignUpController {
     private TextField firstNameTextField, lastNameTextField, usernameTextField, passwordField;
     @FXML
     private Button signUpButton;
+    private DatabaseConnection mySQLConnection;
+    public SignUpController() {
+        // connect to the database
+        mySQLConnection = new MySQLConnection();
+    }
     public void signUpButtonOnAction(ActionEvent e) throws IOException {
         if(firstNameTextField.getText().isBlank() == false && lastNameTextField.getText().isBlank() == false && usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
-            DatabaseConnection mySQLConnection = new MySQLConnection();
-            mySQLConnection.connect();
             // check if this username or password already exists
             if(mySQLConnection.checkIfUserExists(usernameTextField.getText(), passwordField.getText()) == false) {
                 ((MySQLConnection) mySQLConnection).insertNewUser(firstNameTextField.getText(), lastNameTextField.getText(), usernameTextField.getText(), passwordField.getText());
@@ -28,7 +34,7 @@ public class SignUpController {
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
                 thisStage.hide();
-                Menu menu = new Menu();
+                MenuView menu = new MenuView();
                 menu.start(new Stage()); // go to menu
             }
             else {

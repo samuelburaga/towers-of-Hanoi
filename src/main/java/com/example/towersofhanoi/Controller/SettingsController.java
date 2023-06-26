@@ -1,6 +1,8 @@
 package com.example.towersofhanoi.Controller;
 
-import com.example.towersofhanoi.*;
+import com.example.towersofhanoi.Model.DatabaseConnection;
+import com.example.towersofhanoi.Model.MySQLConnection;
+import com.example.towersofhanoi.Model.User;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,6 +20,11 @@ public class SettingsController {
     private Button previousClickedButton;
     private String defaultColor = "-fx-background-color: #333E41;";
     private String clickedColor = "-fx-background-color: #0FB4BB;";
+    private DatabaseConnection mySQLConnection;
+    public SettingsController() {
+        // connect to the database
+        mySQLConnection = new MySQLConnection();
+    }
     public void changeFirstNameButtonOnAction(ActionEvent e) {
         if (previousClickedButton != null) {
             previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked button
@@ -56,7 +63,6 @@ public class SettingsController {
             @Override
             public void handle(ActionEvent event) {
                 String username = usernameField.getText();
-                DatabaseConnection mySQLConnection = new MySQLConnection();
                 mySQLConnection.connect();
                 mySQLConnection.updateUsername(User.username, usernameField.getText());
                 User.username = usernameField.getText();
@@ -95,7 +101,6 @@ public class SettingsController {
         confirmationAlert.showAndWait().ifPresent(buttonType -> {
             if (buttonType == yesButton) {
                 // Perform account deletion
-                DatabaseConnection mySQLConnection = new MySQLConnection();
                 mySQLConnection.connect();
                 mySQLConnection.deleteAccount(User.username);
                 Node node = (Node) e.getSource();

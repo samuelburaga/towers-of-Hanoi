@@ -20,4 +20,8 @@ module com.example.towersofhanoi {
     exports com.example.towersofhanoi;
     exports com.example.towersofhanoi.Controller;
     opens com.example.towersofhanoi.Controller to javafx.fxml;
+    exports com.example.towersofhanoi.Model;
+    opens com.example.towersofhanoi.Model to javafx.fxml;
+    exports com.example.towersofhanoi.View;
+    opens com.example.towersofhanoi.View to javafx.fxml;
 }

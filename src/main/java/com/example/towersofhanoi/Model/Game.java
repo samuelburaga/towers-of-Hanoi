@@ -1,4 +1,4 @@
-package com.example.towersofhanoi;
+package com.example.towersofhanoi.Model;
 
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;

@@ -1,6 +1,6 @@
 package com.example.towersofhanoi.Controller;
 
-import com.example.towersofhanoi.Tutorial;
+import com.example.towersofhanoi.View.TutorialView;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,13 +28,13 @@ public class TutorialController {
     private Button solveButton;
     public void solveButtonOnAction(ActionEvent e) {
         connectGameToUI();
-        Tutorial.automaticGame.startTime = System.currentTimeMillis(); // Record the start time
+        TutorialView.automaticGame.startTime = System.currentTimeMillis(); // Record the start time
         // run the algorithm
-        Tutorial.automaticGame.runAlgorithm(() -> {
-            Tutorial.automaticGame.endTime = System.currentTimeMillis(); // Record the end time
-            Tutorial.automaticGame.duration = Tutorial.automaticGame.endTime - Tutorial.automaticGame.startTime;
-            Tutorial.automaticGame.gameOver = true;
-            System.out.println("Towers of Hanoi was solved in " + Tutorial.automaticGame.duration + " milliseconds.");
+        TutorialView.automaticGame.runAlgorithm(() -> {
+            TutorialView.automaticGame.endTime = System.currentTimeMillis(); // Record the end time
+            TutorialView.automaticGame.duration = TutorialView.automaticGame.endTime - TutorialView.automaticGame.startTime;
+            TutorialView.automaticGame.gameOver = true;
+            System.out.println("Towers of Hanoi was solved in " + TutorialView.automaticGame.duration + " milliseconds.");
             try {
                 switchToSolvedScene();
             }
@@ -44,8 +44,8 @@ public class TutorialController {
         });
     } // start the automatic game
     public void connectGameToUI() {
-        Tutorial.automaticGame.setRods(rodA, rodB, rodC);
-        Tutorial.automaticGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
+        TutorialView.automaticGame.setRods(rodA, rodB, rodC);
+        TutorialView.automaticGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
     } // connect the game to the UI objects
     public void drawDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
@@ -53,7 +53,7 @@ public class TutorialController {
         double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // initial coordinates
         double arcWidth = 30.0, arcHeight = 30.0;
         // draw the disks
-        for (byte index = 0; index < Tutorial.automaticGame.getNumberOfDisks(); index++) {
+        for (byte index = 0; index < TutorialView.automaticGame.getNumberOfDisks(); index++) {
             Rectangle disk = new Rectangle(diskWidth - (index * 12), diskHeight);
             disk.setLayoutX(initialX + (index * 6));
             disk.setLayoutY(initialY - (index * diskHeight));
@@ -65,7 +65,7 @@ public class TutorialController {
     } // draw the disks on the screen
     public void switchToSolvedScene() throws IOException {
         Stage stage = (Stage) solveButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(Tutorial.class.getResource("View/Solved.fxml"));
+        Parent root = FXMLLoader.load(TutorialView.class.getResource("View/Solved.fxml"));
         Scene solvedScene = new Scene(root);
         PauseTransition pause = new PauseTransition(Duration.seconds(0.5)); // Let the animation finish
         pause.setOnFinished(event -> {

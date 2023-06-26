@@ -1,6 +1,6 @@
 package com.example.towersofhanoi.Controller;
 
-import com.example.towersofhanoi.*;
+import com.example.towersofhanoi.View.PlayView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -21,7 +21,7 @@ public class PlayController {
         double diskWidth = 198.0, diskHeight = 60.0; // Adjust as needed
         double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // Adjust as needed
         double arcWidth = 30.0, arcHeight = 30.0;
-        for (byte i = 0; i < Play.playerGame.getNumberOfDisks(); i++) {
+        for (byte i = 0; i < PlayView.playerGame.getNumberOfDisks(); i++) {
             Rectangle disk = new Rectangle(diskWidth - (i * 12), diskHeight);
             disk.setX(initialX + (i * 6));
             disk.setLayoutY(initialY - (i * diskHeight));
@@ -33,11 +33,11 @@ public class PlayController {
         }
     }
     public void connectGameToUI() {
-        Play.playerGame.setRods(rodA, rodB, rodC);
-        Play.playerGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
+        PlayView.playerGame.setRods(rodA, rodB, rodC);
+        PlayView.playerGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
     }
     public void startGame() {
-        Play.playerGame.startTime = System.currentTimeMillis();
+        PlayView.playerGame.startTime = System.currentTimeMillis();
     }
     public void moveOptionOnAction(ActionEvent e) throws IOException {
         Button clickedButton = (Button) e.getSource();
@@ -45,8 +45,8 @@ public class PlayController {
         char fromRod = clickedButtonId.charAt(0);
         char toRod = clickedButtonId.charAt(3);
        // if(Play.playerGame.isGameOver() == false) {
-            if(Play.playerGame.isMoveValid(fromRod, toRod)) {
-                Play.playerGame.runAnimation(fromRod, toRod);
+            if(PlayView.playerGame.isMoveValid(fromRod, toRod)) {
+                PlayView.playerGame.runAnimation(fromRod, toRod);
             }
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

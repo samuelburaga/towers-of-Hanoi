@@ -1,5 +1,6 @@
-package com.example.towersofhanoi;
+package com.example.towersofhanoi.View;
 
+import com.example.towersofhanoi.Model.AutomaticGame;
 import com.example.towersofhanoi.Controller.TutorialController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Tutorial extends Application {
+public class TutorialView extends Application {
     public static AutomaticGame automaticGame;
     public static void main(String[] args) {
         launch(args);

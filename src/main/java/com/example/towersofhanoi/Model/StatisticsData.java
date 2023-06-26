@@ -1,4 +1,4 @@
-package com.example.towersofhanoi;
+package com.example.towersofhanoi.Model;
 
 public class StatisticsData <T> {
     private String usernameColumn;
