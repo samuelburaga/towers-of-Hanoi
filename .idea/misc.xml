@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../../../Sisteme de gestiune a bazelor de date/Project 2/towers-of-Hanoi/doc/Javadoc" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/doc/Javadoc" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
