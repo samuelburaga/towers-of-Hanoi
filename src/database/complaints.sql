@@ -1,0 +1,11 @@
+-- INSERT INTO complaints (users_user_id, complaint, date) VALUES
+-- (1, 'Game froze during gameplay.', '2023-06-01'),
+-- (2, 'Unable to log in to my account.', '2023-06-02'),
+-- (3, 'Game crashes on startup.', '2023-06-03'),
+-- (4, 'Missing game assets.', '2023-06-04'),
+-- (5, 'In-game purchases not working.', '2023-06-05'),
+-- (6, 'Game lagging during gameplay.', '2023-06-06'),
+-- (7, 'Incorrect scoring calculation.', '2023-06-07'),
+-- (8, 'Account data missing.', '2023-06-08'),
+-- (9, 'Game UI is not responsive.', '2023-06-09'),
+-- (10, 'Bug found in level 5.', '2023-06-10');
