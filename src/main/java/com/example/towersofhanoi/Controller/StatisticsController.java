@@ -21,6 +21,7 @@ public class StatisticsController {
     @FXML
     private TableColumn<StatisticsData, Time> timeColumn;
     public void showStatistics() throws SQLException {
+        // Set table column names
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         pointsColumn.setCellValueFactory(new PropertyValueFactory<>("points"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
@@ -28,6 +29,6 @@ public class StatisticsController {
         statisticsTable.getItems().clear();
         DatabaseConnection mySQLConnection = new MySQLConnection();
         mySQLConnection.connect();
-        ((MySQLConnection) mySQLConnection).extractStatistics(statisticsTable);
-    }
+        ((MySQLConnection) mySQLConnection).extractStatistics(statisticsTable); // extract the statistics
+    } // show the 10 best performances
 }

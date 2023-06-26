@@ -16,28 +16,28 @@ public class SettingsController {
     private Button deleteAccountButton;
     @FXML
     private Button previousClickedButton;
-    private String defaultColor = "-fx-background-color: #333E41;"; // Set the default color
-    private String clickedColor = "-fx-background-color: #0FB4BB;"; // Set the desired color
+    private String defaultColor = "-fx-background-color: #333E41;";
+    private String clickedColor = "-fx-background-color: #0FB4BB;";
     public void changeFirstNameButtonOnAction(ActionEvent e) {
         if (previousClickedButton != null) {
-            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked label
+            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked button
         }
-        changeFirstNameButton.setStyle(clickedColor); // Set the color for the newly clicked label
-        previousClickedButton = changeFirstNameButton; // Update the previously clicked label
-    }
+        changeFirstNameButton.setStyle(clickedColor); // Set the color for the newly clicked button
+        previousClickedButton = changeFirstNameButton; // Update the previously clicked button
+    } // change the first name
     public void changeLastNameButtonOnAction(ActionEvent e) {
         if (previousClickedButton != null) {
-            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked label
+            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked button
         }
-        changeLastNameButton.setStyle(clickedColor); // Set the color for the newly clicked label
-        previousClickedButton = changeLastNameButton; // Update the previously clicked label
-    }
+        changeLastNameButton.setStyle(clickedColor); // Set the color for the newly clicked button
+        previousClickedButton = changeLastNameButton; // Update the previously clicked button
+    } // change the last name
     public void changeUsernameButtonOnAction(ActionEvent e) {
         if (previousClickedButton != null) {
-            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked label
+            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked button
         }
-        changeUsernameButton.setStyle(clickedColor); // Set the color for the newly clicked label
-        previousClickedButton = changeUsernameButton; // Update the previously clicked label
+        changeUsernameButton.setStyle(clickedColor); // Set the color for the newly clicked button
+        previousClickedButton = changeUsernameButton; // Update the previously clicked button
         // Create the dialog box
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Change Username");
@@ -66,21 +66,21 @@ public class SettingsController {
         changeButton.setOnAction(changeButtonHandler);
         // Show the dialog box and wait for a response
         dialog.showAndWait();
-    }
+    } // change the username
     public void changePasswordButtonOnAction(ActionEvent e) {
         if (previousClickedButton != null) {
-            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked label
+            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked button
         }
-        changePasswordButton.setStyle(clickedColor); // Set the color for the newly clicked label
-        previousClickedButton = changePasswordButton; // Update the previously clicked label
-    }
+        changePasswordButton.setStyle(clickedColor); // Set the color for the newly clicked button
+        previousClickedButton = changePasswordButton; // Update the previously clicked button
+    } // change the password
     public void changeProfilePictureButtonnOnAction(ActionEvent e) {
         if (previousClickedButton != null) {
-            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked label
+            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked button
         }
-        changeProfilePictureButton.setStyle(clickedColor); // Set the color for the newly clicked label
-        previousClickedButton = changeProfilePictureButton; // Update the previously clicked label
-    }
+        changeProfilePictureButton.setStyle(clickedColor); // Set the color for the newly clicked button
+        previousClickedButton = changeProfilePictureButton; // Update the previously clicked button
+    } // change the profile picture
     public void  deleteAccountButtonOnAction(ActionEvent e) {
         // Create the confirmation alert
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -103,5 +103,5 @@ public class SettingsController {
                 thisStage.hide();
             }
         });
-    }
+    } // delete the account
 }

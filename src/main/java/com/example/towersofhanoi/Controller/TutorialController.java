@@ -26,13 +26,10 @@ public class TutorialController {
     private Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
     @FXML
     private Button solveButton;
-    private String move;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
     public void solveButtonOnAction(ActionEvent e) {
         connectGameToUI();
         Tutorial.automaticGame.startTime = System.currentTimeMillis(); // Record the start time
+        // run the algorithm
         Tutorial.automaticGame.runAlgorithm(() -> {
             Tutorial.automaticGame.endTime = System.currentTimeMillis(); // Record the end time
             Tutorial.automaticGame.duration = Tutorial.automaticGame.endTime - Tutorial.automaticGame.startTime;
@@ -40,41 +37,42 @@ public class TutorialController {
             System.out.println("Towers of Hanoi was solved in " + Tutorial.automaticGame.duration + " milliseconds.");
             try {
                 switchToSolvedScene();
-            } catch (IOException ex) {
+            }
+            catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
-    }
+    } // start the automatic game
     public void connectGameToUI() {
         Tutorial.automaticGame.setAnchorPane(anchorPane);
         Tutorial.automaticGame.setRods(rodA, rodB, rodC);
         Tutorial.automaticGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
-    }
+    } // connect the game to the UI objects
     public void drawDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
-        double diskWidth = 198.0, diskHeight = 60.0; // Adjust as needed
-        double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // Adjust as needed
+        double diskWidth = 198.0, diskHeight = 60.0; // initial dimenstions
+        double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // initial coordinates
         double arcWidth = 30.0, arcHeight = 30.0;
+        // draw the disks
         for (byte index = 0; index < Tutorial.automaticGame.getNumberOfDisks(); index++) {
             Rectangle disk = new Rectangle(diskWidth - (index * 12), diskHeight);
             disk.setLayoutX(initialX + (index * 6));
             disk.setLayoutY(initialY - (index * diskHeight));
             disk.setArcHeight(arcHeight);
             disk.setArcWidth(arcWidth);
-            disk.setFill(Color.valueOf("#0FB4BB")); // Adjust as needed
-            // disk.setStroke(Color.WHITE); // Adjust as needed
+            disk.setFill(Color.valueOf("#0FB4BB"));
             rodA.getChildren().add(disk);
         }
-    }
+    } // draw the disks on the screen
     public void switchToSolvedScene() throws IOException {
         Stage stage = (Stage) solveButton.getScene().getWindow();
         Parent root = FXMLLoader.load(Tutorial.class.getResource("View/Solved.fxml"));
         Scene solvedScene = new Scene(root);
-        PauseTransition pause = new PauseTransition(Duration.seconds(0.5)); // Adjust the duration as needed
+        PauseTransition pause = new PauseTransition(Duration.seconds(0.5)); // Let the animation finish
         pause.setOnFinished(event -> {
             stage.setScene(solvedScene);
             stage.show();
         });
         pause.play();
-    }
+    } // show this solution's statistics
 }

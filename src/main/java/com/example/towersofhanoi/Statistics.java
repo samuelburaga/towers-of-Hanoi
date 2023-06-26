@@ -17,7 +17,7 @@ public class Statistics extends Application {
     public void start(Stage primaryStage) throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Statistics.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
-        StatisticsController statisticsController = fxmlLoader.getController();
+        StatisticsController statisticsController = fxmlLoader.getController(); // get the controller
         statisticsController.showStatistics();
         primaryStage.setTitle("Statistics");
         primaryStage.setScene(scene);

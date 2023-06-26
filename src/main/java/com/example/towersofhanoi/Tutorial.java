@@ -17,8 +17,8 @@ public class Tutorial extends Application {
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Tutorial.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
-        createGame();
-        TutorialController tutorialController = fxmlLoader.getController();
+        createGame(); // create the game
+        TutorialController tutorialController = fxmlLoader.getController(); // get the controller
         tutorialController.drawDisks();
         primaryStage.setTitle("Tutorial");
         primaryStage.setScene(scene);

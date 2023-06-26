@@ -20,10 +20,8 @@ public class Menu extends Application {
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
-
-        MenuController menuController = fxmlLoader.getController();
+        MenuController menuController = fxmlLoader.getController(); // get the controller
         menuController.setUsername();
-
         primaryStage.setMaximized(true);
         primaryStage.setTitle("Menu");
         primaryStage.setScene(scene);
@@ -32,6 +30,7 @@ public class Menu extends Application {
     }
     public static void backgroundMusic() {
         String filePath = "/sounds/Stay Retro.wav"; // Path relative to the "res" folder
+        // play the music
         try {
             URL resourceUrl = Menu.class.getResource(filePath);
             if (resourceUrl != null && !musicPlays) {

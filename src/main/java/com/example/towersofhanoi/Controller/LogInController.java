@@ -24,14 +24,15 @@ public class LogInController {
         if(usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
             DatabaseConnection mySQLConnection = new MySQLConnection();
             mySQLConnection.connect();
+            // check if the username & password are correct
             if(mySQLConnection.checkIfUserExists(usernameTextField.getText(), passwordField.getText())) {
-                ResultSet resultSet = ((MySQLConnection) mySQLConnection).getUserByUsername(usernameTextField.getText());
-                User.updateData(resultSet);
+                ResultSet resultSet = ((MySQLConnection) mySQLConnection).getUserByUsername(usernameTextField.getText()); // get full user information
+                User.updateData(resultSet); // update user information
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
                 thisStage.hide();
                 Menu menu = new Menu();
-                menu.start(new Stage());
+                menu.start(new Stage()); // go to menu
             }
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -39,7 +40,7 @@ public class LogInController {
                 alert.setHeaderText(null);
                 alert.setContentText("Your username or password is wrong!");
                 alert.showAndWait();
-            }
+            } // The username or password is wrong
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -47,10 +48,10 @@ public class LogInController {
             alert.setHeaderText(null);
             alert.setContentText("Please enter your username and password!");
             alert.showAndWait();
-        }
-    }
+        } // The user didn't tpye any data
+    } // Log In
     public void cancelButtonOnAction(ActionEvent e) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
-    }
+    } // quit
 }
