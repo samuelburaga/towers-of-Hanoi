@@ -1,0 +1,50 @@
+[{
+  "users_user_id": 1,
+  "disks": 3,
+  "points": 100
+},
+{
+  "users_user_id": 2,
+  "disks": 4,
+  "points": 80
+},
+{
+  "users_user_id": 3,
+  "disks": 2,
+  "points": 100
+},
+{
+  "users_user_id": 4,
+  "disks": 5,
+  "points": 30
+},
+{
+  "users_user_id": 5,
+  "disks": 7,
+  "points": 45
+},
+{
+  "users_user_id": 1,
+  "disks": 2,
+  "points": 200
+},
+{
+  "users_user_id": 2,
+  "disks": 1,
+  "points": 250
+},
+{
+  "users_user_id": 3,
+  "disks": 8,
+  "points": 100
+},
+{
+  "users_user_id": 1,
+  "disks": 5,
+  "points": 200
+},
+{
+  "users_user_id": 2,
+  "disks": 3,
+  "points": 100
+}]

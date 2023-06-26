@@ -1,0 +1,110 @@
+[{
+  "_id": {
+    "$oid": "6493ffbd740cc22b326b4627"
+  },
+  "complaint_id": 1,
+  "users_user_id": 1,
+  "complaint": "Game froze during gameplay",
+  "date": {
+    "$date": "2023-06-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6493ffbd740cc22b326b4628"
+  },
+  "complaint_id": 2,
+  "users_user_id": 2,
+  "complaint": "Unable to log in to my account.",
+  "date": {
+    "$date": "2023-06-12T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6493ffbd740cc22b326b4629"
+  },
+  "complaint_id": 3,
+  "users_user_id": 3,
+  "complaint": "Game crashes on startup.",
+  "date": {
+    "$date": "2023-06-13T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6493ffbd740cc22b326b462a"
+  },
+  "complaint_id": 4,
+  "users_user_id": 4,
+  "complaint": "Missing game assets.",
+  "date": {
+    "$date": "2023-06-24T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6493ffbd740cc22b326b462b"
+  },
+  "complaint_id": 5,
+  "users_user_id": 5,
+  "complaint": "In-game purchases not working.",
+  "date": {
+    "$date": "2023-06-05T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6493ffbd740cc22b326b462c"
+  },
+  "complaint_id": 6,
+  "users_user_id": 6,
+  "complaint": "Game lagging during gameplay.",
+  "date": {
+    "$date": "2023-06-06T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6493ffbd740cc22b326b462d"
+  },
+  "complaint_id": 7,
+  "users_user_id": 7,
+  "complaint": "Incorrect scoring calculation.",
+  "date": {
+    "$date": "2023-06-07T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6493ffbd740cc22b326b462e"
+  },
+  "complaint_id": 8,
+  "users_user_id": 8,
+  "complaint": "Account data missing.",
+  "date": {
+    "$date": "2023-06-08T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6493ffbd740cc22b326b462f"
+  },
+  "complaint_id": 9,
+  "users_user_id": 9,
+  "complaint": "Game UI is not responsive.",
+  "date": {
+    "$date": "2023-06-09T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6493ffbd740cc22b326b4630"
+  },
+  "complaint_id": 10,
+  "users_user_id": 10,
+  "complaint": "Bug found in level 5.",
+  "date": {
+    "$date": "2023-06-10T00:00:00.000Z"
+  }
+}]

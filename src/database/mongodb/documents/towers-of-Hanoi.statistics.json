@@ -1,0 +1,100 @@
+[{
+  "_id": {
+    "$oid": "6493f733740cc22b326b4609"
+  },
+  "score_id": 1,
+  "users_user_id": 1,
+  "disks": 3,
+  "points": 100,
+  "time": "00:00:20"
+},
+{
+  "_id": {
+    "$oid": "6493f733740cc22b326b460a"
+  },
+  "score_id": 2,
+  "users_user_id": 2,
+  "disks": 4,
+  "points": 80,
+  "time": "00:00:30"
+},
+{
+  "_id": {
+    "$oid": "6493f733740cc22b326b460b"
+  },
+  "score_id": 3,
+  "users_user_id": 3,
+  "disks": 2,
+  "points": 100,
+  "time": "00:00:10"
+},
+{
+  "_id": {
+    "$oid": "6493f733740cc22b326b460c"
+  },
+  "score_id": 4,
+  "users_user_id": 4,
+  "disks": 5,
+  "points": 30,
+  "time": "00:00:50"
+},
+{
+  "_id": {
+    "$oid": "6493f733740cc22b326b460d"
+  },
+  "score_id": 5,
+  "users_user_id": 5,
+  "disks": 7,
+  "points": 45,
+  "time": "00:00:40"
+},
+{
+  "_id": {
+    "$oid": "6493f733740cc22b326b460e"
+  },
+  "score_id": 6,
+  "users_user_id": 1,
+  "disks": 2,
+  "points": 200,
+  "time": "00:00:05"
+},
+{
+  "_id": {
+    "$oid": "6493f733740cc22b326b460f"
+  },
+  "score_id": 7,
+  "users_user_id": 2,
+  "disks": 1,
+  "points": 250,
+  "time": "00:00:03"
+},
+{
+  "_id": {
+    "$oid": "6493f733740cc22b326b4610"
+  },
+  "score_id": 8,
+  "users_user_id": 3,
+  "disks": 8,
+  "points": 100,
+  "time": "00:00:10"
+},
+{
+  "_id": {
+    "$oid": "6493f733740cc22b326b4611"
+  },
+  "score_id": 9,
+  "users_user_id": 1,
+  "disks": 5,
+  "points": 200,
+  "time": "00:02:00"
+},
+{
+  "_id": {
+    "$oid": "6493f733740cc22b326b4612"
+  },
+  "score_id": 10,
+  "users_user_id": 2,
+  "disks": 3,
+  "points": 100,
+  "time": "00:00:20"
+}]

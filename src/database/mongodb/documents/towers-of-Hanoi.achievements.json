@@ -1,0 +1,110 @@
+[{
+  "_id": {
+    "$oid": "649400e1740cc22b326b4637"
+  },
+  "achievement_id": 1,
+  "users_user_id": 1,
+  "achievement": "First Win",
+  "date": {
+    "$date": "2023-06-10T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649400e1740cc22b326b4638"
+  },
+  "achievement_id": 2,
+  "users_user_id": 2,
+  "achievement": "Tower Master'",
+  "date": {
+    "$date": "2023-06-12T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649400e1740cc22b326b4639"
+  },
+  "achievement_id": 3,
+  "users_user_id": 3,
+  "achievement": "Perfect Score",
+  "date": {
+    "$date": "2023-06-14T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649400e1740cc22b326b463a"
+  },
+  "achievement_id": 4,
+  "users_user_id": 4,
+  "achievement": "Speed Demon",
+  "date": {
+    "$date": "2023-06-15T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649400e1740cc22b326b463b"
+  },
+  "achievement_id": 5,
+  "users_user_id": 5,
+  "achievement": "Champion",
+  "date": {
+    "$date": "2023-06-15T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649400e1740cc22b326b463c"
+  },
+  "achievement_id": 6,
+  "users_user_id": 6,
+  "achievement": "Unstoppable",
+  "date": {
+    "$date": "2023-06-20T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649400e1740cc22b326b463d"
+  },
+  "achievement_id": 7,
+  "users_user_id": 7,
+  "achievement": "Record Breaker",
+  "date": {
+    "$date": "2023-06-25T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649400e1740cc22b326b463e"
+  },
+  "achievement_id": 8,
+  "users_user_id": 8,
+  "achievement": "High Scorer",
+  "date": {
+    "$date": "2023-06-25T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649400e1740cc22b326b463f"
+  },
+  "achievement_id": 9,
+  "users_user_id": 9,
+  "achievement": "Master Strategist",
+  "date": {
+    "$date": "2023-06-18T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649400e1740cc22b326b4640"
+  },
+  "achievement_id": 10,
+  "users_user_id": 10,
+  "achievement": "Perfectionist",
+  "date": {
+    "$date": "2023-06-20T00:00:00.000Z"
+  }
+}]

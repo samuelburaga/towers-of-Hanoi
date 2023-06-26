@@ -1,0 +1,130 @@
+[{
+  "_id": {
+    "$oid": "649335a9ae622d6458ddaeca"
+  },
+  "user_id": 1,
+  "first_name": "Samuel",
+  "last_name": "Buraga",
+  "username": "samuel",
+  "password": "samuel",
+  "created_at": {
+    "$date": "2023-06-21T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649335a9ae622d6458ddaecb"
+  },
+  "user_id": 2,
+  "first_name": "David",
+  "last_name": "Buraga",
+  "username": "david",
+  "password": "david",
+  "created_at": {
+    "$date": "2023-06-21T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649335a9ae622d6458ddaecc"
+  },
+  "user_id": 3,
+  "first_name": "Adrian",
+  "last_name": "Oprisor",
+  "username": "adioprisor",
+  "password": "adi",
+  "created_at": {
+    "$date": "2023-06-21T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649335a9ae622d6458ddaecd"
+  },
+  "user_id": 4,
+  "first_name": "Ion",
+  "last_name": "Popescu",
+  "username": "ion",
+  "password": "ion",
+  "created_at": {
+    "$date": "2023-06-21T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649335a9ae622d6458ddaece"
+  },
+  "user_id": 5,
+  "first_name": "Vasile",
+  "last_name": "Afloarei",
+  "username": "vasile",
+  "password": "vasile",
+  "created_at": {
+    "$date": "2023-06-21T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649335a9ae622d6458ddaecf"
+  },
+  "user_id": 6,
+  "first_name": "Andreea",
+  "last_name": "Amariei",
+  "username": "andreea",
+  "password": "andreea",
+  "created_at": {
+    "$date": "2023-06-21T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649335a9ae622d6458ddaed0"
+  },
+  "user_id": 7,
+  "first_name": "Eliza",
+  "last_name": "Popescu",
+  "username": "eliza",
+  "password": "eliza",
+  "created_at": {
+    "$date": "2023-06-21T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649335a9ae622d6458ddaed1"
+  },
+  "user_id": 8,
+  "first_name": "Tudor",
+  "last_name": "Miron",
+  "username": "tudor",
+  "password": "tudor",
+  "created_at": {
+    "$date": "2023-06-21T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649335a9ae622d6458ddaed2"
+  },
+  "user_id": 9,
+  "first_name": "Darian",
+  "last_name": "Maria",
+  "username": "darian",
+  "password": "darian",
+  "created_at": {
+    "$date": "2023-06-21T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "649428a9740cc22b326b4651"
+  },
+  "user_id": 10,
+  "first_name": "Emi",
+  "last_name": "Munteanu",
+  "username": "emi",
+  "password": "emi",
+  "created_at": {
+    "$date": "2023-06-21T00:00:00.000Z"
+  }
+}]
