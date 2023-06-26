@@ -49,7 +49,7 @@ public class SignUpController {
                 !usernameTextField.getText().isBlank() && !passwordField.getText().isBlank()) {
             this.mySQLConnection.connect();
 
-            if (!this.mySQLConnection.checkIfUserExists(usernameTextField.getText(), passwordField.getText())) {
+            if (!this.mySQLConnection.checkIfUserExistsSI(usernameTextField.getText(), passwordField.getText())) {
                 ((MySQLConnection) this.mySQLConnection).insertNewUser(
                         firstNameTextField.getText(), lastNameTextField.getText(),
                         usernameTextField.getText(), passwordField.getText());

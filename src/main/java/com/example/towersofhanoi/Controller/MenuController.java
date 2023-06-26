@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class MenuController {
 
     /**
      * Handles the action when the play button is clicked.
-     * Hides the current window and opens the play view.
+     * Opens the play view and makes it possible to be opened at the same time with the tutorial window.
      *
      * @param e the action event
      * @throws IOException if an error occurs during the opening of the play view
@@ -49,9 +50,15 @@ public class MenuController {
     public void playButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
-        thisStage.hide();
-        PlayView play = new PlayView();
-        play.start(new Stage());
+        PlayView playView = new PlayView();
+        Stage playerGameStage = new Stage();
+        playerGameStage.initModality(Modality.NONE); // or Modality.WINDOW_MODAL
+        playerGameStage.initOwner(thisStage);
+        try {
+            playView.start(playerGameStage);
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
     }
 
     /**
@@ -67,7 +74,6 @@ public class MenuController {
         Thread tutorialThread = new Thread(new TutorialThread(thisStage));
         tutorialThread.start();
     }
-
     /**
      * Handles the action when the options button is clicked.
      * Hides the current window and opens the options view.
@@ -78,9 +84,15 @@ public class MenuController {
     public void optionsButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
-        thisStage.hide();
-        OptionsView options = new OptionsView();
-        options.start(new Stage());
+        OptionsView optionsView = new OptionsView();
+        Stage optionsStage = new Stage();
+        optionsStage.initModality(Modality.NONE); // or Modality.WINDOW_MODAL
+        optionsStage.initOwner(thisStage);
+        try {
+            optionsView.start(thisStage);
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
     }
 
     /**

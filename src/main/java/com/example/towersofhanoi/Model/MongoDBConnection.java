@@ -76,7 +76,22 @@ public class MongoDBConnection implements DatabaseConnection<Document> {
         cursor.close();
         return exists;
     }
-
+    /**
+     * Checks if a user with the given username or password exists in the database.
+     *
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return true if the user exists, false otherwise
+     */
+    @Override
+    public boolean checkIfUserExistsSI(final String username, final String password) {
+        MongoCollection<Document> collection = this.mongoDatabase.getCollection(COLLECTIONS[0]); // Get the "users" collection
+        Document query = new Document("username", username).append("password", password); // Create a query to check if the user exists
+        MongoCursor<Document> cursor = collection.find(query).iterator(); // Retrieve documents matching the query
+        boolean exists = cursor.hasNext(); // Check if any matching document is found
+        cursor.close();
+        return exists;
+    }
     /**
      * Retrieves the user document for the given username.
      *

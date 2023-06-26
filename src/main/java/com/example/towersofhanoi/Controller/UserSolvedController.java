@@ -77,7 +77,6 @@ public class UserSolvedController {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.hide();
-
         PlayView playView = new PlayView();
         playView.start(new Stage());
     }

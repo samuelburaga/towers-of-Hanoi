@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.towersofhanoi.Controller.SettingsController">
+<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.towersofhanoi.Controller.SettingsController">
    <children>
       <Label fx:id="settingsLabel" layoutX="273.0" layoutY="73.0" text="SETTINGS">
          <font>
@@ -40,6 +40,16 @@
       <Button fx:id="deleteAccountButton" layoutX="342.0" layoutY="826.0" mnemonicParsing="false" onAction="#deleteAccountButtonOnAction" prefHeight="68.0" prefWidth="325.0" style="-fx-background-color: red;" text="DELETE ACCOUNT" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Mongolian Baiti" size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="backButton" layoutX="75.0" layoutY="836.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="49.0" prefWidth="91.0" style="-fx-background-color: #FA8163;" text="Back" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Mongolian Baiti" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="quitButton" layoutX="834.0" layoutY="836.0" mnemonicParsing="false" onAction="#quitButtonOnAction" prefHeight="49.0" prefWidth="91.0" style="-fx-background-color: #FA8163;" text="Quit" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Mongolian Baiti" size="25.0" />
          </font>
       </Button>
    </children>

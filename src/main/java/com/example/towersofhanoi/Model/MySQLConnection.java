@@ -184,7 +184,31 @@ public class MySQLConnection implements DatabaseConnection<ResultSet> {
         }
         return false;
     }
-
+    /**
+     * Checks if a user exists in the database with the given username and password.
+     *
+     * @param username the username to check
+     * @param password the password to check
+     * @return true if the user exists, false otherwise
+     */
+    @Override
+    public boolean checkIfUserExistsSI(final String username, final String password) {
+        String query = "SELECT EXISTS (SELECT * FROM " + this.tables[0] + " WHERE username = ? OR password = ?)";
+        String[] variables = new String[2];
+        variables[0] = username;
+        variables[1] = password;
+        ResultSet check = this.executeQueryWithVariables(query, variables);
+        try {
+            if (check.next()) {
+                int exists = check.getInt(1);
+                boolean existsResult = (exists == 1);
+                return existsResult;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     /**
      * Deletes a user account from the database with the given username.
      *

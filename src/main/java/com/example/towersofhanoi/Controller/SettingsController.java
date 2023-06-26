@@ -4,6 +4,7 @@ import com.example.towersofhanoi.Model.DatabaseConnection;
 import com.example.towersofhanoi.Model.MongoDBConnection;
 import com.example.towersofhanoi.Model.MySQLConnection;
 import com.example.towersofhanoi.Model.User;
+import com.example.towersofhanoi.View.MenuView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,6 +12,8 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 /**
  * The SettingsController class is responsible for controlling the user's account information.
@@ -23,10 +26,10 @@ public class SettingsController {
     private Button deleteAccountButton;
     @FXML
     private Button previousClickedButton;
-
+    @FXML
+    private Button backButton, quitButton;
     private String defaultColor = "-fx-background-color: #333E41;";
     private String clickedColor = "-fx-background-color: #0FB4BB;";
-
     private DatabaseConnection mySQLConnection, mongoDBConnection;
 
     /**
@@ -79,10 +82,8 @@ public class SettingsController {
         }
         changeUsernameButton.setStyle(clickedColor);
         previousClickedButton = changeUsernameButton;
-
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Change Username");
-
         TextField usernameField = new TextField();
         Button changeButton = new Button("Change Username");
         changeButton.setId("changeButton");
@@ -90,9 +91,7 @@ public class SettingsController {
         VBox content = new VBox(label, usernameField, changeButton);
         content.setSpacing(10);
         dialog.getDialogPane().setContent(content);
-
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-
         EventHandler<ActionEvent> changeButtonHandler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -147,11 +146,9 @@ public class SettingsController {
         confirmationAlert.setTitle("Delete Account");
         confirmationAlert.setHeaderText(null);
         confirmationAlert.setContentText("Are you sure you want to delete your account?");
-
         ButtonType yesButton = new ButtonType("Yes");
         ButtonType cancelButton = new ButtonType("Cancel", ButtonType.CANCEL.getButtonData());
         confirmationAlert.getButtonTypes().setAll(yesButton, cancelButton);
-
         confirmationAlert.showAndWait().ifPresent(buttonType -> {
             if (buttonType == yesButton) {
                 mySQLConnection.connect();
@@ -162,5 +159,28 @@ public class SettingsController {
             }
         });
     }
-
+    /**
+     * Handles the action event when the back button is clicked.
+     * Hides the current stage and goes back to the menu view.
+     *
+     * @param e The ActionEvent object representing the back button click event.
+     * @throws IOException If an I/O error occurs while loading the play view.
+     */
+    public void backButtonOnAction(ActionEvent e) throws IOException {
+        Node node = (Node) e.getSource();
+        Stage thisStage = (Stage) node.getScene().getWindow();
+        thisStage.hide();
+        MenuView menu = new MenuView();
+        menu.start(new Stage());
+    }
+    /**
+     * Handles the action when the quit button is clicked.
+     * Closes the current window.
+     *
+     * @param e the action event
+     */
+    public void quitButtonOnAction(ActionEvent e) {
+        Stage stage = (Stage) quitButton.getScene().getWindow();
+        stage.close();
+    }
 }

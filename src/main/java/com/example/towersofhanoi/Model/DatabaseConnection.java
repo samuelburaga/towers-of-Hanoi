@@ -28,7 +28,14 @@ public interface DatabaseConnection<T> {
      * @return true if the user exists, false otherwise
      */
     boolean checkIfUserExists(final String username, final String password);
-
+    /**
+     * Checks if a user with the specified username or password exists in the database.
+     *
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return true if the user exists, false otherwise
+     */
+    boolean checkIfUserExistsSI(final String username, final String password);
     /**
      * Deletes the account associated with the specified username from the database.
      *
