@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class Statistics extends Application {
-
     public static void main(String[] args) {
         launch(args);
     }

@@ -8,7 +8,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 
@@ -31,5 +30,4 @@ public class StatisticsController {
         mySQLConnection.connect();
         ((MySQLConnection) mySQLConnection).extractStatistics(statisticsTable);
     }
-
 }

@@ -1,10 +1,7 @@
 package com.example.towersofhanoi;
 
-import com.example.towersofhanoi.Controller.TutorialController;
 import javafx.application.Platform;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 
 import java.util.concurrent.TimeUnit;
 
@@ -41,13 +38,8 @@ public class AutomaticGame extends Game {
     }
     public void moveDisk(char fromRod, char toRod) {
         Platform.runLater(() -> {
-//            Pane fromPane = getRodPane(fromRod);
-//            Pane toPane = getRodPane(toRod);
-//            Rectangle disk = (Rectangle) fromPane.getChildren().remove(fromPane.getChildren().size() - 1);
-//            toPane.getChildren().add(disk);
             Pane fromPane = getRodPane(fromRod);
             Pane toPane = getRodPane(toRod);
-
             switch (fromRod + "To" + toRod) {
                 case "AToB":
                     if (AToBButton != null) {
@@ -90,7 +82,8 @@ public class AutomaticGame extends Game {
         });
         try {
             TimeUnit.MILLISECONDS.sleep((long) (4 * moveAnimationSpeed.toMillis()));
-        } catch (InterruptedException e) {
+        }
+        catch (InterruptedException e) {
             e.printStackTrace();
         }
         moveButton.setStyle("-fx-background-color: #FA8163;");

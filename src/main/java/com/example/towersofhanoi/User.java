@@ -14,7 +14,8 @@ public class User {
                 User.last_name = resultSet.getString("last_name");
                 User.username = resultSet.getString("username");
             }
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex) {
             ex.printStackTrace();
             // Handle the exception appropriately (e.g., show an error message)
         }

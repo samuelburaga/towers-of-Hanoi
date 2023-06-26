@@ -1,14 +1,10 @@
 package com.example.towersofhanoi.Controller;
 
-import com.example.towersofhanoi.Game;
-import com.example.towersofhanoi.HelloApplication;
 import com.example.towersofhanoi.Tutorial;
 import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,7 +16,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.sql.SQLOutput;
 
 public class TutorialController {
     @FXML

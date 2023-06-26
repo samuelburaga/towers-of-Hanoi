@@ -1,7 +1,5 @@
 package com.example.towersofhanoi;
 
-import java.sql.Time;
-
 public class StatisticsData <T> {
     private String usernameColumn;
     private int pointsColumn, disksColumn;

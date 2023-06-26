@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Options extends Application {
-
     public static void main(String[] args) {
         launch(args);
     }

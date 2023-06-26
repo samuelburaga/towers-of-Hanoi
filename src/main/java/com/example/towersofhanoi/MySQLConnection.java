@@ -2,7 +2,6 @@ package com.example.towersofhanoi;
 
 import javafx.scene.control.TableView;
 
-import java.lang.invoke.MethodType;
 import java.sql.*;
 
 public class MySQLConnection implements DatabaseConnection <ResultSet> {

@@ -1,22 +1,13 @@
 package com.example.towersofhanoi;
 
-import com.example.towersofhanoi.Controller.TutorialController;
-import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
-import javafx.application.Platform;
 import javafx.geometry.Bounds;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-
-import java.sql.SQLOutput;
-import java.util.concurrent.TimeUnit;
-
-import static java.lang.Math.min;
 
 public abstract class Game {
     public static byte DISKS = 2;
@@ -31,15 +22,12 @@ public abstract class Game {
     protected Pane rodA, rodB, rodC; // Add references to the rod panes
     public Button moveButton;
     protected Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
-
     public byte getNumberOfDisks() {
         return numberOfDisks;
     }
-
     public Game() {
 
     }
-
     public void setRods(Pane A, Pane B, Pane C) {
         rodA = A;
         rodB = B;
@@ -56,9 +44,7 @@ public abstract class Game {
         CToAButton = CA;
         CToBButton = CB;
     }
-
     public abstract boolean isGameOver();
-
     protected Pane getRodPane(char rod) {
         switch (rod) {
             case 'A':
@@ -71,7 +57,6 @@ public abstract class Game {
                 throw new IllegalArgumentException("Invalid rod: " + rod);
         }
     }
-
     public abstract void moveDisk(char fromRod, char toRod);
     protected void animateDiskMovement(Pane fromPane, Pane toPane) {
         Rectangle disk = (Rectangle) fromPane.getChildren().get(fromPane.getChildren().size() - 1); // Assuming the top disk is the first child

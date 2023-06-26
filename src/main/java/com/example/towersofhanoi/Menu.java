@@ -3,11 +3,8 @@ package com.example.towersofhanoi;
 import com.example.towersofhanoi.Controller.MenuController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javax.sound.sampled.*;
 
 import java.io.File;
@@ -20,7 +17,7 @@ public class Menu extends Application {
         launch(args);
     }
     @Override
-        public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
 
@@ -48,7 +45,8 @@ public class Menu extends Application {
                     musicPlays = true;
                 }
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }

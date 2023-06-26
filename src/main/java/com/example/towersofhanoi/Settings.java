@@ -1,13 +1,11 @@
 package com.example.towersofhanoi;
 
-import com.example.towersofhanoi.Controller.TutorialController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLOutput;
 
 public class Settings extends Application {
     public static void main(String[] args) {

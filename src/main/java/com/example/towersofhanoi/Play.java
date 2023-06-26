@@ -1,7 +1,6 @@
 package com.example.towersofhanoi;
 
 import com.example.towersofhanoi.Controller.PlayController;
-import com.example.towersofhanoi.Controller.TutorialController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

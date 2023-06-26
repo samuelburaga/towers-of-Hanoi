@@ -7,7 +7,6 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 
-
 public class TutorialThread implements Runnable {
     private Window ownerWindow;
     public TutorialThread() {
@@ -24,7 +23,8 @@ public class TutorialThread implements Runnable {
             tutorialStage.initModality(Modality.NONE);
             try {
                 tutorial.start(tutorialStage);
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });

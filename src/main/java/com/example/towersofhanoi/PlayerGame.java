@@ -48,10 +48,6 @@ public class PlayerGame extends Game {
     }
     public void moveDisk(char fromRod, char toRod) {
         Platform.runLater(() -> {
- //           Pane fromPane = getRodPane(fromRod);
-//            Pane toPane = getRodPane(toRod);
-//            Rectangle disk = (Rectangle) fromPane.getChildren().remove(fromPane.getChildren().size() - 1);
-//            toPane.getChildren().add(disk);
             Pane fromPane = getRodPane(fromRod);
             Pane toPane = getRodPane(toRod);
             switch (fromRod + "To" + toRod) {
@@ -95,7 +91,8 @@ public class PlayerGame extends Game {
         });
         try {
             TimeUnit.MILLISECONDS.sleep((long) (4 * moveAnimationSpeed.toMillis()));
-        } catch (InterruptedException e) {
+        }
+        catch (InterruptedException e) {
             e.printStackTrace();
         }
         moveButton.setStyle("-fx-background-color: #FA8163;");
