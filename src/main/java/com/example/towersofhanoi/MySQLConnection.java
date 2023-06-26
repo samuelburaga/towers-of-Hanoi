@@ -2,17 +2,26 @@ package com.example.towersofhanoi;
 
 import javafx.scene.control.TableView;
 
+import java.lang.invoke.MethodType;
 import java.sql.*;
 
 public class MySQLConnection implements DatabaseConnection <ResultSet> {
-    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver"; // JDBC driver
-    private static final String USERNAME = "root", PASSWORD = "hackerman"; // the username and password of the database
-    private static final String HOSTNAME = "localhost", PORT = "3306"; // hostname and port
-    public static final String database = "towers-of-hanoi"; // the name of the database
-    private static final String JDBC_URL = "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + database; // JDBC URL
+    private String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver"; // JDBC driver
+    private String USERNAME = null, PASSWORD = null; // the username and password of the database
+    private String HOSTNAME = null, PORT = null; // hostname and port
+    public String database = null; // the name of the database
+    private String JDBC_URL = null; // JDBC URL
     public static final String [] tables = {"users", "statistics", "achievements", "notifications", "complaints"};
     private Connection connection; // data member used for creating a connection with the database
     private Statement statement; // data member used for creating a statement
+    public MySQLConnection() {
+        this.USERNAME = "root";
+        this.PASSWORD = "hackerman";
+        this.HOSTNAME = "localhost";
+        this.PORT = "3306";
+        this.database = "towers-of-hanoi";
+        this.JDBC_URL = "jdbc:mysql://" + this.HOSTNAME + ":" + this.PORT + "/" + this.database;
+    } // constructor
     public void loadDriver() {
         try {
             Class.forName(JDBC_DRIVER);

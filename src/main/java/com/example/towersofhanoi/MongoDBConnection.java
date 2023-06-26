@@ -1,6 +1,6 @@
 package com.example.towersofhanoi;
 
-import com.mongodb.client.MongoClient;
+import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -22,17 +22,24 @@ import javafx.scene.control.TableView;
 public class MongoDBConnection implements DatabaseConnection <Document>{
     private MongoDatabase mongoDatabase;
     private MongoClient mongoClient;
-    private static final String database = "towers-of-Hanoi";
+    private String HOSTNAME = null;
+    private int PORT = -1;
+    private String database = null;
     private static final String [] COLLECTIONS = {"users", "statistics", "achievements", "notifications", "complaints", "auto_increments"};
+    public MongoDBConnection() {
+        this.HOSTNAME = "localhost";
+        this.PORT = 27017;
+        this.database = "towers-of-Hanoi";
+    } // constructor
     @Override
     public void connect() {
-
+        this.mongoClient = new MongoClient(HOSTNAME, PORT);
+        this.mongoDatabase = mongoClient.getDatabase(database);
     }
     @Override
     public void disconnect() {
         if (this.mongoClient != null) {
             this.mongoClient.close();
-            System.out.println("Disconnected from MongoDB");
         }
     }
     @Override

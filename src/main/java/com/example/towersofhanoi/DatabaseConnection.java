@@ -3,8 +3,6 @@ package com.example.towersofhanoi;
 import javafx.scene.control.TableView;
 
 public interface DatabaseConnection <T> {
-    public static final String HOSTNAME = "localhost";
-    public static final String PORT = "3306";
     void connect(); // connects with the database
     void disconnect(); // disconnects from the database
     boolean checkIfUserExists(final String username, final String password);
