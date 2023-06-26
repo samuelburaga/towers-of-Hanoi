@@ -5,17 +5,14 @@ import javafx.scene.control.TableView;
 import java.sql.*;
 
 public class MySQLConnection implements DatabaseConnection <ResultSet> {
-    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String USERNAME = "root", PASSWORD = "hackerman";
-    private static final String HOSTNAME = "localhost", PORT = "3306";
-    public static final String database = "towers-of-hanoi";
-    private static final String JDBC_URL = "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + database;
+    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver"; // JDBC driver
+    private static final String USERNAME = "root", PASSWORD = "hackerman"; // the username and password of the database
+    private static final String HOSTNAME = "localhost", PORT = "3306"; // hostname and port
+    public static final String database = "towers-of-hanoi"; // the name of the database
+    private static final String JDBC_URL = "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + database; // JDBC URL
     public static final String [] tables = {"users", "statistics", "achievements", "notifications", "complaints"};
-    private Connection connection;
-    private Statement statement;
-    public MySQLConnection() {
-
-    }
+    private Connection connection; // data member used for creating a connection with the database
+    private Statement statement; // data member used for creating a statement
     public void loadDriver() {
         try {
             Class.forName(JDBC_DRIVER);
@@ -24,7 +21,7 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
             System.out.println("Error. Couldn't load the driver!\n" + e);
             return;
         }
-    }
+    } // loads the JDBC driver
     @Override
     public void connect() {
         try {
@@ -39,15 +36,14 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
     public void disconnect() {
 
     }
-    public void createStatement(Connection connection)
-    {
+    public void createStatement(Connection connection) {
         try {
             this.statement = connection.createStatement();
         }
         catch (SQLException e){
             e.printStackTrace();
         }
-    }
+    } // creates a statement using the connection parameter
     public ResultSet executeQuery(final String query) {
         try {
             ResultSet resultSet = this.statement.executeQuery(query);
@@ -57,17 +53,7 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
             e.printStackTrace();
         }
         return null;
-    }
-    //    public ResultSet executeUpdate(final String query) {
-//        try {
-//            ResultSet resultSet = this.statement.executeUpdate(query);
-//            return resultSet;
-//        }
-//        catch (SQLException e){
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    } // executes a SQL query that doesn't contain variable
     public ResultSet executeQueryWithVariables(String query, String[] variables) {
         try {
             PreparedStatement ps = this.connection.prepareStatement(query);
@@ -81,7 +67,7 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
             e.printStackTrace();
         }
         return null;
-    }
+    } // executes a SQL query that contains variable
     public void executeUpdateWithVariables(String query, String[] variables) {
         try {
             PreparedStatement ps = this.connection.prepareStatement(query);
@@ -93,7 +79,7 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
         catch (SQLException e){
             e.printStackTrace();
         }
-    }
+    } // executes a SQL update query that contains variable
     public void printQuery(final ResultSet resultSet) {
         try {
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
@@ -111,7 +97,7 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    } // prints the reuslt of a SQL query
     @Override
     public boolean checkIfUserExists(final String username, final String password) {
         String query = "SELECT EXISTS (SELECT * FROM " + this.tables[0] + " WHERE username = ? AND password = ?)";
@@ -138,7 +124,6 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
         String[] variables = new String[1];
         variables[0] = User.username;
         this.executeUpdateWithVariables(query, variables);
-        System.out.println("Account deleted.");
     }
     @Override
     public void updateUsername(final String currentUsername, final String newUsername) {
@@ -158,7 +143,7 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
     }
     @Override
     public void insertNewUser(final String first_name, final String last_name, final String username, final String password) {
-        String query = "INSERT INTO users (first_name, last_name, username, password, created_at) VALUES (?, ?, ?, ?, NOW())";
+        String query = "INSERT INTO " + this.tables[0] + " (first_name, last_name, username, password, created_at) VALUES (?, ?, ?, ?, NOW())";
         String[] variables = new String[4];
         variables[0] = first_name;
         variables[1] = last_name;
@@ -170,26 +155,25 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
     public int getLatestUserId() {
         int user_id = -1; // Default value if no user_id is found
         try {
-            // Create a statement object
-            // Execute the query
-            ResultSet resultSet = this.executeQuery("SELECT MAX(user_id) FROM users");
+            String query = "SELECT MAX(user_id) FROM users";
+            ResultSet resultSet = this.executeQuery(query);
             // Check if the result set has a value
             if (resultSet.next()) {
                 user_id = resultSet.getInt(1);
             }
-            // Close the result set and statement
-            resultSet.close();
-            statement.close();
-        } catch (SQLException e) {
+            resultSet.close();             // Close the result set and statement
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
         return user_id;
     }
     @Override
     public void extractStatistics(TableView<StatisticsData> statisticsTable) {
-        String query = "SELECT s.points, s.disks, s.time, u.username FROM statistics s " +
+        String query =
+                "SELECT s.points, s.disks, s.time, u.username FROM statistics s " +
                 "JOIN users u ON s.users_user_id = u.user_id " +
-                "ORDER BY s.points DESC, s.time ASC, s.disks DESC, u.user_id ASC LIMIT 10";
+                "ORDER BY s.points DESC, s.time ASC, s.disks DESC, u.user_id ASC LIMIT 10"; // query that extracts the 10 best performances
         ResultSet resultSet = this.executeQuery(query);
         try {
             while (resultSet.next()) {
@@ -197,14 +181,12 @@ public class MySQLConnection implements DatabaseConnection <ResultSet> {
                 int disks = resultSet.getInt("disks");
                 Time time = resultSet.getTime("time");
                 String username = resultSet.getString("username");
-                StatisticsData data = new StatisticsData(username, points, time, disks);
-                statisticsTable.getItems().add(data);
+                StatisticsData data = new StatisticsData(username, points, time, disks); // create StatisticsData object
+                statisticsTable.getItems().add(data); // add the data to the table
             }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-    public static void main(String[] args) {
     }
 }

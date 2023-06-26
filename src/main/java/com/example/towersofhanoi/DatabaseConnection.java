@@ -2,18 +2,16 @@ package com.example.towersofhanoi;
 
 import javafx.scene.control.TableView;
 
-import java.sql.SQLException;
-
 public interface DatabaseConnection <T> {
     public static final String HOSTNAME = "localhost";
     public static final String PORT = "3306";
-    void connect();
-    void disconnect();
+    void connect(); // connects with the database
+    void disconnect(); // disconnects from the database
     boolean checkIfUserExists(final String username, final String password);
-    void deleteAccount(final String username);
-    void updateUsername(final String currentUsername, final String newUsername);
-    T getUserByUsername(final String username);
-    int getLatestUserId();
-    void insertNewUser(final String first_name, final String last_name, final String username, final String password);
-    void extractStatistics(TableView<StatisticsData> statisticsTable);
+    void deleteAccount(final String username); // deletes account
+    void updateUsername(final String currentUsername, final String newUsername); // updates username
+    T getUserByUsername(final String username); // gets user information using his username
+    int getLatestUserId(); // gets the id of the latest added user (the auto_increment current value)
+    void insertNewUser(final String first_name, final String last_name, final String username, final String password); // inserts new user in to the database
+    void extractStatistics(TableView<StatisticsData> statisticsTable); // extracts data from the statistics table
 }
