@@ -18,7 +18,7 @@ public abstract class Game {
     public long startTime, endTime, duration;
     public Time time;
     public int score;
-    protected Duration moveAnimationSpeed = Duration.seconds(0.1); // move animation speed
+    protected Duration moveAnimationSpeed = Duration.seconds(0.3); // move animation speed
     protected Thread animationThread;
     protected Pane rodA, rodB, rodC; // Add references to the rod panes
     public Button moveButton;
