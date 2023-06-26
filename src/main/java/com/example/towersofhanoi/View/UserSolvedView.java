@@ -8,11 +8,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * @author Samuel Buraga
- * @version 1.0
- */
-
-/**
  * The UserSolvedView class is responsible for displaying the user's solution statisitcs.
  * It extends the JavaFX Application class and provides the necessary methods for initializing and showing the user's solution screen.
  */
