@@ -24,7 +24,7 @@ public class PlayerGame extends Game {
             return false; // Moving disk is larger or equal to the top disk on the "to" rod, move is not valid
         }
         return true; // Move is valid
-    }
+    } // check if the move is valid
     public boolean isGameOver() {
         byte disksOnLastRod = (byte) rodC.getChildren().size();
         gameOver = disksOnLastRod == this.getNumberOfDisks() ? true:false;
@@ -34,8 +34,8 @@ public class PlayerGame extends Game {
     public void runAnimation(char fromRod, char toRod) {
         this.fromRod = fromRod;
         this.toRod = toRod;
-        Thread animationThread = new Thread(new PlayerGame.Animation());
-        animationThread.start();
+        Thread animationThread = new Thread(new PlayerGame.Animation()); // create the thread
+        animationThread.start(); // start the thread
     }
     private class Animation implements Runnable {
         public Animation() {
@@ -45,11 +45,12 @@ public class PlayerGame extends Game {
         public void run() {
             moveDisk(fromRod, toRod);
         }
-    }
+    }  // thread class
     public void moveDisk(char fromRod, char toRod) {
         Platform.runLater(() -> {
             Pane fromPane = getRodPane(fromRod);
             Pane toPane = getRodPane(toRod);
+            // get the moveButton
             switch (fromRod + "To" + toRod) {
                 case "AToB":
                     if (AToBButton != null) {
@@ -83,12 +84,12 @@ public class PlayerGame extends Game {
                     }
                     break;
                 default:
-                    // handle invalid move
                     break;
             }
-            moveButton.setStyle("-fx-background-color: #0FB4BB;");
-            animateDiskMovement(fromPane, toPane);
+            moveButton.setStyle("-fx-background-color: #0FB4BB;"); // Set the color for the newly clicked button
+            animateDiskMovement(fromPane, toPane); // run the animation
         });
+        // synchronize the execution of the code and allow the animation to finish before setting the button's style to #FA8163
         try {
             TimeUnit.MILLISECONDS.sleep((long) (4 * moveAnimationSpeed.toMillis()));
         }

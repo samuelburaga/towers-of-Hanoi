@@ -10,7 +10,7 @@ public class AutomaticGame extends Game {
         byte disksOnLastRod = (byte) rodC.getChildren().size();
         gameOver = disksOnLastRod == this.numberOfDisks ? true:false;
         return gameOver;
-    }
+    } // check if the game is over
     public void recursiveHanoi(byte numberOfDisks, char fromRod, char toRod, char auxRod) {
         if (numberOfDisks == 0) {
             return;
@@ -19,10 +19,10 @@ public class AutomaticGame extends Game {
         // System.out.println("Move disk " + numberOfDisks + " from rod " + fromRod + " to rod " + toRod);
         moveDisk(fromRod, toRod);
         recursiveHanoi((byte) (numberOfDisks - 1), auxRod, toRod, fromRod);
-    }
+    } // Towers of Hanoi recursive algorithm
     public void runAlgorithm(Runnable onFinishCallback) {
-        animationThread = new Thread(AutomaticGame.this.new Animation(onFinishCallback));
-        animationThread.start();
+        animationThread = new Thread(AutomaticGame.this.new Animation(onFinishCallback)); // create the thread
+        animationThread.start(); // start the thread
     }
     private class Animation implements Runnable {
         private final Runnable onFinishCallback;
@@ -35,11 +35,12 @@ public class AutomaticGame extends Game {
             animationThread = null; // Set the animation thread to null after completion
             Platform.runLater(onFinishCallback);
         }
-    }
+    } // thread class
     public void moveDisk(char fromRod, char toRod) {
         Platform.runLater(() -> {
             Pane fromPane = getRodPane(fromRod);
             Pane toPane = getRodPane(toRod);
+            // get the moveButton
             switch (fromRod + "To" + toRod) {
                 case "AToB":
                     if (AToBButton != null) {
@@ -73,19 +74,18 @@ public class AutomaticGame extends Game {
                     }
                     break;
                 default:
-                    // handle invalid move
                     break;
             }
-            moveButton.setStyle("-fx-background-color: #0FB4BB;");
-            // animateDiskMovement(disk, toPane);
-            animateDiskMovement(fromPane, toPane);
+            moveButton.setStyle("-fx-background-color: #0FB4BB;"); // Set the color for the newly clicked button
+            animateDiskMovement(fromPane, toPane); // run the animation
         });
+        // synchronize the execution of the code and allow the animation to finish before setting the button's style to #FA8163
         try {
             TimeUnit.MILLISECONDS.sleep((long) (4 * moveAnimationSpeed.toMillis()));
         }
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        moveButton.setStyle("-fx-background-color: #FA8163;");
+        moveButton.setStyle("-fx-background-color: #FA8163;"); // Revert the color of the previously clicked label
     }
 }

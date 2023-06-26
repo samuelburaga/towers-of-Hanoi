@@ -21,12 +21,12 @@ public class Menu extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
         MenuController menuController = fxmlLoader.getController(); // get the controller
-        menuController.setUsername();
+        menuController.setUsername(); // set the username
         primaryStage.setMaximized(true);
         primaryStage.setTitle("Menu");
         primaryStage.setScene(scene);
         primaryStage.show();
-        backgroundMusic();
+        backgroundMusic(); // play music
     }
     public static void backgroundMusic() {
         String filePath = "/sounds/Stay Retro.wav"; // Path relative to the "res" folder

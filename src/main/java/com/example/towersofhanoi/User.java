@@ -19,7 +19,7 @@ public class User {
             ex.printStackTrace();
             // Handle the exception appropriately (e.g., show an error message)
         }
-    }
+    } // get data from MySQL database
     public static void updateData(final Document document) {
         if (document != null) {
             User.user_id = document.getInteger("user_id");
@@ -29,7 +29,7 @@ public class User {
         } else {
             System.out.println("User not found.");
         }
-    }
+    } // get data from mongoDB database
     public static void updateData(final int user_id, final String first_name, final String last_name, final String username) {
         User.user_id = user_id;
         User.first_name = first_name;

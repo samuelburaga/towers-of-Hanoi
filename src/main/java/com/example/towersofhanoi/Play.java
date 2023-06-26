@@ -17,11 +17,11 @@ public class Play extends Application {
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Play.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
-        PlayController playController = fxmlLoader.getController();
-        createGame();
-        playController.drawDisks();
-        playController.connectGameToUI();
-        playController.startGame();
+        PlayController playController = fxmlLoader.getController(); // get the controller
+        createGame(); // create the game
+        playController.drawDisks(); // draw the disks
+        playController.connectGameToUI(); // connect the game to the UI objects
+        playController.startGame(); // start the game
         primaryStage.setTitle("Play");
         primaryStage.setScene(scene);
         primaryStage.show();

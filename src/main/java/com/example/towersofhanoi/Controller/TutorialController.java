@@ -44,7 +44,6 @@ public class TutorialController {
         });
     } // start the automatic game
     public void connectGameToUI() {
-        Tutorial.automaticGame.setAnchorPane(anchorPane);
         Tutorial.automaticGame.setRods(rodA, rodB, rodC);
         Tutorial.automaticGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
     } // connect the game to the UI objects

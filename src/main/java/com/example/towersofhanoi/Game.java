@@ -16,25 +16,18 @@ public abstract class Game {
     public static boolean gameOver = false;
     public long startTime, endTime, duration;
     public int score;
-    public static Duration moveAnimationSpeed = Duration.seconds(0.1);
+    public static Duration moveAnimationSpeed = Duration.seconds(0.1); // move animation speed
     protected Thread animationThread;
-    protected static AnchorPane anchorPane;
     protected Pane rodA, rodB, rodC; // Add references to the rod panes
     public Button moveButton;
-    protected Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
+    protected Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton; // Add references to the move buttons
     public byte getNumberOfDisks() {
         return numberOfDisks;
-    }
-    public Game() {
-
     }
     public void setRods(Pane A, Pane B, Pane C) {
         rodA = A;
         rodB = B;
         rodC = C;
-    }
-    public void setAnchorPane(AnchorPane anchorPane) {
-        Game.anchorPane = anchorPane;
     }
     public void setButtons(Button AB, Button AC, Button BA, Button BC, Button CA, Button CB) {
         AToBButton = AB;
@@ -44,7 +37,7 @@ public abstract class Game {
         CToAButton = CA;
         CToBButton = CB;
     }
-    public abstract boolean isGameOver();
+    public abstract boolean isGameOver(); // checks if the game is over
     protected Pane getRodPane(char rod) {
         switch (rod) {
             case 'A':
@@ -56,10 +49,10 @@ public abstract class Game {
             default:
                 throw new IllegalArgumentException("Invalid rod: " + rod);
         }
-    }
-    public abstract void moveDisk(char fromRod, char toRod);
+    } // returns the rod that matches the character
+    public abstract void moveDisk(char fromRod, char toRod); // gets the correct button and calls the animateDiskMovement method
     protected void animateDiskMovement(Pane fromPane, Pane toPane) {
-        Rectangle disk = (Rectangle) fromPane.getChildren().get(fromPane.getChildren().size() - 1); // Assuming the top disk is the first child
+        Rectangle disk = (Rectangle) fromPane.getChildren().get(fromPane.getChildren().size() - 1); // get the disk at the top
         double diskHeight = disk.getHeight();
         int index = fromPane.getChildren().indexOf(disk) + 1; // Index of the disk (starting from 1)
         Bounds fromBounds = fromPane.localToScene(fromPane.getBoundsInLocal());
@@ -86,5 +79,5 @@ public abstract class Game {
             disk.setTranslateY(0); // Reset the disk's vertical translation
         });
         sequence.play();
-    }
+    } // creates the disk move animation
 }
