@@ -1,5 +1,6 @@
 package com.example.towersofhanoi.Controller;
 
+import com.example.towersofhanoi.Model.PlayerGame;
 import com.example.towersofhanoi.View.PlayView;
 import com.example.towersofhanoi.View.TutorialView;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import javax.swing.text.html.Option;
 import java.io.IOException;
 public class PlayController {
     @FXML
@@ -17,12 +19,16 @@ public class PlayController {
     @FXML
     private Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
     private String move;
+    private PlayerGame playerGame;
+    public PlayController() {
+        this.playerGame = new PlayerGame(OptionsController.numberOfDisks, OptionsController.moveAnimationSpeed);
+    }
     public void drawDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
         double diskWidth = 198.0, diskHeight = 60.0; // Adjust as needed
         double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // Adjust as needed
         double arcWidth = 30.0, arcHeight = 30.0;
-        for (byte index = 0; index < PlayView.playerGame.getNumberOfDisks(); index++) {
+        for (byte index = 0; index < this.playerGame.getNumberOfDisks(); index++) {
             Rectangle disk = new Rectangle(diskWidth - (index * 12), diskHeight);
             disk.setX(initialX + (index * 6));
             disk.setLayoutY(initialY - (index * diskHeight));
@@ -30,19 +36,19 @@ public class PlayController {
             disk.setArcWidth(arcWidth);
             // Calculate the color based on the index
             double hue = 182.0;  // Base hue value
-            double saturation = 0.92 - (index + 1) * (0.91 / PlayView.playerGame.getNumberOfDisks());  // Saturation value based on index
-            double brightness = 0.73 + (index + 1) * (0.26 / PlayView.playerGame.getNumberOfDisks());  // Adjust brightness based on index
+            double saturation = 0.92 - (index + 1) * (0.91 / this.playerGame.getNumberOfDisks());  // Saturation value based on index
+            double brightness = 0.73 + (index + 1) * (0.26 / this.playerGame.getNumberOfDisks());  // Adjust brightness based on index
             Color diskColor = Color.hsb(hue, saturation, brightness);
             disk.setFill(diskColor);
             rodA.getChildren().add(disk);
         }
     }
     public void connectGameToUI() {
-        PlayView.playerGame.setRods(rodA, rodB, rodC);
-        PlayView.playerGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
+        this.playerGame.setRods(rodA, rodB, rodC);
+        this.playerGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
     }
     public void startGame() {
-        PlayView.playerGame.startTime = System.currentTimeMillis();
+        this.playerGame.startTime = System.currentTimeMillis();
     }
     public void moveOptionOnAction(ActionEvent e) throws IOException {
         Button clickedButton = (Button) e.getSource();
@@ -50,8 +56,8 @@ public class PlayController {
         char fromRod = clickedButtonId.charAt(0);
         char toRod = clickedButtonId.charAt(3);
        // if(Play.playerGame.isGameOver() == false) {
-            if(PlayView.playerGame.isMoveValid(fromRod, toRod)) {
-                PlayView.playerGame.runAnimation(fromRod, toRod);
+            if(this.playerGame.isMoveValid(fromRod, toRod)) {
+                this.playerGame.runAnimation(fromRod, toRod);
             }
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

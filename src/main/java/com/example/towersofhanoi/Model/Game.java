@@ -10,13 +10,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public abstract class Game {
-    public static byte DISKS = 3;
     protected byte numberOfDisks = 10;
     private static long numberOfMoves = 0;
     public static boolean gameOver = false;
     public long startTime, endTime, duration;
     public int score;
-    public static Duration moveAnimationSpeed = Duration.seconds(0.1); // move animation speed
+    protected Duration moveAnimationSpeed = Duration.seconds(0.1); // move animation speed
     protected Thread animationThread;
     protected Pane rodA, rodB, rodC; // Add references to the rod panes
     public Button moveButton;

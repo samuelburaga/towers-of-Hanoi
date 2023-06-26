@@ -97,10 +97,5 @@
          </font>
       </Label>
       <Slider fx:id="moveAnimationSpeedSlider" layoutX="1343.0" layoutY="753.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="9" prefHeight="38.0" prefWidth="384.0" showTickLabels="true" showTickMarks="true" />
-      <Button fx:id="saveChangesButton" layoutX="849.0" layoutY="881.0" mnemonicParsing="false" onAction="#saveChangesButtonOnAction" prefHeight="82.0" prefWidth="232.0" style="-fx-background-color: #FA8163;" text="SAVE CHANGES" textFill="WHITE">
-         <font>
-            <Font name="Mongolian Baiti" size="25.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

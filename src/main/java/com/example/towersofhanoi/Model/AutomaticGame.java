@@ -2,10 +2,18 @@ package com.example.towersofhanoi.Model;
 
 import javafx.application.Platform;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 import java.util.concurrent.TimeUnit;
 
 public class AutomaticGame extends Game {
+    public AutomaticGame() {
+
+    }
+    public AutomaticGame(final byte numberOfDisks, final double moveAnimationSpeed) {
+        this.numberOfDisks = numberOfDisks;
+        this.moveAnimationSpeed = Duration.seconds(moveAnimationSpeed);
+    }
     public boolean isGameOver() {
         byte disksOnLastRod = (byte) rodC.getChildren().size();
         gameOver = disksOnLastRod == this.numberOfDisks ? true:false;

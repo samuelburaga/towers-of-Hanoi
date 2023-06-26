@@ -24,15 +24,15 @@ public class OptionsController implements Initializable {
     @FXML
     private Label previousClickedLabel;
     @FXML
-    private Button backButton, saveChangesButton, playNowButton;
+    private Button backButton, playNowButton;
     @FXML
     private Button previousClickedButton;
     @FXML
     private Slider moveAnimationSpeedSlider;
     private String defaultColor = "-fx-background-color: #FA8163;";
     private String clickedColor = "-fx-background-color: #0FB4BB;";
-    private byte numberOfDisks;
-    private double moveAnimationSpeed = 1.5;
+    public static byte numberOfDisks = 3;
+    public static double moveAnimationSpeed = 0.1;
     public void optionOnMouseClicked(MouseEvent e) {
         Label clickedLabel = (Label) e.getSource(); // get the label which was clicked
         numberOfDisks = Byte.parseByte(clickedLabel.getText());
@@ -54,15 +54,6 @@ public class OptionsController implements Initializable {
         MenuView menu = new MenuView();
         menu.start(new Stage());
     } // go back to the menu
-    public void saveChangesButtonOnAction(ActionEvent e) {
-        if (previousClickedButton != null) {
-            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked button
-        }
-        saveChangesButton.setStyle(clickedColor); // Set the color for the newly clicked button
-        previousClickedButton = saveChangesButton; // Update the previously clicked button
-        Game.moveAnimationSpeed = Duration.millis(moveAnimationSpeed);
-        Game.DISKS = numberOfDisks;
-    } // save the changes
     public void playNowButtonOnAction(ActionEvent e) throws IOException {
         if (previousClickedButton != null) {
             previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked button

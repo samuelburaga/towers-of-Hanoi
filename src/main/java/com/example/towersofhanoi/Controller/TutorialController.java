@@ -1,5 +1,6 @@
 package com.example.towersofhanoi.Controller;
 
+import com.example.towersofhanoi.Model.AutomaticGame;
 import com.example.towersofhanoi.View.TutorialView;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.swing.text.html.Option;
 import java.io.IOException;
 
 public class TutorialController {
@@ -26,15 +28,19 @@ public class TutorialController {
     private Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
     @FXML
     private Button solveButton;
+    private AutomaticGame automaticGame;
+    public TutorialController() {
+        this.automaticGame = new AutomaticGame(OptionsController.numberOfDisks, OptionsController.moveAnimationSpeed);
+    }
     public void solveButtonOnAction(ActionEvent e) {
         connectGameToUI();
-        TutorialView.automaticGame.startTime = System.currentTimeMillis(); // Record the start time
+        this.automaticGame.startTime = System.currentTimeMillis(); // Record the start time
         // run the algorithm
-        TutorialView.automaticGame.runAlgorithm(() -> {
-            TutorialView.automaticGame.endTime = System.currentTimeMillis(); // Record the end time
-            TutorialView.automaticGame.duration = TutorialView.automaticGame.endTime - TutorialView.automaticGame.startTime;
-            TutorialView.automaticGame.gameOver = true;
-            System.out.println("Towers of Hanoi was solved in " + TutorialView.automaticGame.duration + " milliseconds.");
+        this.automaticGame.runAlgorithm(() -> {
+            this.automaticGame.endTime = System.currentTimeMillis(); // Record the end time
+            this.automaticGame.duration = this.automaticGame.endTime - this.automaticGame.startTime;
+            this.automaticGame.gameOver = true;
+            System.out.println("Towers of Hanoi was solved in " + this.automaticGame.duration + " milliseconds.");
             try {
                 switchToSolvedScene();
             }
@@ -44,8 +50,8 @@ public class TutorialController {
         });
     } // start the automatic game
     public void connectGameToUI() {
-        TutorialView.automaticGame.setRods(rodA, rodB, rodC);
-        TutorialView.automaticGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
+        this.automaticGame.setRods(rodA, rodB, rodC);
+        this.automaticGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
     } // connect the game to the UI objects
     public void drawDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
@@ -53,7 +59,7 @@ public class TutorialController {
         double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // initial coordinates
         double arcWidth = 30.0, arcHeight = 30.0;
         // draw the disks
-        for (byte index = 0; index < TutorialView.automaticGame.getNumberOfDisks(); index++) {
+        for (byte index = 0; index < this.automaticGame.getNumberOfDisks(); index++) {
             Rectangle disk = new Rectangle(diskWidth - (index * 12), diskHeight);
             disk.setLayoutX(initialX + (index * 6));
             disk.setLayoutY(initialY - (index * diskHeight));
@@ -61,8 +67,8 @@ public class TutorialController {
             disk.setArcWidth(arcWidth);
             // Calculate the color based on the index
             double hue = 182.0;  // Base hue value
-            double saturation = 0.92 - (index + 1) * (0.91 / TutorialView.automaticGame.getNumberOfDisks());  // Saturation value based on index
-            double brightness = 0.73 + (index + 1) * (0.26 / TutorialView.automaticGame.getNumberOfDisks());  // Adjust brightness based on index
+            double saturation = 0.92 - (index + 1) * (0.91 / this.automaticGame.getNumberOfDisks());  // Saturation value based on index
+            double brightness = 0.73 + (index + 1) * (0.26 / this.automaticGame.getNumberOfDisks());  // Adjust brightness based on index
             Color diskColor = Color.hsb(hue, saturation, brightness);
             disk.setFill(diskColor);
             rodA.getChildren().add(disk);

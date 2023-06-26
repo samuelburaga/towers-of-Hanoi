@@ -3,10 +3,18 @@ package com.example.towersofhanoi.Model;
 import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 import java.util.concurrent.TimeUnit;
 
 public class PlayerGame extends Game {
+    public PlayerGame() {
+
+    }
+    public PlayerGame(final byte numberOfDisks, final double moveAnimationSpeed) {
+        this.numberOfDisks = numberOfDisks;
+        this.moveAnimationSpeed = Duration.seconds(moveAnimationSpeed);
+    }
     private char fromRod, toRod;
     public boolean isMoveValid(char fromRod, char toRod) {
         Pane fromPane = getRodPane(fromRod);
