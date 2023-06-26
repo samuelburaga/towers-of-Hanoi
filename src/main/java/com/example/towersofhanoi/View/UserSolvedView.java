@@ -15,9 +15,9 @@ public class UserSolvedView extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Solved.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserSolved.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
-        primaryStage.setTitle("Solved");
+        primaryStage.setTitle("UserSolved");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

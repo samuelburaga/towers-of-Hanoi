@@ -3,6 +3,7 @@ package com.example.towersofhanoi.Controller;
 import com.example.towersofhanoi.Model.*;
 import com.example.towersofhanoi.View.PlayView;
 import com.example.towersofhanoi.View.TutorialView;
+import com.example.towersofhanoi.View.UserSolvedView;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -75,8 +76,9 @@ public class PlayController {
                     int seconds = (int) (playerGame.duration % 60);
                     // Create a new `Time` object using the hours, minutes, and seconds
                     playerGame.time = new Time(hours, minutes, seconds);
-                    System.out.println(playerGame.score);
-                    insertStatisticsInDatabase();
+                    playerGame.points = playerGame.numberOfGoodMoves * 10 - playerGame.numberOfBadMoves;
+                    System.out.println(playerGame.points);
+                    // insertStatisticsInDatabase();
                     switchToSolvedScene();
                 }
             }
@@ -89,11 +91,12 @@ public class PlayController {
         char fromRod = clickedButtonId.charAt(0);
         char toRod = clickedButtonId.charAt(3);
         if (this.playerGame.isMoveValid(fromRod, toRod)) {
-            this.playerGame.score += 10;
+            this.playerGame.numberOfMoves++;
+            this.playerGame.numberOfGoodMoves++;
             this.playerGame.runAnimation(fromRod, toRod);
         }
         else {
-            this.playerGame.score -= 1;
+            this.playerGame.numberOfBadMoves++;
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Move");
             alert.setHeaderText(null);
@@ -107,15 +110,36 @@ public class PlayController {
         String[] variables = new String[4];
         variables[0] = Integer.toString(User.user_id);
         variables[1] = Byte.toString(this.playerGame.getNumberOfDisks());
-        variables[2] = Integer.toString(this.playerGame.score);
+        variables[2] = Integer.toString(this.playerGame.points);
         variables[3] = playerGame.time.toString();
         ((MySQLConnection) mySQLConnection).executeUpdateWithVariables(query, variables);
     }
+//    private void switchToSolvedScene() {
+//        Stage stage = (Stage) rodA.getScene().getWindow();
+//        Parent root;
+//        try {
+//            root = FXMLLoader.load(TutorialView.class.getResource("UserSolved.fxml"));
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        Scene solvedScene = new Scene(root);
+//        PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Let the animation finish
+//        pause.setOnFinished(event -> {
+//            stage.setScene(solvedScene);
+//            stage.show();
+//        });
+//        pause.play();
+//    }
+
     private void switchToSolvedScene() {
         Stage stage = (Stage) rodA.getScene().getWindow();
         Parent root;
         try {
-            root = FXMLLoader.load(TutorialView.class.getResource("Solved.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(UserSolvedView.class.getResource("UserSolved.fxml"));
+            root = fxmlLoader.load();
+            UserSolvedController controller = fxmlLoader.getController();
+            // Set the statistics in the controller
+            controller.setStatistics(this.playerGame);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -127,4 +151,5 @@ public class PlayController {
         });
         pause.play();
     }
+
 }

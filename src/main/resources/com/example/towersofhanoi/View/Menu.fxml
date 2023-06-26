@@ -28,7 +28,7 @@
                   <Font name="Mongolian Baiti" size="40.0" />
                </font>
             </Button>
-            <Button fx:id="tutorialButton" mnemonicParsing="false" onAction="#tutorialButtonOnAction" prefHeight="70.0" prefWidth="400.0" style="-fx-background-color: #0fb4bb;" text="TUTORIAL" textFill="WHITE" GridPane.rowIndex="1">
+            <Button fx:id="tutorialButton" mnemonicParsing="false" onAction="#tutorialButtonOnAction" prefHeight="70.0" prefWidth="400.0" style="-fx-background-color: #0FB4BB;" text="TUTORIAL" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="Mongolian Baiti" size="40.0" />
                </font>

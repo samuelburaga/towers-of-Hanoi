@@ -12,12 +12,12 @@ import javafx.util.Duration;
 import java.sql.Time;
 
 public abstract class Game {
-    protected byte numberOfDisks = 2;
-    private static long numberOfMoves = 0;
+    public byte numberOfDisks = 2;
+    public int numberOfMoves = 0, numberOfGoodMoves = 0, numberOfBadMoves = 0;
     public static boolean gameOver = false;
     public long startTime, endTime, duration;
     public Time time;
-    public int score;
+    public int points = 0;
     protected Duration moveAnimationSpeed = Duration.seconds(0.3); // move animation speed
     protected Thread animationThread;
     protected Pane rodA, rodB, rodC; // Add references to the rod panes
