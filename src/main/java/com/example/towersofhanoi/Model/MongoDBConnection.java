@@ -19,29 +19,54 @@ import java.util.List;
 
 import javafx.scene.control.TableView;
 
+/**
+ * The MongoDBConnection class represents a connection to a MongoDB database.
+ * It implements the DatabaseConnection interface for interacting with the database.
+ */
 public class MongoDBConnection implements DatabaseConnection<Document> {
     private MongoDatabase mongoDatabase;
     private MongoClient mongoClient;
     private String HOSTNAME = null;
     private int PORT = -1;
     private String database = null;
-    private static final String [] COLLECTIONS = {"users", "statistics", "achievements", "notifications", "complaints", "auto_increments"};
+    private static final String[] COLLECTIONS = {"users", "statistics", "achievements", "notifications", "complaints", "auto_increments"};
+
+    /**
+     * Constructor for MongoDBConnection class.
+     * Sets the default values for the MongoDB connection parameters.
+     */
     public MongoDBConnection() {
         this.HOSTNAME = "localhost";
         this.PORT = 27017;
         this.database = "towers-of-Hanoi";
-    } // constructor
+    }
+
+    /**
+     * Connects to the MongoDB database.
+     */
     @Override
     public void connect() {
         this.mongoClient = new MongoClient(HOSTNAME, PORT);
         this.mongoDatabase = mongoClient.getDatabase(database);
     }
+
+    /**
+     * Disconnects from the MongoDB database.
+     */
     @Override
     public void disconnect() {
         if (this.mongoClient != null) {
             this.mongoClient.close();
         }
     }
+
+    /**
+     * Checks if a user with the given username and password exists in the database.
+     *
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return true if the user exists, false otherwise
+     */
     @Override
     public boolean checkIfUserExists(final String username, final String password) {
         MongoCollection<Document> collection = this.mongoDatabase.getCollection(COLLECTIONS[0]); // Get the "users" collection
@@ -51,17 +76,39 @@ public class MongoDBConnection implements DatabaseConnection<Document> {
         cursor.close();
         return exists;
     }
+
+    /**
+     * Retrieves the user document for the given username.
+     *
+     * @param username the username of the user
+     * @return the user document
+     */
     @Override
-    public Document getUserByUsername(String username) {
+    public Document getUserByUsername(final String username) {
         MongoCollection<Document> collection = mongoDatabase.getCollection("users");
         Document query = new Document("username", username); // Create a query to retrieve the user based on the username
         Document userDocument = collection.find(query).first(); // Retrieve the user document
         return userDocument;
     }
+
+    /**
+     * Gets the latest user ID from the database.
+     *
+     * @return the latest user ID
+     */
     @Override
     public int getLatestUserId() {
         return 0;
     }
+
+    /**
+     * Inserts a new user into the database.
+     *
+     * @param firstName the first name of the user
+     * @param lastName  the last name of the user
+     * @param username  the username of the user
+     * @param password  the password of the user
+     */
     @Override
     public void insertNewUser(final String firstName, final String lastName, final String username, final String password) {
         MongoCollection<Document> collection = mongoDatabase.getCollection(COLLECTIONS[0]); // gets the "users" collection
@@ -75,7 +122,14 @@ public class MongoDBConnection implements DatabaseConnection<Document> {
                 .append("created_at", new Date());
         collection.insertOne(userDocument); // Inserts the user document into the collection
     }
-    private int getNextSequenceValue(String sequenceName) {
+
+    /**
+     * Gets the next sequence value for the given sequence name.
+     *
+     * @param sequenceName the name of the sequence
+     * @return the next sequence value
+     */
+    private int getNextSequenceValue(final String sequenceName) {
         MongoCollection<Document> autoIncrements = mongoDatabase.getCollection(COLLECTIONS[5]);  // Get the "auto_increments" collection
         Bson filter = Filters.eq("name", sequenceName);
         Bson update = Updates.inc("value", 1);
@@ -87,6 +141,13 @@ public class MongoDBConnection implements DatabaseConnection<Document> {
         }
         return sequenceDocument.getInteger("value"); // Retrieve and return the updated value
     }
+
+    /**
+     * Updates the username of a user in the database.
+     *
+     * @param currentUsername the current username
+     * @param newUsername     the new username
+     */
     @Override
     public void updateUsername(final String currentUsername, final String newUsername) {
         MongoCollection<Document> collection = mongoDatabase.getCollection("users");
@@ -99,7 +160,16 @@ public class MongoDBConnection implements DatabaseConnection<Document> {
             System.out.println("Failed to update username.");
         }
     }
-    public boolean checkIfUser2(String username, String password) {
+
+    /**
+     * Checks if a user with the given username and password exists in the database.
+     * (Duplicate method, already defined above)
+     *
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return true if the user exists, false otherwise
+     */
+    public boolean checkIfUser2(final String username, final String password) {
         MongoCollection<Document> collection = mongoDatabase.getCollection(COLLECTIONS[0]);
         Document query = new Document("username", username);   // Create a query to check if the user exists
         MongoCursor<Document> cursor = collection.find(query).iterator(); // Retrieve documents matching the query
@@ -107,7 +177,13 @@ public class MongoDBConnection implements DatabaseConnection<Document> {
         cursor.close();
         return exists;
     }
-    public void printCollection(String collectionName) {
+
+    /**
+     * Prints all documents in the specified collection.
+     *
+     * @param collectionName the name of the collection to print
+     */
+    public void printCollection(final String collectionName) {
         MongoCollection<Document> collectionDocument = this.mongoDatabase.getCollection(collectionName); // Retrieve all documents from the collection
         MongoCursor<Document> cursor = collectionDocument.find().iterator();
         // Iterate over the documents and print them
@@ -117,6 +193,12 @@ public class MongoDBConnection implements DatabaseConnection<Document> {
         }
         cursor.close();
     }
+
+    /**
+     * Deletes a user account from the database.
+     *
+     * @param username the username of the user to delete
+     */
     @Override
     public void deleteAccount(final String username) {
         MongoCollection<Document> collection = mongoDatabase.getCollection("users");
@@ -128,6 +210,12 @@ public class MongoDBConnection implements DatabaseConnection<Document> {
             System.out.println("Failed to delete account.");
         }
     }
+
+    /**
+     * Extracts statistics data from the "statistics" collection and populates a TableView.
+     *
+     * @param statisticsTable the TableView to populate with statistics data
+     */
     @Override
     public void extractStatistics(TableView<StatisticsData> statisticsTable) {
         MongoCollection<Document> collection = this.mongoDatabase.getCollection(COLLECTIONS[1]);
@@ -154,6 +242,13 @@ public class MongoDBConnection implements DatabaseConnection<Document> {
             statisticsTable.getItems().add(data);
         }
     }
+
+    /**
+     * Retrieves the username from the "users" collection for the given user ID.
+     *
+     * @param userId the user ID
+     * @return the username
+     */
     private String getUsernameFromUsersCollection(int userId) {
         MongoCollection<Document> usersCollection = this.mongoDatabase.getCollection(COLLECTIONS[0]);
         Document query = new Document("user_id", userId); // Create a query to find the user document with the given user_id

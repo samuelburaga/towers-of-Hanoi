@@ -11,6 +11,9 @@ import javafx.util.Duration;
 
 import java.sql.Time;
 
+/**
+ * The Game class is an abstract class that represents a Towers of Hanoi game.
+ */
 public abstract class Game {
     public byte numberOfDisks = 2;
     public int numberOfMoves = 0, numberOfGoodMoves = 0, numberOfBadMoves = 0;
@@ -23,14 +26,39 @@ public abstract class Game {
     protected Pane rodA, rodB, rodC; // Add references to the rod panes
     public Button moveButton;
     protected Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton; // Add references to the move buttons
+
+    /**
+     * Returns the number of disks in the game.
+     *
+     * @return the number of disks
+     */
     public byte getNumberOfDisks() {
         return numberOfDisks;
     }
+
+    /**
+     * Sets the references to the rod panes.
+     *
+     * @param A the pane for rod A
+     * @param B the pane for rod B
+     * @param C the pane for rod C
+     */
     public void setRods(Pane A, Pane B, Pane C) {
         rodA = A;
         rodB = B;
         rodC = C;
     }
+
+    /**
+     * Sets the references to the move buttons.
+     *
+     * @param AB the button for moving from rod A to rod B
+     * @param AC the button for moving from rod A to rod C
+     * @param BA the button for moving from rod B to rod A
+     * @param BC the button for moving from rod B to rod C
+     * @param CA the button for moving from rod C to rod A
+     * @param CB the button for moving from rod C to rod B
+     */
     public void setButtons(Button AB, Button AC, Button BA, Button BC, Button CA, Button CB) {
         AToBButton = AB;
         AToCButton = AC;
@@ -39,7 +67,21 @@ public abstract class Game {
         CToAButton = CA;
         CToBButton = CB;
     }
-    public abstract boolean isGameOver(); // checks if the game is over
+
+    /**
+     * Checks if the game is over.
+     *
+     * @return true if the game is over, false otherwise
+     */
+    public abstract boolean isGameOver();
+
+    /**
+     * Returns the rod pane that matches the given rod character.
+     *
+     * @param rod the rod character
+     * @return the rod pane
+     * @throws IllegalArgumentException if the rod character is invalid
+     */
     protected Pane getRodPane(char rod) {
         switch (rod) {
             case 'A':
@@ -51,8 +93,22 @@ public abstract class Game {
             default:
                 throw new IllegalArgumentException("Invalid rod: " + rod);
         }
-    } // returns the rod that matches the character
-    public abstract void moveDisk(char fromRod, char toRod); // gets the correct button and calls the animateDiskMovement method
+    }
+
+    /**
+     * Moves a disk from the specified source rod to the specified target rod.
+     *
+     * @param fromRod the source rod
+     * @param toRod   the target rod
+     */
+    public abstract void moveDisk(char fromRod, char toRod);
+
+    /**
+     * Animates the movement of a disk from one pane to another.
+     *
+     * @param fromPane the source pane
+     * @param toPane   the target pane
+     */
     protected void animateDiskMovement(Pane fromPane, Pane toPane) {
         Rectangle disk = (Rectangle) fromPane.getChildren().get(fromPane.getChildren().size() - 1); // get the disk at the top
         double diskHeight = disk.getHeight();
@@ -81,5 +137,5 @@ public abstract class Game {
             disk.setTranslateY(0); // Reset the disk's vertical translation
         });
         sequence.play();
-    } // creates the disk move animation
+    }
 }
