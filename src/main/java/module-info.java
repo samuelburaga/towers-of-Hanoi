@@ -16,8 +16,8 @@ module com.example.towersofhanoi {
 
     requires mongo.java.driver;
 
-    opens com.example.towersofhanoi to javafx.fxml;
     exports com.example.towersofhanoi;
+    opens com.example.towersofhanoi to javafx.fxml;
     exports com.example.towersofhanoi.Controller;
     opens com.example.towersofhanoi.Controller to javafx.fxml;
     exports com.example.towersofhanoi.Model;

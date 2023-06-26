@@ -1,6 +1,7 @@
 package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.Model.DatabaseConnection;
+import com.example.towersofhanoi.Model.MongoDBConnection;
 import com.example.towersofhanoi.Model.MySQLConnection;
 import com.example.towersofhanoi.Model.StatisticsData;
 import javafx.fxml.FXML;
@@ -20,6 +21,12 @@ public class StatisticsController {
     private TableColumn<StatisticsData, Integer> pointsColumn, disksColumn;
     @FXML
     private TableColumn<StatisticsData, Time> timeColumn;
+    private DatabaseConnection mySQLConnection, mongoDBConnection;
+    public StatisticsController() {
+        // create database model objects
+        this.mySQLConnection = new MySQLConnection();
+        this.mongoDBConnection = new MongoDBConnection();
+    }
     public void showStatistics() throws SQLException {
         // Set table column names
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -27,8 +34,7 @@ public class StatisticsController {
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         disksColumn.setCellValueFactory(new PropertyValueFactory<>("disks"));
         statisticsTable.getItems().clear();
-        DatabaseConnection mySQLConnection = new MySQLConnection();
-        mySQLConnection.connect();
-        ((MySQLConnection) mySQLConnection).extractStatistics(statisticsTable); // extract the statistics
+        this.mySQLConnection.connect(); // connect to the database
+        this.mySQLConnection.extractStatistics(statisticsTable); // extract the statistics
     } // show the 10 best performances
 }

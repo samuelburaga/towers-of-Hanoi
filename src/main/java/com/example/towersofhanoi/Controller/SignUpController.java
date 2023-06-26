@@ -1,6 +1,7 @@
 package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.Model.DatabaseConnection;
+import com.example.towersofhanoi.Model.MongoDBConnection;
 import com.example.towersofhanoi.Model.MySQLConnection;
 import com.example.towersofhanoi.Model.User;
 import com.example.towersofhanoi.View.MenuView;
@@ -19,18 +20,20 @@ public class SignUpController {
     private TextField firstNameTextField, lastNameTextField, usernameTextField, passwordField;
     @FXML
     private Button signUpButton;
-    private DatabaseConnection mySQLConnection;
+    private DatabaseConnection mySQLConnection, mongoDBConnection;
     public SignUpController() {
-        // connect to the database
-        mySQLConnection = new MySQLConnection();
+        // create database model objects
+        this.mySQLConnection = new MySQLConnection();
+        this.mongoDBConnection = new MongoDBConnection();
     }
     public void signUpButtonOnAction(ActionEvent e) throws IOException {
         if(firstNameTextField.getText().isBlank() == false && lastNameTextField.getText().isBlank() == false && usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
+            this.mySQLConnection.connect();
             // check if this username or password already exists
-            if(mySQLConnection.checkIfUserExists(usernameTextField.getText(), passwordField.getText()) == false) {
-                ((MySQLConnection) mySQLConnection).insertNewUser(firstNameTextField.getText(), lastNameTextField.getText(), usernameTextField.getText(), passwordField.getText());
+            if(this.mySQLConnection.checkIfUserExists(usernameTextField.getText(), passwordField.getText()) == false) {
+                ((MySQLConnection) this.mySQLConnection).insertNewUser(firstNameTextField.getText(), lastNameTextField.getText(), usernameTextField.getText(), passwordField.getText());
                 // update user information
-                User.updateData(((MySQLConnection) mySQLConnection).getLatestUserId(), firstNameTextField.getText(), lastNameTextField.getText(), usernameTextField.getText());
+                User.updateData(((MySQLConnection) this.mySQLConnection).getLatestUserId(), firstNameTextField.getText(), lastNameTextField.getText(), usernameTextField.getText());
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
                 thisStage.hide();

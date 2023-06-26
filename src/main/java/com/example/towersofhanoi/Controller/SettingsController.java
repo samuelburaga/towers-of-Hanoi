@@ -1,6 +1,7 @@
 package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.Model.DatabaseConnection;
+import com.example.towersofhanoi.Model.MongoDBConnection;
 import com.example.towersofhanoi.Model.MySQLConnection;
 import com.example.towersofhanoi.Model.User;
 import javafx.event.ActionEvent;
@@ -20,10 +21,11 @@ public class SettingsController {
     private Button previousClickedButton;
     private String defaultColor = "-fx-background-color: #333E41;";
     private String clickedColor = "-fx-background-color: #0FB4BB;";
-    private DatabaseConnection mySQLConnection;
+    private DatabaseConnection mySQLConnection, mongoDBConnection;
     public SettingsController() {
-        // connect to the database
+        // create database model objects
         mySQLConnection = new MySQLConnection();
+        mongoDBConnection = new MongoDBConnection();
     }
     public void changeFirstNameButtonOnAction(ActionEvent e) {
         if (previousClickedButton != null) {
@@ -63,7 +65,7 @@ public class SettingsController {
             @Override
             public void handle(ActionEvent event) {
                 String username = usernameField.getText();
-                mySQLConnection.connect();
+                mySQLConnection.connect(); // connect to the database
                 mySQLConnection.updateUsername(User.username, usernameField.getText());
                 User.username = usernameField.getText();
                 // dialog.close();
@@ -101,7 +103,7 @@ public class SettingsController {
         confirmationAlert.showAndWait().ifPresent(buttonType -> {
             if (buttonType == yesButton) {
                 // Perform account deletion
-                mySQLConnection.connect();
+                mySQLConnection.connect(); // connect to the database
                 mySQLConnection.deleteAccount(User.username);
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();

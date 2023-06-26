@@ -21,6 +21,8 @@ public class MenuController {
     private Button playButton, tutorialButton, optionsButton, statisticsButton, settingsButton, quitButton;
     @FXML
     private Label usernameLabel;
+    public MenuController() {
+    }
     public void setUsername() {
         usernameLabel.setText(User.username); // show the username
     }
@@ -41,7 +43,7 @@ public class MenuController {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.hide();
-        Options options = new Options();
+        OptionsView options = new OptionsView();
         options.start(new Stage());
     } // change game settings
     public void statisticsButtonOnAction(ActionEvent e) throws IOException, SQLException {

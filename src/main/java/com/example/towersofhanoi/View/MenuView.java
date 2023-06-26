@@ -13,12 +13,9 @@ import java.net.URL;
 
 public class MenuView extends Application {
     public static boolean musicPlays = false;
-    public static void main(String[] args) {
-        launch(args);
-    }
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/Menu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
         MenuController menuController = fxmlLoader.getController(); // get the controller
         menuController.setUsername(); // set the username
@@ -27,6 +24,9 @@ public class MenuView extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         backgroundMusic(); // play music
+    }
+    public static void main(String[] args) {
+        launch(args);
     }
     public static void backgroundMusic() {
         String filePath = "/sounds/Stay Retro.wav"; // Path relative to the "res" folder

@@ -1,5 +1,6 @@
 package com.example.towersofhanoi.Controller;
 
+import com.example.towersofhanoi.Model.MongoDBConnection;
 import com.example.towersofhanoi.View.LogInView;
 import com.example.towersofhanoi.View.MenuView;
 import com.example.towersofhanoi.Model.DatabaseConnection;
@@ -23,16 +24,19 @@ public class LogInController {
     private PasswordField passwordField;
     @FXML
     private Button logInButton, cancelButton;
-    private DatabaseConnection mySQLConnection;
+    private DatabaseConnection mySQLConnection, mongoDBConnection;
     public LogInController() {
-        // connect to the database
-        mySQLConnection = new MySQLConnection();
+        // create database model objects
+        this.mySQLConnection = new MySQLConnection();
+        this.mongoDBConnection = new MongoDBConnection();
     }
     public void logInButtonOnAction(ActionEvent e) throws IOException, SQLException {
         if(usernameTextField.getText().isBlank() == false && passwordField.getText().isBlank() == false) {
+            // connect with the database
+            this.mySQLConnection.connect();
             // check if the username & password are correct
-            if(mySQLConnection.checkIfUserExists(usernameTextField.getText(), passwordField.getText())) {
-                ResultSet resultSet = ((MySQLConnection) mySQLConnection).getUserByUsername(usernameTextField.getText()); // get full user information
+            if(this.mySQLConnection.checkIfUserExists(usernameTextField.getText(), passwordField.getText())) {
+                ResultSet resultSet = ((MySQLConnection) this.mySQLConnection).getUserByUsername(usernameTextField.getText()); // get full user information
                 User.updateData(resultSet); // update user information
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
