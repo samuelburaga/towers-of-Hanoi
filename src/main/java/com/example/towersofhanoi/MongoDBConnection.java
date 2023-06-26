@@ -10,23 +10,18 @@ import com.mongodb.client.model.ReturnDocument;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javafx.scene.control.TableView;
+
 public class MongoDBConnection implements DatabaseConnection <Document>{
     private MongoDatabase mongoDatabase;
     private MongoClient mongoClient;
-    private static final String hostname = "localhost";
-    private static int port = 27017;
     private static final String database = "towers-of-Hanoi";
     private static final String [] COLLECTIONS = {"users", "statistics", "achievements", "notifications", "complaints", "auto_increments"};
     @Override
@@ -42,35 +37,28 @@ public class MongoDBConnection implements DatabaseConnection <Document>{
     }
     @Override
     public boolean checkIfUserExists(final String username, final String password) {
-        MongoCollection<Document> collection = this.mongoDatabase.getCollection(COLLECTIONS[0]);
-        // Create a query to check if the user exists
-        Document query = new Document("username", username).append("password", password);
-        // Retrieve documents matching the query
-        MongoCursor<Document> cursor = collection.find(query).iterator();
-        // Check if any matching document is found
-        boolean exists = cursor.hasNext();
+        MongoCollection<Document> collection = this.mongoDatabase.getCollection(COLLECTIONS[0]); // Get the "users" collection
+        Document query = new Document("username", username).append("password", password); // Create a query to check if the user exists
+        MongoCursor<Document> cursor = collection.find(query).iterator(); // Retrieve documents matching the query
+        boolean exists = cursor.hasNext(); // Check if any matching document is found
         cursor.close();
         return exists;
     }
     @Override
     public Document getUserByUsername(String username) {
         MongoCollection<Document> collection = mongoDatabase.getCollection("users");
-        // Create a query to retrieve the user based on the username
-        Document query = new Document("username", username);
-        // Retrieve the user document
-        Document userDocument = collection.find(query).first();
+        Document query = new Document("username", username); // Create a query to retrieve the user based on the username
+        Document userDocument = collection.find(query).first(); // Retrieve the user document
         return userDocument;
     }
-
     @Override
     public int getLatestUserId() {
         return 0;
     }
     @Override
     public void insertNewUser(final String firstName, final String lastName, final String username, final String password) {
-        MongoCollection<Document> collection = mongoDatabase.getCollection(COLLECTIONS[0]);
-        // Retrieve the next sequence value for user_id
-        int user_id = getNextSequenceValue("user_id");
+        MongoCollection<Document> collection = mongoDatabase.getCollection(COLLECTIONS[0]); // gets the "users" collection
+        int user_id = getNextSequenceValue("user_id"); // Retrieves the next sequence value for user_id
         // Create a new user document
         Document userDocument = new Document("user_id", user_id)
                 .append("first_name", firstName)
@@ -78,24 +66,19 @@ public class MongoDBConnection implements DatabaseConnection <Document>{
                 .append("username", username)
                 .append("password", password)
                 .append("created_at", new Date());
-
-        // Insert the user document into the collection
-        collection.insertOne(userDocument);
+        collection.insertOne(userDocument); // Inserts the user document into the collection
     }
     private int getNextSequenceValue(String sequenceName) {
-        MongoCollection<Document> autoIncrements = mongoDatabase.getCollection("auto_increments");
-        // Find the document for the given sequenceName
+        MongoCollection<Document> autoIncrements = mongoDatabase.getCollection(COLLECTIONS[5]);  // Get the "auto_increments" collection
         Bson filter = Filters.eq("name", sequenceName);
         Bson update = Updates.inc("value", 1);
         FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER);
         Document sequenceDocument = autoIncrements.findOneAndUpdate(filter, update, options);
         if (sequenceDocument == null) {
-            // If the sequence document doesn't exist, insert it with the initial value
-            sequenceDocument = new Document("name", sequenceName).append("value", 1);
+            sequenceDocument = new Document("name", sequenceName).append("value", 1);  // If the sequence document doesn't exist, insert it with the initial value
             autoIncrements.insertOne(sequenceDocument);
         }
-        // Retrieve and return the updated value
-        return sequenceDocument.getInteger("value");
+        return sequenceDocument.getInteger("value"); // Retrieve and return the updated value
     }
     @Override
     public void updateUsername(final String currentUsername, final String newUsername) {
@@ -111,18 +94,14 @@ public class MongoDBConnection implements DatabaseConnection <Document>{
     }
     public boolean checkIfUser2(String username, String password) {
         MongoCollection<Document> collection = mongoDatabase.getCollection(COLLECTIONS[0]);
-        // Create a query to check if the user exists
-        Document query = new Document("username", username);
-        // Retrieve documents matching the query
-        MongoCursor<Document> cursor = collection.find(query).iterator();
-        // Check if any matching document is found
-        boolean exists = cursor.hasNext();
+        Document query = new Document("username", username);   // Create a query to check if the user exists
+        MongoCursor<Document> cursor = collection.find(query).iterator(); // Retrieve documents matching the query
+        boolean exists = cursor.hasNext();  // Check if any matching document is found
         cursor.close();
         return exists;
     }
     public void printCollection(String collectionName) {
-        MongoCollection<Document> collectionDocument = this.mongoDatabase.getCollection(collectionName);
-        // Retrieve all documents from the collection
+        MongoCollection<Document> collectionDocument = this.mongoDatabase.getCollection(collectionName); // Retrieve all documents from the collection
         MongoCursor<Document> cursor = collectionDocument.find().iterator();
         // Iterate over the documents and print them
         while (cursor.hasNext()) {
@@ -155,29 +134,23 @@ public class MongoDBConnection implements DatabaseConnection <Document>{
                 .sort(sortCriteria)
                 .limit(10)
                 .into(new ArrayList<>());
-        // Clear existing rows
-        statisticsTable.getItems().clear();
+        statisticsTable.getItems().clear(); // Clear existing rows
         // Iterate over the retrieved documents and populate the table
         for (Document document : documents) {
-            // Retrieve the user_id from the statistics document
-            int userId = document.getInteger("users_user_id");
-            // Retrieve the corresponding username from the users collection
-            String username = getUsernameFromUsersCollection(userId);
+            int userId = document.getInteger("users_user_id");  // Retrieve the user_id from the statistics document
+            String username = getUsernameFromUsersCollection(userId); // Retrieve the corresponding username from the users collection
             // Retrieve other fields from the statistics document
             int points = document.getInteger("points");
             int disks = document.getInteger("disks");
             String time = document.getString("time");
-            // Create a StatisticsData object and add it to the table
-            StatisticsData data = new StatisticsData(username, points, time, disks);
+            StatisticsData data = new StatisticsData(username, points, time, disks); // Create a StatisticsData object and add it to the table
             statisticsTable.getItems().add(data);
         }
     }
     private String getUsernameFromUsersCollection(int userId) {
         MongoCollection<Document> usersCollection = this.mongoDatabase.getCollection(COLLECTIONS[0]);
-        // Create a query to find the user document with the given user_id
-        Document query = new Document("user_id", userId);
-        // Retrieve the user document
-        Document userDocument = usersCollection.find(query).first();
+        Document query = new Document("user_id", userId); // Create a query to find the user document with the given user_id
+        Document userDocument = usersCollection.find(query).first(); // Retrieve the user document
         // Extract the username from the user document
         if (userDocument != null) {
             return userDocument.getString("username");
