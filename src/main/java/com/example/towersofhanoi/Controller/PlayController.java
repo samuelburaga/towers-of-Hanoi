@@ -101,6 +101,16 @@ public class PlayController {
             alert.showAndWait();
         }
     }
+    private void insertStatisticsInDatabase() {
+        mySQLConnection.connect();
+        String query = "INSERT INTO statistics (users_user_id, disks, points, time) VALUES (?, ?, ?, ?)";
+        String[] variables = new String[4];
+        variables[0] = Integer.toString(User.user_id);
+        variables[1] = Byte.toString(this.playerGame.getNumberOfDisks());
+        variables[2] = Integer.toString(this.playerGame.score);
+        variables[3] = playerGame.time.toString();
+        ((MySQLConnection) mySQLConnection).executeUpdateWithVariables(query, variables);
+    }
     private void switchToSolvedScene() {
         Stage stage = (Stage) rodA.getScene().getWindow();
         Parent root;
@@ -116,15 +126,5 @@ public class PlayController {
             stage.show();
         });
         pause.play();
-    }
-    private void insertStatisticsInDatabase() {
-            mySQLConnection.connect();
-            String query = "INSERT INTO statistics (users_user_id, disks, points, time) VALUES (?, ?, ?, ?)";
-            String[] variables = new String[4];
-            variables[0] = Integer.toString(User.user_id);
-            variables[1] = Byte.toString(this.playerGame.getNumberOfDisks());
-            variables[2] = Integer.toString(this.playerGame.score);
-            variables[3] = playerGame.time.toString();
-            ((MySQLConnection) mySQLConnection).executeUpdateWithVariables(query, variables);
     }
 }
