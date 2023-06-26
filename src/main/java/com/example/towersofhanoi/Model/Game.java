@@ -10,7 +10,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public abstract class Game {
-    public static byte DISKS = 2;
+    public static byte DISKS = 3;
     protected byte numberOfDisks = 10;
     private static long numberOfMoves = 0;
     public static boolean gameOver = false;

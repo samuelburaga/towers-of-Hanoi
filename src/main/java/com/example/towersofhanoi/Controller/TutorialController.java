@@ -59,7 +59,12 @@ public class TutorialController {
             disk.setLayoutY(initialY - (index * diskHeight));
             disk.setArcHeight(arcHeight);
             disk.setArcWidth(arcWidth);
-            disk.setFill(Color.valueOf("#0FB4BB"));
+            // Calculate the color based on the index
+            double hue = 182.0;  // Base hue value
+            double saturation = 0.92 - (index + 1) * (0.91 / TutorialView.automaticGame.getNumberOfDisks());  // Saturation value based on index
+            double brightness = 0.73 + (index + 1) * (0.26 / TutorialView.automaticGame.getNumberOfDisks());  // Adjust brightness based on index
+            Color diskColor = Color.hsb(hue, saturation, brightness);
+            disk.setFill(diskColor);
             rodA.getChildren().add(disk);
         }
     } // draw the disks on the screen

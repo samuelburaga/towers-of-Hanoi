@@ -1,6 +1,7 @@
 package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.View.PlayView;
+import com.example.towersofhanoi.View.TutorialView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -21,14 +22,18 @@ public class PlayController {
         double diskWidth = 198.0, diskHeight = 60.0; // Adjust as needed
         double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // Adjust as needed
         double arcWidth = 30.0, arcHeight = 30.0;
-        for (byte i = 0; i < PlayView.playerGame.getNumberOfDisks(); i++) {
-            Rectangle disk = new Rectangle(diskWidth - (i * 12), diskHeight);
-            disk.setX(initialX + (i * 6));
-            disk.setLayoutY(initialY - (i * diskHeight));
+        for (byte index = 0; index < PlayView.playerGame.getNumberOfDisks(); index++) {
+            Rectangle disk = new Rectangle(diskWidth - (index * 12), diskHeight);
+            disk.setX(initialX + (index * 6));
+            disk.setLayoutY(initialY - (index * diskHeight));
             disk.setArcHeight(arcHeight);
             disk.setArcWidth(arcWidth);
-            disk.setFill(Color.valueOf("#0FB4BB")); // Adjust as needed
-            disk.setStroke(Color.WHITE); // Adjust as needed
+            // Calculate the color based on the index
+            double hue = 182.0;  // Base hue value
+            double saturation = 0.92 - (index + 1) * (0.91 / PlayView.playerGame.getNumberOfDisks());  // Saturation value based on index
+            double brightness = 0.73 + (index + 1) * (0.26 / PlayView.playerGame.getNumberOfDisks());  // Adjust brightness based on index
+            Color diskColor = Color.hsb(hue, saturation, brightness);
+            disk.setFill(diskColor);
             rodA.getChildren().add(disk);
         }
     }
