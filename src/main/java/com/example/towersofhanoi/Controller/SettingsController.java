@@ -12,6 +12,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * The SettingsController class is responsible for controlling the user's account information.
+ */
+
 public class SettingsController {
     @FXML
     private Button changeFirstNameButton, changeLastNameButton, changeUsernameButton, changePasswordButton, changeProfilePictureButton;
@@ -19,96 +23,144 @@ public class SettingsController {
     private Button deleteAccountButton;
     @FXML
     private Button previousClickedButton;
+
     private String defaultColor = "-fx-background-color: #333E41;";
     private String clickedColor = "-fx-background-color: #0FB4BB;";
+
     private DatabaseConnection mySQLConnection, mongoDBConnection;
+
+    /**
+     * Constructs a new SettingsController object.
+     * Initializes the database model objects.
+     */
     public SettingsController() {
-        // create database model objects
         mySQLConnection = new MySQLConnection();
         mongoDBConnection = new MongoDBConnection();
     }
+
+    /**
+     * Handles the action when the change first name button is clicked.
+     * Changes the color of the button and updates the previously clicked button.
+     *
+     * @param e the action event
+     */
     public void changeFirstNameButtonOnAction(ActionEvent e) {
         if (previousClickedButton != null) {
-            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked button
+            previousClickedButton.setStyle(defaultColor);
         }
-        changeFirstNameButton.setStyle(clickedColor); // Set the color for the newly clicked button
-        previousClickedButton = changeFirstNameButton; // Update the previously clicked button
-    } // change the first name
+        changeFirstNameButton.setStyle(clickedColor);
+        previousClickedButton = changeFirstNameButton;
+    }
+
+    /**
+     * Handles the action when the change last name button is clicked.
+     * Changes the color of the button and updates the previously clicked button.
+     *
+     * @param e the action event
+     */
     public void changeLastNameButtonOnAction(ActionEvent e) {
         if (previousClickedButton != null) {
-            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked button
+            previousClickedButton.setStyle(defaultColor);
         }
-        changeLastNameButton.setStyle(clickedColor); // Set the color for the newly clicked button
-        previousClickedButton = changeLastNameButton; // Update the previously clicked button
-    } // change the last name
+        changeLastNameButton.setStyle(clickedColor);
+        previousClickedButton = changeLastNameButton;
+    }
+
+    /**
+     * Handles the action when the change username button is clicked.
+     * Changes the color of the button, opens a dialog box to input the new username,
+     * updates the username in the database, and updates the user's username.
+     *
+     * @param e the action event
+     */
     public void changeUsernameButtonOnAction(ActionEvent e) {
         if (previousClickedButton != null) {
-            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked button
+            previousClickedButton.setStyle(defaultColor);
         }
-        changeUsernameButton.setStyle(clickedColor); // Set the color for the newly clicked button
-        previousClickedButton = changeUsernameButton; // Update the previously clicked button
-        // Create the dialog box
+        changeUsernameButton.setStyle(clickedColor);
+        previousClickedButton = changeUsernameButton;
+
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Change Username");
-        // Set the dialog content
+
         TextField usernameField = new TextField();
         Button changeButton = new Button("Change Username");
         changeButton.setId("changeButton");
         Label label = new Label("Input your new username:");
         VBox content = new VBox(label, usernameField, changeButton);
-        content.setSpacing(10); // Set spacing between elements
+        content.setSpacing(10);
         dialog.getDialogPane().setContent(content);
-        // Add a button to the dialog box
+
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-        // Handle the event when the change button is clicked
+
         EventHandler<ActionEvent> changeButtonHandler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 String username = usernameField.getText();
-                mySQLConnection.connect(); // connect to the database
+                mySQLConnection.connect();
                 mySQLConnection.updateUsername(User.username, usernameField.getText());
                 User.username = usernameField.getText();
-                // dialog.close();
             }
         };
         changeButton.setOnAction(changeButtonHandler);
-        // Show the dialog box and wait for a response
+
         dialog.showAndWait();
-    } // change the username
+    }
+
+    /**
+     * Handles the action when the change password button is clicked.
+     * Changes the color of the button and updates the previously clicked button.
+     *
+     * @param e the action event
+     */
     public void changePasswordButtonOnAction(ActionEvent e) {
         if (previousClickedButton != null) {
-            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked button
+            previousClickedButton.setStyle(defaultColor);
         }
-        changePasswordButton.setStyle(clickedColor); // Set the color for the newly clicked button
-        previousClickedButton = changePasswordButton; // Update the previously clicked button
-    } // change the password
+        changePasswordButton.setStyle(clickedColor);
+        previousClickedButton = changePasswordButton;
+    }
+
+    /**
+     * Handles the action when the change profile picture button is clicked.
+     * Changes the color of the button and updates the previously clicked button.
+     *
+     * @param e the action event
+     */
     public void changeProfilePictureButtonnOnAction(ActionEvent e) {
         if (previousClickedButton != null) {
-            previousClickedButton.setStyle(defaultColor); // Revert the color of the previously clicked button
+            previousClickedButton.setStyle(defaultColor);
         }
-        changeProfilePictureButton.setStyle(clickedColor); // Set the color for the newly clicked button
-        previousClickedButton = changeProfilePictureButton; // Update the previously clicked button
-    } // change the profile picture
-    public void  deleteAccountButtonOnAction(ActionEvent e) {
-        // Create the confirmation alert
+        changeProfilePictureButton.setStyle(clickedColor);
+        previousClickedButton = changeProfilePictureButton;
+    }
+
+    /**
+     * Handles the action when the delete account button is clicked.
+     * Displays a confirmation alert and deletes the account if the user confirms.
+     * Closes the current window after deletion.
+     *
+     * @param e the action event
+     */
+    public void deleteAccountButtonOnAction(ActionEvent e) {
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmationAlert.setTitle("Delete Account");
         confirmationAlert.setHeaderText(null);
         confirmationAlert.setContentText("Are you sure you want to delete your account?");
-        // Customize the alert buttons
+
         ButtonType yesButton = new ButtonType("Yes");
         ButtonType cancelButton = new ButtonType("Cancel", ButtonType.CANCEL.getButtonData());
         confirmationAlert.getButtonTypes().setAll(yesButton, cancelButton);
-        // Show the confirmation alert and wait for a response
+
         confirmationAlert.showAndWait().ifPresent(buttonType -> {
             if (buttonType == yesButton) {
-                // Perform account deletion
-                mySQLConnection.connect(); // connect to the database
+                mySQLConnection.connect();
                 mySQLConnection.deleteAccount(User.username);
                 Node node = (Node) e.getSource();
                 Stage thisStage = (Stage) node.getScene().getWindow();
                 thisStage.hide();
             }
         });
-    } // delete the account
+    }
+
 }

@@ -16,52 +16,113 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * The MenuController class is responsible for controlling the main menu screen.
+ * It handles user interactions and navigation to different views such as the game, tutorial, options, statistics, and settings.
+ */
 public class MenuController {
     @FXML
     private Button playButton, tutorialButton, optionsButton, statisticsButton, settingsButton, quitButton;
     @FXML
     private Label usernameLabel;
+
+    /**
+     * Constructs a new MenuController.
+     */
     public MenuController() {
     }
+
+    /**
+     * Sets the username label to display the current user's username.
+     */
     public void setUsername() {
-        usernameLabel.setText(User.username); // show the username
+        usernameLabel.setText(User.username);
     }
+
+    /**
+     * Handles the action when the play button is clicked.
+     * Hides the current window and opens the play view.
+     *
+     * @param e the action event
+     * @throws IOException if an error occurs during the opening of the play view
+     */
     public void playButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.hide();
         PlayView play = new PlayView();
         play.start(new Stage());
-    } // play the game
+    }
+
+    /**
+     * Handles the action when the tutorial button is clicked.
+     * Hides the current window and starts a tutorial thread to display the tutorial view.
+     *
+     * @param e the action event
+     * @throws IOException if an error occurs during the opening of the tutorial view
+     */
     public void tutorialButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         Thread tutorialThread = new Thread(new TutorialThread(thisStage));
         tutorialThread.start();
-    } // see the automatic game
+    }
+
+    /**
+     * Handles the action when the options button is clicked.
+     * Hides the current window and opens the options view.
+     *
+     * @param e the action event
+     * @throws IOException if an error occurs during the opening of the options view
+     */
     public void optionsButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.hide();
         OptionsView options = new OptionsView();
         options.start(new Stage());
-    } // change game settings
+    }
+
+    /**
+     * Handles the action when the statistics button is clicked.
+     * Hides the current window and opens the statistics view.
+     *
+     * @param e the action event
+     * @throws IOException  if an error occurs during the opening of the statistics view
+     * @throws SQLException if an error occurs during the database operations
+     */
     public void statisticsButtonOnAction(ActionEvent e) throws IOException, SQLException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.hide();
         StatisticsView statistics = new StatisticsView();
         statistics.start(new Stage());
-    } // show some statistics
+    }
+
+    /**
+     * Handles the action when the settings button is clicked.
+     * Hides the current window and opens the settings view.
+     *
+     * @param e the action event
+     * @throws IOException if an error occurs during the opening of the settings view
+     */
     public void settingsButtonOnAction(ActionEvent e) throws IOException {
         Node node = (Node) e.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.hide();
         SettingsView settings = new SettingsView();
         settings.start(new Stage());
-    } // change account information
+    }
+
+    /**
+     * Handles the action when the quit button is clicked.
+     * Closes the current window.
+     *
+     * @param e the action event
+     */
     public void quitButtonOnAction(ActionEvent e) {
         Stage stage = (Stage) quitButton.getScene().getWindow();
         stage.close();
-    } // quit
+    }
 }
+

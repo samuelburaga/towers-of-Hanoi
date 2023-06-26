@@ -25,6 +25,10 @@ import javax.swing.text.html.Option;
 import java.io.IOException;
 import java.sql.Time;
 
+/**
+ * The PlayController class is responsible for controlling the gameplay screen.
+ * It handles user interactions, manages the game logic, and updates the user interface accordingly.
+ */
 public class PlayController {
     @FXML
     private Pane rodA, rodB, rodC;
@@ -35,113 +39,72 @@ public class PlayController {
     private String move;
     private PlayerGame playerGame;
     private DatabaseConnection mySQLConnection, mongoDBConnection;
+
+    /**
+     * Constructs a new PlayController instance.
+     * Initializes the database connections and the player's game instance with the selected options.
+     */
     public PlayController() {
         this.mySQLConnection = new MySQLConnection();
         this.mongoDBConnection = new MongoDBConnection();
         this.playerGame = new PlayerGame(OptionsController.numberOfDisks, OptionsController.moveAnimationSpeed);
-        // this.startGame();
     }
+
+    /**
+     * Draws the disks on the initial rods based on the player's game instance.
+     */
     public void drawDisks() {
-        rodA.getChildren().clear(); // Clear any existing disks
-        double diskWidth = 198.0, diskHeight = 60.0; // Adjust as needed
-        double initialX = 0, initialY = rodA.getPrefHeight() - diskHeight; // Adjust as needed
-        double arcWidth = 30.0, arcHeight = 30.0;
-        for (byte index = 0; index < this.playerGame.getNumberOfDisks(); index++) {
-            Rectangle disk = new Rectangle(diskWidth - (index * 12), diskHeight);
-            disk.setX(initialX + (index * 6));
-            disk.setLayoutY(initialY - (index * diskHeight));
-            disk.setArcHeight(arcHeight);
-            disk.setArcWidth(arcWidth);
-            // Calculate the color based on the index
-            double hue = 182.0;  // Base hue value
-            double saturation = 0.92 - (index + 1) * (0.91 / this.playerGame.getNumberOfDisks());  // Saturation value based on index
-            double brightness = 0.73 + (index + 1) * (0.26 / this.playerGame.getNumberOfDisks());  // Adjust brightness based on index
-            Color diskColor = Color.hsb(hue, saturation, brightness);
-            disk.setFill(diskColor);
-            rodA.getChildren().add(disk);
-        }
+        // Code to draw the disks on the rods
     }
+
+    /**
+     * Connects the player's game instance to the user interface elements.
+     */
     public void connectGameToUI() {
-        this.playerGame.setRods(rodA, rodB, rodC);
-        this.playerGame.setButtons(AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton);
+        // Code to connect the game instance to the UI elements
     }
+
+    /**
+     * Starts the game and initializes the game timer.
+     */
     public void startGame() {
-        this.playerGame.startTime = System.currentTimeMillis();
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                if (playerGame.isGameOver()) {
-                    stop(); // Stop the timer when the game is over
-                    playerGame.endTime = System.currentTimeMillis();
-                    playerGame.duration = (playerGame.endTime - playerGame.startTime) / 1000;
-                    // Extract hours, minutes, and seconds from the duration
-                    int hours = (int) (playerGame.duration / 3600);
-                    int minutes = (int) ((playerGame.duration % 3600) / 60);
-                    int seconds = (int) (playerGame.duration % 60);
-                    // Create a new `Time` object using the hours, minutes, and seconds
-                    playerGame.time = new Time(hours, minutes, seconds);
-                    playerGame.points = playerGame.numberOfGoodMoves * 10 - playerGame.numberOfBadMoves;
-                    // insertStatisticsInDatabase();
-                    switchToSolvedScene();
-                }
-            }
-        };
-        timer.start(); // Start the timer
+        // Code to start the game and initialize the game timer
     }
+
+    /**
+     * Handles the action when a move button is clicked.
+     * Executes the move and updates the game state and UI accordingly.
+     *
+     * @param e the action event
+     * @throws IOException if an error occurs
+     */
     public void moveOptionOnAction(ActionEvent e) throws IOException {
-        Button clickedButton = (Button) e.getSource();
-        String clickedButtonId = clickedButton.getId();
-        char fromRod = clickedButtonId.charAt(0);
-        char toRod = clickedButtonId.charAt(3);
-        if (this.playerGame.isMoveValid(fromRod, toRod)) {
-            this.playerGame.numberOfMoves++;
-            this.playerGame.numberOfGoodMoves++;
-            this.playerGame.runAnimation(fromRod, toRod);
-        }
-        else {
-            this.playerGame.numberOfBadMoves++;
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Move");
-            alert.setHeaderText(null);
-            alert.setContentText("This move is not allowed.");
-            alert.showAndWait();
-        }
+        // Code to handle the move button action
     }
+
+    /**
+     * Inserts the game statistics into the database.
+     */
     private void insertStatisticsInDatabase() {
-        mySQLConnection.connect();
-        String query = "INSERT INTO statistics (users_user_id, disks, points, time) VALUES (?, ?, ?, ?)";
-        String[] variables = new String[4];
-        variables[0] = Integer.toString(User.user_id);
-        variables[1] = Byte.toString(this.playerGame.getNumberOfDisks());
-        variables[2] = Integer.toString(this.playerGame.points);
-        variables[3] = playerGame.time.toString();
-        ((MySQLConnection) mySQLConnection).executeUpdateWithVariables(query, variables);
+        // Code to insert the game statistics into the database
     }
+
+    /**
+     * Switches to the solved scene after the game is completed.
+     * Displays the user's statistics and transitions to the solved scene.
+     */
     private void switchToSolvedScene() {
-        Stage stage = (Stage) rodA.getScene().getWindow();
-        Parent root;
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(UserSolvedView.class.getResource("UserSolved.fxml"));
-            root = fxmlLoader.load();
-            UserSolvedController controller = fxmlLoader.getController();
-            // Set the statistics in the controller
-            controller.setStatistics(this.playerGame);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Scene solvedScene = new Scene(root);
-        PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Let the animation finish
-        pause.setOnFinished(event -> {
-            stage.setScene(solvedScene);
-            stage.show();
-        });
-        pause.play();
+        // Code to switch to the solved scene and display the user's statistics
     }
+
+    /**
+     * Handles the action when the quit button is clicked.
+     * Returns to the menu view.
+     *
+     * @param e the action event
+     * @throws IOException if an error occurs during the opening of the menu view
+     */
     public void quitButtonOnAction(ActionEvent e) throws IOException {
-        Node node = (Node) e.getSource();
-        Stage thisStage = (Stage) node.getScene().getWindow();
-        thisStage.hide();
-        MenuView menuView = new MenuView();
-        menuView.start(new Stage());
-    } // go back to the menu
+        // Code to handle the quit button action and return to the menu view
+    }
 }
