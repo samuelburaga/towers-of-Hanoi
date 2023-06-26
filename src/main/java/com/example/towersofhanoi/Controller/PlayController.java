@@ -1,6 +1,7 @@
 package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.Model.*;
+import com.example.towersofhanoi.View.MenuView;
 import com.example.towersofhanoi.View.PlayView;
 import com.example.towersofhanoi.View.TutorialView;
 import com.example.towersofhanoi.View.UserSolvedView;
@@ -9,6 +10,7 @@ import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -28,6 +30,8 @@ public class PlayController {
     private Pane rodA, rodB, rodC;
     @FXML
     private Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
+    @FXML
+    private Button quitButton;
     private String move;
     private PlayerGame playerGame;
     private DatabaseConnection mySQLConnection, mongoDBConnection;
@@ -133,5 +137,11 @@ public class PlayController {
         });
         pause.play();
     }
-
+    public void quitButtonOnAction(ActionEvent e) throws IOException {
+        Node node = (Node) e.getSource();
+        Stage thisStage = (Stage) node.getScene().getWindow();
+        thisStage.hide();
+        MenuView menuView = new MenuView();
+        menuView.start(new Stage());
+    } // go back to the menu
 }

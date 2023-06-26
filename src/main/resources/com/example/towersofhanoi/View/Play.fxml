@@ -78,5 +78,10 @@
                 </Button>
             </children>
         </GridPane>
+      <Button fx:id="quitButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#quitButtonOnAction" prefHeight="46.0" prefWidth="78.0" style="-fx-background-color: red;" text="Quit" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Mongolian Baiti" size="20.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

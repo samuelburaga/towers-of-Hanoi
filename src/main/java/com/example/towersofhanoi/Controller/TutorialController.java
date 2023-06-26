@@ -2,10 +2,12 @@ package com.example.towersofhanoi.Controller;
 
 import com.example.towersofhanoi.Model.AutomaticGame;
 import com.example.towersofhanoi.View.ComputerSolvedView;
+import com.example.towersofhanoi.View.MenuView;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,6 +30,8 @@ public class TutorialController {
     private Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
     @FXML
     private Button solveButton;
+    @FXML
+    private Button quitButton;
     private AutomaticGame automaticGame;
     public TutorialController() {
         this.automaticGame = new AutomaticGame(OptionsController.numberOfDisks, OptionsController.moveAnimationSpeed);
@@ -97,4 +101,11 @@ public class TutorialController {
         });
         pause.play();
     }
+    public void quitButtonOnAction(ActionEvent e) throws IOException {
+        Node node = (Node) e.getSource();
+        Stage thisStage = (Stage) node.getScene().getWindow();
+        thisStage.hide();
+        MenuView menuView = new MenuView();
+        menuView.start(new Stage());
+    } // go back to the menu
 }
