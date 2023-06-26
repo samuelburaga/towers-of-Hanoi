@@ -11,8 +11,28 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * @author Samuel Buraga
+ * @version 1.0
+ */
+
+/**
+ * The MenuView class is responsible for displaying the menu screen of the Towers of Hanoi game.
+ * It extends the JavaFX Application class and provides the necessary methods for initializing and showing the menu screen.
+ */
 public class MenuView extends Application {
+
+    /**
+     * Indicates whether the background music is currently playing.
+     */
     public static boolean musicPlays = false;
+
+    /**
+     * The start method is called when the application is launched. It initializes the menu screen and shows it on the primary stage.
+     *
+     * @param primaryStage the primary stage of the application
+     * @throws IOException if an I/O error occurs while loading the FXML file
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
@@ -25,9 +45,20 @@ public class MenuView extends Application {
         primaryStage.show();
         backgroundMusic(); // play music
     }
+
+    /**
+     * The main method is the entry point of the application.
+     *
+     * @param args the command-line arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
+
+    /**
+     * Plays the background music.
+     * The music file is located at "/sounds/Stay Retro.wav" relative to the "res" folder.
+     */
     public static void backgroundMusic() {
         String filePath = "/sounds/Stay Retro.wav"; // Path relative to the "res" folder
         // play the music
@@ -44,8 +75,7 @@ public class MenuView extends Application {
                     musicPlays = true;
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
