@@ -1,18 +1,27 @@
 package com.example.towersofhanoi.Controller;
 
-import com.example.towersofhanoi.Model.PlayerGame;
+import com.example.towersofhanoi.Model.*;
 import com.example.towersofhanoi.View.PlayView;
 import com.example.towersofhanoi.View.TutorialView;
+import javafx.animation.AnimationTimer;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import javax.swing.text.html.Option;
 import java.io.IOException;
+import java.sql.Time;
+
 public class PlayController {
     @FXML
     private Pane rodA, rodB, rodC;
@@ -20,8 +29,12 @@ public class PlayController {
     private Button AToBButton, AToCButton, BToAButton, BToCButton, CToAButton, CToBButton;
     private String move;
     private PlayerGame playerGame;
+    private DatabaseConnection mySQLConnection, mongoDBConnection;
     public PlayController() {
+        this.mySQLConnection = new MySQLConnection();
+        this.mongoDBConnection = new MongoDBConnection();
         this.playerGame = new PlayerGame(OptionsController.numberOfDisks, OptionsController.moveAnimationSpeed);
+        // this.startGame();
     }
     public void drawDisks() {
         rodA.getChildren().clear(); // Clear any existing disks
@@ -49,44 +62,69 @@ public class PlayController {
     }
     public void startGame() {
         this.playerGame.startTime = System.currentTimeMillis();
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if (playerGame.isGameOver()) {
+                    stop(); // Stop the timer when the game is over
+                    playerGame.endTime = System.currentTimeMillis();
+                    playerGame.duration = (playerGame.endTime - playerGame.startTime) / 1000;
+                    // Extract hours, minutes, and seconds from the duration
+                    int hours = (int) (playerGame.duration / 3600);
+                    int minutes = (int) ((playerGame.duration % 3600) / 60);
+                    int seconds = (int) (playerGame.duration % 60);
+                    // Create a new `Time` object using the hours, minutes, and seconds
+                    playerGame.time = new Time(hours, minutes, seconds);
+                    System.out.println(playerGame.score);
+                    insertStatisticsInDatabase();
+                    switchToSolvedScene();
+                }
+            }
+        };
+        timer.start(); // Start the timer
     }
     public void moveOptionOnAction(ActionEvent e) throws IOException {
         Button clickedButton = (Button) e.getSource();
         String clickedButtonId = clickedButton.getId();
         char fromRod = clickedButtonId.charAt(0);
         char toRod = clickedButtonId.charAt(3);
-       // if(Play.playerGame.isGameOver() == false) {
-            if(this.playerGame.isMoveValid(fromRod, toRod)) {
-                this.playerGame.runAnimation(fromRod, toRod);
-            }
-            else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Invalid Move");
-                alert.setHeaderText(null);
-                alert.setContentText("This move is not allowed.");
-                alert.showAndWait();
-            }
-    //    }
-//        else {
-//
-//            Play.playerGame.endTime = System.currentTimeMillis();
-//            Play.playerGame.duration = Play.playerGame.endTime - Play.playerGame.startTime;
-//            Play.playerGame.score = (int) (100 / (Play.playerGame.duration / 1000));
-//            Time time = new Time(Play.playerGame.duration);
-//            DatabaseConnection mySQLConnection = new MySQLConnection();
-//            mySQLConnection.connect();
-//            String query = "INSERT INTO statistics (user_id, disks, points, time) VALUES (?, ?, ?, time)";
-//            String[] variables = new String[4];
-//            variables[0] = Integer.toString(User.user_id);
-//            variables[1] = Byte.toString(Play.playerGame.getNumberOfDisks());
-//            variables[2] = Integer.toString(Play.playerGame.score);
-//            variables[3] = time.toString();
-//            ((MySQLConnection) mySQLConnection).executeUpdateWithVariables(query, variables);
-//            Stage stage = (Stage) clickedButton.getScene().getWindow();
-//            Parent root = FXMLLoader.load(Tutorial.class.getResource("View/Solved.fxml"));
-//            Scene solvedScene = new Scene(root);
-//            stage.setScene(solvedScene);
-//            stage.show();
-//        }
+        if (this.playerGame.isMoveValid(fromRod, toRod)) {
+            this.playerGame.score += 10;
+            this.playerGame.runAnimation(fromRod, toRod);
+        }
+        else {
+            this.playerGame.score -= 1;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Move");
+            alert.setHeaderText(null);
+            alert.setContentText("This move is not allowed.");
+            alert.showAndWait();
+        }
+    }
+    private void switchToSolvedScene() {
+        Stage stage = (Stage) rodA.getScene().getWindow();
+        Parent root;
+        try {
+            root = FXMLLoader.load(TutorialView.class.getResource("Solved.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene solvedScene = new Scene(root);
+        PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Let the animation finish
+        pause.setOnFinished(event -> {
+            stage.setScene(solvedScene);
+            stage.show();
+        });
+        pause.play();
+    }
+    private void insertStatisticsInDatabase() {
+            mySQLConnection.connect();
+            String query = "INSERT INTO statistics (users_user_id, disks, points, time) VALUES (?, ?, ?, ?)";
+            String[] variables = new String[4];
+            variables[0] = Integer.toString(User.user_id);
+            variables[1] = Byte.toString(this.playerGame.getNumberOfDisks());
+            variables[2] = Integer.toString(this.playerGame.score);
+            variables[3] = playerGame.time.toString();
+            ((MySQLConnection) mySQLConnection).executeUpdateWithVariables(query, variables);
     }
 }

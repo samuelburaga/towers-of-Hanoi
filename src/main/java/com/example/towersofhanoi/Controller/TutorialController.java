@@ -76,9 +76,9 @@ public class TutorialController {
     } // draw the disks on the screen
     public void switchToSolvedScene() throws IOException {
         Stage stage = (Stage) solveButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(TutorialView.class.getResource("View/Solved.fxml"));
+        Parent root = FXMLLoader.load(TutorialView.class.getResource("Solved.fxml"));
         Scene solvedScene = new Scene(root);
-        PauseTransition pause = new PauseTransition(Duration.seconds(0.5)); // Let the animation finish
+        PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Let the animation finish
         pause.setOnFinished(event -> {
             stage.setScene(solvedScene);
             stage.show();

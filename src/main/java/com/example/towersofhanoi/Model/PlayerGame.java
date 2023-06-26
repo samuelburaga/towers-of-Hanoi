@@ -36,7 +36,6 @@ public class PlayerGame extends Game {
     public boolean isGameOver() {
         byte disksOnLastRod = (byte) rodC.getChildren().size();
         gameOver = disksOnLastRod == this.getNumberOfDisks() ? true:false;
-        System.out.println(gameOver);
         return gameOver;
     }
     public void runAnimation(char fromRod, char toRod) {

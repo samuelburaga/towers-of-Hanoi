@@ -31,7 +31,7 @@ public class OptionsController implements Initializable {
     private Slider moveAnimationSpeedSlider;
     private String defaultColor = "-fx-background-color: #FA8163;";
     private String clickedColor = "-fx-background-color: #0FB4BB;";
-    public static byte numberOfDisks = 3;
+    public static byte numberOfDisks = 2;
     public static double moveAnimationSpeed = 0.1;
     public void optionOnMouseClicked(MouseEvent e) {
         Label clickedLabel = (Label) e.getSource(); // get the label which was clicked

@@ -9,11 +9,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+import java.sql.Time;
+
 public abstract class Game {
-    protected byte numberOfDisks = 10;
+    protected byte numberOfDisks = 2;
     private static long numberOfMoves = 0;
     public static boolean gameOver = false;
     public long startTime, endTime, duration;
+    public Time time;
     public int score;
     protected Duration moveAnimationSpeed = Duration.seconds(0.1); // move animation speed
     protected Thread animationThread;
