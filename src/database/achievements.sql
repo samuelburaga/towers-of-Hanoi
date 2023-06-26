@@ -5,8 +5,8 @@
 --   (3, 3, 'Perfect Score', '2023-06-14'),
 --   (4, 1, 'Speed Demon', '2023-06-15'),
 --   (5, 2, 'Champion', '2023-06-15'),
---   (6, 3, 'Unstoppable', '2023-06-15'),
---   (7, 1, 'Record Breaker', '2023-06-15'),
---   (8, 2, 'High Scorer', '2023-06-15'),
---   (9, 3, 'Master Strategist', '2023-06-15'),
---   (10, 1, 'Perfectionist', '2023-06-15');
+--   (6, 3, 'Unstoppable', '2023-06-20'),
+--   (7, 1, 'Record Breaker', '2023-06-25'),
+--   (8, 2, 'High Scorer', '2023-06-25'),
+--   (9, 3, 'Master Strategist', '2023-06-18'),
+--   (10, 1, 'Perfectionist', '2023-06-20');

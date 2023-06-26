@@ -1,11 +1,11 @@
 -- INSERT INTO `towers-of-Hanoi-noSQL`.`notifications` (`users_user_id`, `notification`, `date`) VALUES
 -- (1, 'New achievement unlocked!', '2023-06-01'),
 -- (2, 'You have reached the top of the leaderboard!', '2023-06-02'),
--- (3, 'Congratulations on your high score!', '2023-06-03'),
+-- (3, 'Congratulations on your high score!', '2023-06-13'),
 -- (4, 'You have received a new notification.', '2023-06-04'),
 -- (5, 'Important announcement: Game update!', '2023-06-05'),
--- (6, 'You are now ranked among the top players!', '2023-06-06'),
--- (7, 'New feature added to the game!', '2023-06-07'),
--- (8, 'You have been awarded a special bonus!', '2023-06-08'),
--- (9, 'Reminder: Daily challenges are available!', '2023-06-09'),
+-- (6, 'You are now ranked among the top players!', '2023-06-23'),
+-- (7, 'New feature added to the game!', '2023-06-21'),
+-- (8, 'You have been awarded a special bonus!', '2023-06-20'),
+-- (9, 'Reminder: Daily challenges are available!', '2023-06-18'),
 -- (10, 'Check out the latest game events!', '2023-06-10');
