@@ -56,4 +56,14 @@ For more information, read the documentation found in the "doc" folder.
 <details>
 
 <summary>Demo</summary>
+
+![Menu window](res/menu_window.png)
+![Manual game window](res/manual_game_window.png)
+![Automatic game window](res/automatic_game_window.png)
+![Options window](res/options_window.png)
+
+![Statistics window](res/statistics_window.png)
+
+![Settings window](res/settings_window.png)
+
 </details>
