@@ -19,7 +19,7 @@ Prerequisites
 2. Clone this repository to your local machine using git clone (or download the zip file and extract it).
 
 ```shell
-git clone https://github.com/samuelburaga/dogs.git
+git clone https://github.com/samuelburaga/towers-of-Hanoi.git
 ```
 
 4. Open the project in IntelliJ
